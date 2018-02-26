@@ -1,0 +1,51 @@
+mac 下使用vmware 虚拟机 安装 centos  开发 c++
+
+第一 centos 官网 下载
+
+centos 操作系统 景象 使用 minimal 版  阿里云的资源
+
+http://mirrors.aliyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso
+
+
+
+第二  使用 vmware 虚拟机软件 
+
+
+使用 该镜像 创建 centos 虚拟机
+
+
+第三  虚拟机启动 景象  进入 安装界面
+
+安装时 没有提示 安装时配置网络
+
+但是我们一定要开启 网络 安装操作系统
+
+否则 后面安装 界面环境时 yum 源 无法使用
+
+
+第四  安装后 进入 纯净的centos 系统
+
+
+完全命令行  无可视化界面
+
+
+
+第五 为 系统 安装 系统界面环境 
+
+
+yum group install  "GNOME Desktop"
+
+
+所有安装完  很耗时 
+安装后 
+输入命令  startx 
+进入 可能会卡顿 耐心等
+进入可视化界面
+
+
+
+
+
+
+
+

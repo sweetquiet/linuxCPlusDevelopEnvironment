@@ -1,0 +1,190 @@
+linux平台开发C++应用程序呢
+除了C++语言，数据结构等必须的知识外，还需要些了解什么呢？
+    linux系统之大，牵涉很多方面的开发。正如win32一样，我们可能开发的是一款游戏，可能是一款带GUI的通信软件，或者只是shell中的一个命令，或者是系统的驱动。需要了解的知识不等。对于win32来说，开发游戏要opengl，开发通信软件，涉及到socket，开发驱动要使用微软的DDK，诸如此类。我们是网络部，开发的大多是没有GUI界面的命令行程序，通常要通信。因此我们需要学习的知识就显而易见了。不说别的，至少可以应付日常工作了。
+   首先，我们要了解shell命令吧。可以做日常的文件维护，比如创建，删除，重命名目录，文件，修改文件权限，显示文件内容，编译文件，安装软件包，这类命令当然多多益善。不过不用担心，其实日常使用到的不多。个人不认为天天背命令就能成高手。命令的参数何其多，汗牛充栋这个成语应该可以形容。掌握框架性的东西，方向性的东西才是重要的，细节问题可以慢慢学习，那是经验积累的过程。
+  其次，一般来说，公司没有电脑给我们单独装一个Linux，所以一般是用虚拟机。个人推荐VMware7.1,网上有中文汉化版，很好很强大。这里也有必要说明一下，不需要去抱个虚拟机的教程天天看，我们用到的很少。这里总结一下，使用vmware安装完linux之后，需要在选项里开启共享文件夹，开启拖拽和复制粘贴，然后网络选择NAT方式，配置VMware Network Adapter VMnet8和linux的网卡IP地址位于同一子网段，再安装一个vm tools，就可以让虚拟机共享主机的网络，并且可以在windows和Linux之间进行文件的拖拉，非常方便。这里偷偷告诉你，有时候，我会在windows上用vc调试，然后将代码拖到Linux,再用g++编译。很好，很强大。不过，我想该方法只适用于只调用C++标准库的程序。
+  再次，会编写makefile。makefile是一个文件依赖的规则。还记得前面么？我介绍到，linux IDE不如windows好用，但是命令行很强大，结合makefile，linux将无所不能。您可以完全按照自己的意愿来干，比如，您不必非要按照windows上面的IDE那样规定的，先编译，后链接，再运行。您可以按照自己的意愿来打乱它们，虽然这可能会出问题。不过，free is everything.
+   第四，会适用gdb调试器。会它的命令。很多linux上面的IDE其实是内嵌了gdb调试器。比如GNOME的anjuta, KDE的KDeveloper等。
+  第五，会使用，善于使用，经常使用man命令。在win32平台上，我经常参照MSDN，有C/C++标准库，有API，有MFC的说明，很好用。到了linux，啥都没有了。MSDN不管用了。怎么办？起初，我只知道上网查。很慢，很费事。现在我知道了，linux自带的man命令包含的更全，通过安装开发包，您可以man出来标准库，man出来API系统调用等等。而且GNU中国还有一个计划，是专门翻译man命令的。您可以关注一下。
+   最后，我要啰嗦一下，在Linux上面编程，我们能够运用最多的，非C++标准库莫属。特别是STL。功能好好用。也许和我的经历有关，我有一个坏习惯，碰到一个需求，我喜欢自己去实现这一个结构。比如一个动态的数组，某一个排序等，有些东西如果处处要自己实现，在规定的时限内，可能什么都完成不了。STL解决了这一难题。以前，我写了一大段代码完成的功能，它也就两三句话而已，而且效率很高。我正在学习中，很喜欢它。
+
+2，如何在linux平台开发C++应用程序呢？
+   介绍完了前面的铺垫知识，敲击键盘敲的指头都僵了。下面快速地介绍在Linux平台开发c++程序的步骤吧。
+   1，使用gedit，或者任何文本编辑器（最好有语法高亮，自动缩进功能）编写您的代码。
+   2，编写代码时，使用标准库的函数和数据结构，或者其它已经实现的模块，或者linux系统API调用。
+   3，碰到不知道的标准库，或者linux API，使用man命令查询，没有的话，到网上查询。
+   4，编写makefile.
+   5，在g++上添加 -g参数，加入调试符号。
+   6，使用gdb调试或者打印log测试。
+   7，去掉-g参数，release。
+   8，结束。
+
+总结一下：您可以参照下列的关键词来寻找资料进一步学习：
+GTK, QT, SHELL, GDB, GCC, makefile,STL
+全文完~
+
+
+
+
+linux CentOS 操作系统安装  详细 过程
+http://www.mamicode.com/info-detail-900149.html
+
+
+
+
+第一 安装CentOS
+
+  
+  准备工作
+
+准备材料
+U盘：容量700M以上，用于制作U盘启动盘，因为在制作启动盘时会格式化U盘，所以U盘内不要包含重要资料
+CentOS 7.1 LiveCD ISO镜像文件
+Universal USB installer：Windows下的U盘启动盘制作工具
+一个已安装Windows的电脑：用于制作U盘启动盘
+运行Universal USB installer并制作U盘启动盘
+将U盘插入计算机，重启，进入BIOS选择从U盘启动，即可进入CentOS的LiveCD
+进入LiveCD后，点击桌面的“Install to Hard Drive”即可安装
+注：Linux下可以通过dd命令制作启动盘，但由于对原理不够了解，偶尔会导致制作失败，或制作成功后U盘容量有问题，还是用Windows下的Universal USB installer比较靠谱。
+
+安装过程
+
+选择安装过程中使用的语言，这里应使用英语，不要使用汉语。若安装界面使用汉语，最终安装的系统中会出现两个比较麻烦的问题：
+家目录下的系统文件夹，比如Downloads、Desktop等会以中文表示，这使得在命令行cd变得很麻烦；
+终端中某些字符用英文字体，某些字符用中文字体，效果非常差，需要自己修改终端字体方可；
+选择区域和城市：Asia和Shanghai
+键盘使用English(US)而不是English(UK)
+Hostname可以改也可以不改，我用saturn.geolab
+安装的目的地，选择要使用的硬盘，在“Other Storage Options”处选择“I will configure partioning”，即手动分区
+分区
+
+CentOS 7的分区似乎比较特别，自认为经验很丰富的我在第一次安装CentOS7时还是在分区上耽误了很多时间。后来找到比较合适的分区方法，如下：
+
+点击“Click here to create them automatically”，即让安装程序帮忙分区
+默认的分区方案是使用LVM，其好处在于“当机器有多块硬盘时，在使用的时候看上去只有一块”
+默认的文件系统为XFS而不是以前常用的EXT4；
+自动分区完成后，再根据自己的需求，手动修改分区细节
+/boot：CentOS自动分配，一定不要乱改；
+/：根目录，合理使用并及时清理的话15G就够了，不过建议30G以上；
+swap：与物理内存大小一致即可
+/opt：个人习惯是将第三方软件都安装在/opt下，所以分了70G
+/home：余下的全部空间
+点击“Begin to Install”开始安装
+真正的安装
+
+设置root密码
+创建一般用户
+等待安装完成
+安装完成，重启
+重启后，同意License即可
+对系统的若干修改
+
+若干原则
+
+为了搭建一个稳定的系统，尽量避免因为各种瞎折腾而导致的系统问题，特订立了一些软件安装的原则。具体参见《CentOS 7下的软件安装方法与策略》。
+
+给一般账号root权限
+
+默认情况下，一般账号是没有root权限的。为什么不直接用root账号，而是要给一般账号root权限呢？
+
+日常工作中使用root账号，是非常糟糕且危险的习惯！无论是服务器还是个人电脑都是如此。
+安装软件时需要root权限，只能su切换到root账户再安装。对于习惯使用sudo的人来说，还是有些麻烦。
+假设账户名为seisman，要授予他root权限，则要修改配置文件/etc/sudoers
+
+$ su
+# echo ‘seisman ALL=(ALL) ALL‘ >> /etc/sudoers # 向配置文件中加入语句
+# tail -1 /etc/sudoers  # 检查一下是否正确
+seisman ALL=(ALL) ALL
+其中seisman为当前用户名。
+
+添加第三方源
+
+CentOS由于很追求稳定性，所以官方源中自带的软件不多，因而需要一些第三方源，比如EPEL、ATrpms、ELRepo、 Nux Dextop、RepoForge等。根据上面提到的软件安装原则，为了尽可能保证系统的稳定性，此处大型第三方源只添加EPEL源和 ELRepo源。
+
+EPEL
+
+EPEL即Extra Packages for Enterprise Linux，为CentOS提供了额外的10000多个软件包，而且在不替换系统组件方面下了很多功夫，因而可以放心使用。
+
+1
+sudo yum install epel-release
+执行完该命令后，在/etc/yum.repos.d目录下会多一个epel.repo文件。
+
+ELRepo
+
+ELRepo包含了一些硬件相关的驱动程序，比如显卡、声卡驱动:
+
+sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+完成该命令后，在/etc/yum.repos.d目录下会多一个elrepo.repo文件。
+
+安装yum-axelget
+
+yum-axelget是EPEL提供的一个yum插件。使用该插件后用yum安装软件时可以并行下载，大大提高了软件的下载速度，减少了下载的等待时间:
+
+sudo yum install yum-axelget
+安装该插件的同时会安装另一个软件axel。axel是一个并行下载工具，在下载http、ftp等简单协议的文件时非常好用。
+
+第一次全面更新
+
+在进一步操作之前，先把已经安装的软件包都升级到最新版:
+
+sudo yum update
+要更新的软件包有些多，可能需要一段时间。不过有了yum-axelget插件，速度已经快了很多啦。
+
+重启
+
+此处建议重启。
+
+删除多余的kernel
+
+在前面的yum update执行之后，可能会将kernel也一起更新，则在启动CentOS时启动项中会有很多项。
+
+确认当前使用的kernel版本号:
+
+$ uname -r
+3.10.0-123.9.3.el7.x86_64
+查找当前系统安装的所有kernel:
+
+$ rpm -qa | grep kernel
+kernel-3.10.0-123.8.1.el7.x86_64
+kernel-3.10.0-123.9.3.el7.x86_64
+kernel-devel-3.10.0-123.9.2.el7.x86_64
+kernel-tools-3.10.0-123.9.3.el7.x86_64
+kernel-headers-3.10.0-123.9.3.el7.x86_64
+kernel-3.10.0-123.9.2.el7.x86_64
+kernel-tools-libs-3.10.0-123.9.3.el7.x86_64
+kernel-devel-3.10.0-123.8.1.el7.x86_64
+kernel-devel-3.10.0-123.9.3.el7.x86_64
+可以看出有三个版本的kernel，123.8.1、123.9.2和123.9.3。除了最新的kernel外，建议多保留一个旧kernel，以免新kernel出现问题时可以通过旧kernel进入系统。因而此处删除123.8.1版本的kernel:
+
+sudo yum remove kernel-3.10.0-123.8.1.el7.x86_64
+sudo yum remove kernel-devel-3.10.0-123.8.1.el7.x86_64
+
+
+
+
+
+
+
+
+
+linux C++开发环境
+
+
+GCC系列
+
+sudo yum install gcc                     # C编译器
+sudo yum install gcc-c++                 # C++编译器
+sudo yum install gcc-gfortran            # Fortran编译器
+sudo yum install compat-gcc-44           # 兼容gcc 4.4
+sudo yum install compat-gcc-44-c++       # 兼容gcc-c++ 4.4
+sudo yum install compat-gcc-44-gfortran  # 兼容gcc-fortran 4.4
+sudo yum install compat-libf2c-34        # g77 3.4.x兼容库
+软件开发辅助工具
+
+sudo yum install make
+sudo yum install gdb     # 代码调试器
+sudo yum install cmake   # Cmake
+sudo yum install git     # 版本控制
+sudo yum install git-svn # git的svn插件
+
