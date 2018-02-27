@@ -90,4 +90,12 @@ OnlyShowIn=Unity;
 
 配置 c++ php js  等开发环境
 
+
+留意一下系统版本号
+
+[root@bogon sublimtextapps]# uname -a
+Linux bogon 3.10.0-693.17.1.el7.x86_64 #1 SMP Thu Jan 25 20:13:58 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+[root@bogon sublimtextapps]# 
+
+
 未完待续
