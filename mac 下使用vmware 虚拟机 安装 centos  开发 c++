@@ -43,8 +43,15 @@ yum group install  "GNOME Desktop"
 进入可视化界面
 
 
+vmware linux 环境 设置 默认 可视化界面启动
 
 
+[root@bogon ~]# systemctl get-default
+multi-user.target
+[root@bogon ~]# systemctl set-default graphical.target
+Removed symlink /etc/systemd/system/default.target.
+Created symlink from /etc/systemd/system/default.target to /usr/lib/systemd/system/graphical.target.
+[root@bogon ~]# reboot
 
 
 
