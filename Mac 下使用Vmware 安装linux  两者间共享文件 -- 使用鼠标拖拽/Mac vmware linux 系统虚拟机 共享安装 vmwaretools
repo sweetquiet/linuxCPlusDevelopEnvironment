@@ -1,0 +1,20 @@
+Mac vmware linux 系统虚拟机 共享
+
+先
+
+#更新内核。
+yum update kernel
+#需要安装相应的kernel-devel和gcc程序包,gcc也是必须的
+yum install kernel-devel gcc
+
+然后为 mac 下的 vmware 启动 linux 虚拟机
+安装 vmware-tools
+
+
+然后
+
+来回拖拽 想要共享的文件夹 
+
+如果遇到报错 请点击 重试  
+
+发现 共享成功
