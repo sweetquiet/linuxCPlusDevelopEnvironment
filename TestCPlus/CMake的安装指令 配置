@@ -1,0 +1,43 @@
+CMake的安装指令 配置
+
+如果我没有定义 
+CMAKE_INSTALL_PREFIX 会安装到什么地方?
+
+你可以尝试以下，cmake ..;make;make install，你会发现 CMAKE_INSTALL_PREFIX 的默认定义是/usr/local
+
+而我们自定义安装 则----
+
+我们的需求是
+安装这些文件:
+
+将 hello 二进制与 runhello.sh 安装至/<prefix>/bin，
+将 doc 目录中的 hello.txt 以及 COPYRIGHT/README 安装到 /<prefix>/share/doc/
+
+首先 确保 编译安装前
+
+第一 DOC 目录下 有hello.txt文件
+
+第二 工程目录下 有COPYRIGHT  和 README 文件
+
+
+然后改写各目录下的CMakeList文件
+
+
+1，安装 COPYRIGHT/README，直接修改主工程文件 CMakelists.txt，加入以下指令: INSTALL(FILES COPYRIGHT README DESTINATION share/doc/cmake/t2) 2，安装 runhello.sh，直接修改主工程文件 CMakeLists.txt，加入如下指令: INSTALL(PROGRAMS runhello.sh DESTINATION bin)
+3，安装 doc 中的 hello.txt，这里有两种方式:一是通过在 doc 目录建立 CMakeLists.txt 并将 doc 目录通过 ADD_SUBDIRECTORY 加入工程来完成。另一种方法 是直接在工程目录通过
+INSTALL(DIRECTORY 来完成)，前者比较简单，各位可以根据兴趣自己完成，我们来尝试 后者，顺便演示以下 DIRECTORY 的安装。
+
+
+因为 hello.txt 要安装到/<prefix>/share/doc/cmake/t2，所以我们不能直接安装 整个 doc 目录，这里采用的方式是安装 doc 目录中的内容，也就是使用”doc/”
+在工程文件中添加
+INSTALL(DIRECTORY doc/ DESTINATION share/doc/cmake/t2)
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+CMake解释1-1
+
+PROJECT(HELLO) 
+ADD_SUBDIRECTORY(src bin)
+
+
+
+例子定义了
+
+将 src 子目录加入工程，并指定编译输出(包含编译中间结果)路径为 bin 目录。
+
+如果不进行 bin 目录的指定，那么编译结果(包括中间结果)都将存放在 build/src 目录(这个目录跟原有的 src 目录对应)，指定 bin 目录后，相当于在编译时 将 src 重命名为 bin，所有的中间结果和目标二进制都将存放在 bin 目录。
+
+
+语法解释:
+ADD_SUBDIRECTORY 指令
+ADD_SUBDIRECTORY(source_dir [binary_dir] [EXCLUDE_FROM_ALL])
+这个指令用于向当前工程添加存放源文件的子目录，并可以指定中间二进制和目标二进制存 放的位置。EXCLUDE_FROM_ALL 参数的含义是将这个目录从编译过程中排除，比如，工程 的 example，可能就需要工程构建完成后，再进入 example 目录单独进行构建(当然，你 也可以通过定义依赖来解决此类问题)
+
+

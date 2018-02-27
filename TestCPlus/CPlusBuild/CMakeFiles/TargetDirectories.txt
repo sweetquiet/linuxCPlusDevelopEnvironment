@@ -1,0 +1,9 @@
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles/rebuild_cache.dir
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles/edit_cache.dir
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout/CMakeFiles/rebuild_cache.dir
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout/CMakeFiles/edit_cache.dir
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout/CMakeFiles/hello_static.dir
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout/CMakeFiles/hello.dir
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/binout/CMakeFiles/rebuild_cache.dir
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/binout/CMakeFiles/edit_cache.dir
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/binout/CMakeFiles/hellobin.dir

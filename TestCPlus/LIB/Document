@@ -1,0 +1,33 @@
+我们编译静态库 共享库 
+
+
+第一 建立共享库
+
+cd 工程目录  到工程目录下 新建lib子目录 存储共享库的源码文件
+
+mkdir lib
+在 工程目录 目录下建立 CMakeLists.txt，内容如下: 
+
+PROJECT(HELLOLIB) 
+ADD_SUBDIRECTORY(lib)
+
+在 lib 目录下建立两个源文件 hello.c 与 hello.h 
+
+hello.c 内容如下:
+#include “hello.h”
+void HelloFunc()
+{
+     printf(“Hello World\n”);
+}
+
+hello.h 内容如下: 
+
+#ifndef HELLO_H #define HELLO_H #include <stdio.h> void HelloFunc(); #endif
+在 lib 目录下建立 CMakeLists.txt，
+
+内容如下:
+SET(LIBHELLO_SRC hello.c)
+ADD_LIBRARY(hello SHARED ${LIBHELLO_SRC})
+
+
+
