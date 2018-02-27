@@ -126,14 +126,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles /Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(CMAKE_COMMAND) -E cmake_progress_start /Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles /Users/admindyn/Desktop/TestCPlus/CPlusBuild/docout/CMakeFiles/progress.marks
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f CMakeFiles/Makefile2 docout/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f CMakeFiles/Makefile2 docout/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,57 +143,18 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f CMakeFiles/Makefile2 docout/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f CMakeFiles/Makefile2 docout/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-#=============================================================================
-# Target rules for targets named hello_static
-
-# Build rule for target.
-hello_static: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hello_static
-.PHONY : hello_static
-
-# fast build rule for target.
-hello_static/fast:
-	$(MAKE) -f libout/CMakeFiles/hello_static.dir/build.make libout/CMakeFiles/hello_static.dir/build
-.PHONY : hello_static/fast
-
-#=============================================================================
-# Target rules for targets named hello
-
-# Build rule for target.
-hello: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hello
-.PHONY : hello
-
-# fast build rule for target.
-hello/fast:
-	$(MAKE) -f libout/CMakeFiles/hello.dir/build.make libout/CMakeFiles/hello.dir/build
-.PHONY : hello/fast
-
-#=============================================================================
-# Target rules for targets named hellobin
-
-# Build rule for target.
-hellobin: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hellobin
-.PHONY : hellobin
-
-# fast build rule for target.
-hellobin/fast:
-	$(MAKE) -f binout/CMakeFiles/hellobin.dir/build.make binout/CMakeFiles/hellobin.dir/build
-.PHONY : hellobin/fast
 
 # Help Target
 help:
@@ -207,9 +168,6 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... hello_static"
-	@echo "... hello"
-	@echo "... hellobin"
 .PHONY : help
 
 
@@ -221,6 +179,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -28,6 +28,9 @@ ENDIF (UNIX)
 
 #这个指令用于向当前工程添加存放源文件的子目录，并可以指定中间二进制和目标二进制存放的位置
 
+#安装脚本
+INSTALL(PROGRAMS run.sh DESTINATION ${PROJECT_BINARY_DIR}/bindir)
+
 #ADD_SUBDIRECTORY(DOC doc)
 
 #由于我们使用CMake软件指定外部构建的 build 路径了
@@ -43,6 +46,13 @@ ADD_SUBDIRECTORY(LIB libout)
 #这里 并不是指定生成的 最终hellobin 可执行文件的最终的生成目录
 
 ADD_SUBDIRECTORY(SRC binout)
+
+
+#设置输出项目工程文档
+
+ADD_SUBDIRECTORY(DOC docout)
+
+
 
 
 

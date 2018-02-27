@@ -11,6 +11,12 @@ ADD_LIBRARY(hello_static STATIC ${LIBHELLO_SRC})
 
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libsdir)
 
+#设置共享库的头文件安装路径
+#但是这里的设置 生效查看 
+#需要在执行cmake make 后 再执行make install 才会看到这里的设置生效
+
+INSTALL(FILES hello.h DESTINATION ${PROJECT_BINARY_DIR}/include/hello)
+
 SET_TARGET_PROPERTIES(hello PROPERTIES VERSION 1.2 SOVERSION 1)
 
 SET_TARGET_PROPERTIES(hello PROPERTIES CLEAN_DIRECT_OUTPUT 1)

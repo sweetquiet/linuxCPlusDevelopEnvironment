@@ -96,6 +96,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.8.0-rc3/CMakeSystem.cmake"
   "CMakeFiles/feature_tests.c"
   "CMakeFiles/feature_tests.cxx"
+  "../DOC/CMakeLists.txt"
   "../LIB/CMakeLists.txt"
   "../SRC/CMakeLists.txt"
   )
@@ -116,6 +117,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "libout/CMakeFiles/CMakeDirectoryInformation.cmake"
   "binout/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "docout/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:

@@ -27,10 +27,23 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
+if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
+   "/Users/admindyn/Desktop/TestCPlus/CPlusBuild/bindir/run.sh")
+  if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
+    message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+  endif()
+  if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
+    message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+  endif()
+file(INSTALL DESTINATION "/Users/admindyn/Desktop/TestCPlus/CPlusBuild/bindir" TYPE PROGRAM FILES "/Users/admindyn/Desktop/TestCPlus/run.sh")
+endif()
+
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout/cmake_install.cmake")
   include("/Users/admindyn/Desktop/TestCPlus/CPlusBuild/binout/cmake_install.cmake")
+  include("/Users/admindyn/Desktop/TestCPlus/CPlusBuild/docout/cmake_install.cmake")
 
 endif()
 

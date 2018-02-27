@@ -1,0 +1,4 @@
+
+MESSAGE(STATUS "Project-Document: DOC")
+
+INSTALL(FILES hello.text DESTINATION ${PROJECT_BINARY_DIR}/docs)

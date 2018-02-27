@@ -1,0 +1,3 @@
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/bindir/run.sh
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/include/hello/hello.h
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/docs/hello.text

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/admindyn/Desktop/TestCPlus/LIB
+# Install script for directory: /Users/admindyn/Desktop/TestCPlus/DOC
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,13 +29,13 @@ endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/Users/admindyn/Desktop/TestCPlus/CPlusBuild/include/hello/hello.h")
+   "/Users/admindyn/Desktop/TestCPlus/CPlusBuild/docs/hello.text")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/Users/admindyn/Desktop/TestCPlus/CPlusBuild/include/hello" TYPE FILE FILES "/Users/admindyn/Desktop/TestCPlus/LIB/hello.h")
+file(INSTALL DESTINATION "/Users/admindyn/Desktop/TestCPlus/CPlusBuild/docs" TYPE FILE FILES "/Users/admindyn/Desktop/TestCPlus/DOC/hello.text")
 endif()
 
