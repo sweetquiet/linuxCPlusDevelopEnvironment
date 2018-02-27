@@ -1,0 +1,15 @@
+工程引用非标准库文件 引用第三方库文件 如何设置我们可以找到头文件
+
+为了让我们的工程能够找到 hello.h 头文件，我们需要引入一个新的指令 
+
+INCLUDE_DIRECTORIES，其完整语法为:
+INCLUDE_DIRECTORIES([AFTER|BEFORE] [SYSTEM] dir1 dir2 ...)
+这条指令可以用来向工程添加多个特定的头文件搜索路径，路径之间用空格分割，如果路径
+中包含了空格，可以使用双引号将它括起来，默认的行为是追加到当前的头文件搜索路径的
+后面，你可以通过两种方式来进行控制搜索路径添加的方式:
+
+
+1，CMAKE_INCLUDE_DIRECTORIES_BEFORE，通过 SET 这个 cmake 变量为 on，可以 将添加的头文件搜索路径放在已有路径的前面。
+2，通过 AFTER 或者 BEFORE 参数，也可以控制是追加还是置前。
+现在我们在 src/CMakeLists.txt 中添加一个头文件搜索路径，方式很简单，加入:
+INCLUDE_DIRECTORIES(~/Desktop/TestCPlus/CPlusBuild/include/hello/hello.h)

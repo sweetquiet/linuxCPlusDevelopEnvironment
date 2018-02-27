@@ -1,0 +1,5 @@
+/Users/admindyn/Desktop/TestCPlusLibUse/Build/CMakeFiles/rebuild_cache.dir
+/Users/admindyn/Desktop/TestCPlusLibUse/Build/CMakeFiles/edit_cache.dir
+/Users/admindyn/Desktop/TestCPlusLibUse/Build/binout/CMakeFiles/rebuild_cache.dir
+/Users/admindyn/Desktop/TestCPlusLibUse/Build/binout/CMakeFiles/edit_cache.dir
+/Users/admindyn/Desktop/TestCPlusLibUse/Build/binout/CMakeFiles/main.dir

@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/admindyn/Desktop/TestCPlus/CPlusBuild/include/hello/hello.h
+stdio.h
+-
+
+/Users/admindyn/Desktop/TestCPlusLibUse/src/main.cpp
+hello.h
+-
+

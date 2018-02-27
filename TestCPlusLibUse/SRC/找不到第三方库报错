@@ -1,0 +1,13 @@
+找不到第三方库报错
+
+macserver:Build admindyn$ make
+Scanning dependencies of target main
+[ 50%] Building C object binout/CMakeFiles/main.dir/main.c.o
+[100%] Linking C executable main
+ld: warning: directory not found for option '-L/Users/admindyn/Desktop/TestCPlus/CPlusBuild/libsdir/libhello.dylib'
+ld: library not found for -lhello
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[2]: *** [binout/main] Error 1
+make[1]: *** [binout/CMakeFiles/main.dir/all] Error 2
+make: *** [all] Error 2
+macserver:Build admindyn$ 
