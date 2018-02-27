@@ -171,32 +171,32 @@ hellobin/fast:
 	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f binout/CMakeFiles/hellobin.dir/build.make binout/CMakeFiles/hellobin.dir/build
 .PHONY : hellobin/fast
 
-main.o: main.c.o
+main.o: main.cpp.o
 
 .PHONY : main.o
 
 # target to build an object file
-main.c.o:
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f binout/CMakeFiles/hellobin.dir/build.make binout/CMakeFiles/hellobin.dir/main.c.o
-.PHONY : main.c.o
+main.cpp.o:
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f binout/CMakeFiles/hellobin.dir/build.make binout/CMakeFiles/hellobin.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-main.i: main.c.i
+main.i: main.cpp.i
 
 .PHONY : main.i
 
 # target to preprocess a source file
-main.c.i:
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f binout/CMakeFiles/hellobin.dir/build.make binout/CMakeFiles/hellobin.dir/main.c.i
-.PHONY : main.c.i
+main.cpp.i:
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f binout/CMakeFiles/hellobin.dir/build.make binout/CMakeFiles/hellobin.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-main.s: main.c.s
+main.s: main.cpp.s
 
 .PHONY : main.s
 
 # target to generate assembly for a file
-main.c.s:
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f binout/CMakeFiles/hellobin.dir/build.make binout/CMakeFiles/hellobin.dir/main.c.s
-.PHONY : main.c.s
+main.cpp.s:
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f binout/CMakeFiles/hellobin.dir/build.make binout/CMakeFiles/hellobin.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:

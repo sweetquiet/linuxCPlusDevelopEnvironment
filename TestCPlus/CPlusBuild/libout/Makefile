@@ -186,35 +186,35 @@ hello/fast:
 	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello.dir/build.make libout/CMakeFiles/hello.dir/build
 .PHONY : hello/fast
 
-hello.o: hello.c.o
+hello.o: hello.cpp.o
 
 .PHONY : hello.o
 
 # target to build an object file
-hello.c.o:
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello_static.dir/build.make libout/CMakeFiles/hello_static.dir/hello.c.o
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello.dir/build.make libout/CMakeFiles/hello.dir/hello.c.o
-.PHONY : hello.c.o
+hello.cpp.o:
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello_static.dir/build.make libout/CMakeFiles/hello_static.dir/hello.cpp.o
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello.dir/build.make libout/CMakeFiles/hello.dir/hello.cpp.o
+.PHONY : hello.cpp.o
 
-hello.i: hello.c.i
+hello.i: hello.cpp.i
 
 .PHONY : hello.i
 
 # target to preprocess a source file
-hello.c.i:
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello_static.dir/build.make libout/CMakeFiles/hello_static.dir/hello.c.i
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello.dir/build.make libout/CMakeFiles/hello.dir/hello.c.i
-.PHONY : hello.c.i
+hello.cpp.i:
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello_static.dir/build.make libout/CMakeFiles/hello_static.dir/hello.cpp.i
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello.dir/build.make libout/CMakeFiles/hello.dir/hello.cpp.i
+.PHONY : hello.cpp.i
 
-hello.s: hello.c.s
+hello.s: hello.cpp.s
 
 .PHONY : hello.s
 
 # target to generate assembly for a file
-hello.c.s:
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello_static.dir/build.make libout/CMakeFiles/hello_static.dir/hello.c.s
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello.dir/build.make libout/CMakeFiles/hello.dir/hello.c.s
-.PHONY : hello.c.s
+hello.cpp.s:
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello_static.dir/build.make libout/CMakeFiles/hello_static.dir/hello.cpp.s
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild && $(MAKE) -f libout/CMakeFiles/hello.dir/build.make libout/CMakeFiles/hello.dir/hello.cpp.s
+.PHONY : hello.cpp.s
 
 # Help Target
 help:

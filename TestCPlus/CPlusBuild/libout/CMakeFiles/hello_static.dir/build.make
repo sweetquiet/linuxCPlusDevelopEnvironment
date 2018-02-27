@@ -57,41 +57,41 @@ include libout/CMakeFiles/hello_static.dir/progress.make
 # Include the compile flags for this target's objects.
 include libout/CMakeFiles/hello_static.dir/flags.make
 
-libout/CMakeFiles/hello_static.dir/hello.c.o: libout/CMakeFiles/hello_static.dir/flags.make
-libout/CMakeFiles/hello_static.dir/hello.c.o: ../LIB/hello.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object libout/CMakeFiles/hello_static.dir/hello.c.o"
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/hello_static.dir/hello.c.o   -c /Users/admindyn/Desktop/TestCPlus/LIB/hello.c
+libout/CMakeFiles/hello_static.dir/hello.cpp.o: libout/CMakeFiles/hello_static.dir/flags.make
+libout/CMakeFiles/hello_static.dir/hello.cpp.o: ../LIB/hello.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object libout/CMakeFiles/hello_static.dir/hello.cpp.o"
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hello_static.dir/hello.cpp.o -c /Users/admindyn/Desktop/TestCPlus/LIB/hello.cpp
 
-libout/CMakeFiles/hello_static.dir/hello.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/hello_static.dir/hello.c.i"
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/admindyn/Desktop/TestCPlus/LIB/hello.c > CMakeFiles/hello_static.dir/hello.c.i
+libout/CMakeFiles/hello_static.dir/hello.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hello_static.dir/hello.cpp.i"
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/admindyn/Desktop/TestCPlus/LIB/hello.cpp > CMakeFiles/hello_static.dir/hello.cpp.i
 
-libout/CMakeFiles/hello_static.dir/hello.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/hello_static.dir/hello.c.s"
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/admindyn/Desktop/TestCPlus/LIB/hello.c -o CMakeFiles/hello_static.dir/hello.c.s
+libout/CMakeFiles/hello_static.dir/hello.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hello_static.dir/hello.cpp.s"
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/admindyn/Desktop/TestCPlus/LIB/hello.cpp -o CMakeFiles/hello_static.dir/hello.cpp.s
 
-libout/CMakeFiles/hello_static.dir/hello.c.o.requires:
+libout/CMakeFiles/hello_static.dir/hello.cpp.o.requires:
 
-.PHONY : libout/CMakeFiles/hello_static.dir/hello.c.o.requires
+.PHONY : libout/CMakeFiles/hello_static.dir/hello.cpp.o.requires
 
-libout/CMakeFiles/hello_static.dir/hello.c.o.provides: libout/CMakeFiles/hello_static.dir/hello.c.o.requires
-	$(MAKE) -f libout/CMakeFiles/hello_static.dir/build.make libout/CMakeFiles/hello_static.dir/hello.c.o.provides.build
-.PHONY : libout/CMakeFiles/hello_static.dir/hello.c.o.provides
+libout/CMakeFiles/hello_static.dir/hello.cpp.o.provides: libout/CMakeFiles/hello_static.dir/hello.cpp.o.requires
+	$(MAKE) -f libout/CMakeFiles/hello_static.dir/build.make libout/CMakeFiles/hello_static.dir/hello.cpp.o.provides.build
+.PHONY : libout/CMakeFiles/hello_static.dir/hello.cpp.o.provides
 
-libout/CMakeFiles/hello_static.dir/hello.c.o.provides.build: libout/CMakeFiles/hello_static.dir/hello.c.o
+libout/CMakeFiles/hello_static.dir/hello.cpp.o.provides.build: libout/CMakeFiles/hello_static.dir/hello.cpp.o
 
 
 # Object files for target hello_static
 hello_static_OBJECTS = \
-"CMakeFiles/hello_static.dir/hello.c.o"
+"CMakeFiles/hello_static.dir/hello.cpp.o"
 
 # External object files for target hello_static
 hello_static_EXTERNAL_OBJECTS =
 
-libsdir/libhello.a: libout/CMakeFiles/hello_static.dir/hello.c.o
+libsdir/libhello.a: libout/CMakeFiles/hello_static.dir/hello.cpp.o
 libsdir/libhello.a: libout/CMakeFiles/hello_static.dir/build.make
 libsdir/libhello.a: libout/CMakeFiles/hello_static.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library ../libsdir/libhello.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ../libsdir/libhello.a"
 	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && $(CMAKE_COMMAND) -P CMakeFiles/hello_static.dir/cmake_clean_target.cmake
 	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hello_static.dir/link.txt --verbose=$(VERBOSE)
 
@@ -100,7 +100,7 @@ libout/CMakeFiles/hello_static.dir/build: libsdir/libhello.a
 
 .PHONY : libout/CMakeFiles/hello_static.dir/build
 
-libout/CMakeFiles/hello_static.dir/requires: libout/CMakeFiles/hello_static.dir/hello.c.o.requires
+libout/CMakeFiles/hello_static.dir/requires: libout/CMakeFiles/hello_static.dir/hello.cpp.o.requires
 
 .PHONY : libout/CMakeFiles/hello_static.dir/requires
 

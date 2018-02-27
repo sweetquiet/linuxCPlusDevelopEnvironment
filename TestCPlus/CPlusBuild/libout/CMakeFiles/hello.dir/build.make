@@ -57,41 +57,41 @@ include libout/CMakeFiles/hello.dir/progress.make
 # Include the compile flags for this target's objects.
 include libout/CMakeFiles/hello.dir/flags.make
 
-libout/CMakeFiles/hello.dir/hello.c.o: libout/CMakeFiles/hello.dir/flags.make
-libout/CMakeFiles/hello.dir/hello.c.o: ../LIB/hello.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object libout/CMakeFiles/hello.dir/hello.c.o"
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/hello.dir/hello.c.o   -c /Users/admindyn/Desktop/TestCPlus/LIB/hello.c
+libout/CMakeFiles/hello.dir/hello.cpp.o: libout/CMakeFiles/hello.dir/flags.make
+libout/CMakeFiles/hello.dir/hello.cpp.o: ../LIB/hello.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object libout/CMakeFiles/hello.dir/hello.cpp.o"
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hello.dir/hello.cpp.o -c /Users/admindyn/Desktop/TestCPlus/LIB/hello.cpp
 
-libout/CMakeFiles/hello.dir/hello.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/hello.dir/hello.c.i"
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/admindyn/Desktop/TestCPlus/LIB/hello.c > CMakeFiles/hello.dir/hello.c.i
+libout/CMakeFiles/hello.dir/hello.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hello.dir/hello.cpp.i"
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/admindyn/Desktop/TestCPlus/LIB/hello.cpp > CMakeFiles/hello.dir/hello.cpp.i
 
-libout/CMakeFiles/hello.dir/hello.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/hello.dir/hello.c.s"
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/admindyn/Desktop/TestCPlus/LIB/hello.c -o CMakeFiles/hello.dir/hello.c.s
+libout/CMakeFiles/hello.dir/hello.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hello.dir/hello.cpp.s"
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/admindyn/Desktop/TestCPlus/LIB/hello.cpp -o CMakeFiles/hello.dir/hello.cpp.s
 
-libout/CMakeFiles/hello.dir/hello.c.o.requires:
+libout/CMakeFiles/hello.dir/hello.cpp.o.requires:
 
-.PHONY : libout/CMakeFiles/hello.dir/hello.c.o.requires
+.PHONY : libout/CMakeFiles/hello.dir/hello.cpp.o.requires
 
-libout/CMakeFiles/hello.dir/hello.c.o.provides: libout/CMakeFiles/hello.dir/hello.c.o.requires
-	$(MAKE) -f libout/CMakeFiles/hello.dir/build.make libout/CMakeFiles/hello.dir/hello.c.o.provides.build
-.PHONY : libout/CMakeFiles/hello.dir/hello.c.o.provides
+libout/CMakeFiles/hello.dir/hello.cpp.o.provides: libout/CMakeFiles/hello.dir/hello.cpp.o.requires
+	$(MAKE) -f libout/CMakeFiles/hello.dir/build.make libout/CMakeFiles/hello.dir/hello.cpp.o.provides.build
+.PHONY : libout/CMakeFiles/hello.dir/hello.cpp.o.provides
 
-libout/CMakeFiles/hello.dir/hello.c.o.provides.build: libout/CMakeFiles/hello.dir/hello.c.o
+libout/CMakeFiles/hello.dir/hello.cpp.o.provides.build: libout/CMakeFiles/hello.dir/hello.cpp.o
 
 
 # Object files for target hello
 hello_OBJECTS = \
-"CMakeFiles/hello.dir/hello.c.o"
+"CMakeFiles/hello.dir/hello.cpp.o"
 
 # External object files for target hello
 hello_EXTERNAL_OBJECTS =
 
-libsdir/libhello.1.2.dylib: libout/CMakeFiles/hello.dir/hello.c.o
+libsdir/libhello.1.2.dylib: libout/CMakeFiles/hello.dir/hello.cpp.o
 libsdir/libhello.1.2.dylib: libout/CMakeFiles/hello.dir/build.make
 libsdir/libhello.1.2.dylib: libout/CMakeFiles/hello.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C shared library ../libsdir/libhello.dylib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library ../libsdir/libhello.dylib"
 	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hello.dir/link.txt --verbose=$(VERBOSE)
 	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/libout && $(CMAKE_COMMAND) -E cmake_symlink_library ../libsdir/libhello.1.2.dylib ../libsdir/libhello.1.dylib ../libsdir/libhello.dylib
 
@@ -106,7 +106,7 @@ libout/CMakeFiles/hello.dir/build: libsdir/libhello.dylib
 
 .PHONY : libout/CMakeFiles/hello.dir/build
 
-libout/CMakeFiles/hello.dir/requires: libout/CMakeFiles/hello.dir/hello.c.o.requires
+libout/CMakeFiles/hello.dir/requires: libout/CMakeFiles/hello.dir/hello.cpp.o.requires
 
 .PHONY : libout/CMakeFiles/hello.dir/requires
 

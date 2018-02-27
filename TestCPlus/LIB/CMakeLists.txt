@@ -1,7 +1,7 @@
 
 MESSAGE(STATUS "Project-LIB: LIB")
 
-SET(LIBHELLO_SRC hello.c)
+SET(LIBHELLO_SRC hello.cpp)
 
 ADD_LIBRARY(hello SHARED ${LIBHELLO_SRC})
 

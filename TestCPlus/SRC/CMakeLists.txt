@@ -1,7 +1,7 @@
 
 MESSAGE(STATUS "Project-SRC: SRC")
 
-ADD_EXECUTABLE(hellobin main.c)
+ADD_EXECUTABLE(hellobin main.cpp)
 
 #对应上面ADD_EXECUTABLE 指定 生成可执行文件的输出目录
 #这里才是指定的最终可执行文件的输出目录

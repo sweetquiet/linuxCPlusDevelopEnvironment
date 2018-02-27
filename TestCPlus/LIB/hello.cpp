@@ -1,6 +1,6 @@
 #include "hello.h"
 
-void helloFunc() {
+void HelloFunc() {
 
 	printf("helloFunc lib\n");
 }

@@ -57,41 +57,41 @@ include binout/CMakeFiles/hellobin.dir/progress.make
 # Include the compile flags for this target's objects.
 include binout/CMakeFiles/hellobin.dir/flags.make
 
-binout/CMakeFiles/hellobin.dir/main.c.o: binout/CMakeFiles/hellobin.dir/flags.make
-binout/CMakeFiles/hellobin.dir/main.c.o: ../SRC/main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object binout/CMakeFiles/hellobin.dir/main.c.o"
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/binout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/hellobin.dir/main.c.o   -c /Users/admindyn/Desktop/TestCPlus/SRC/main.c
+binout/CMakeFiles/hellobin.dir/main.cpp.o: binout/CMakeFiles/hellobin.dir/flags.make
+binout/CMakeFiles/hellobin.dir/main.cpp.o: ../SRC/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object binout/CMakeFiles/hellobin.dir/main.cpp.o"
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/binout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hellobin.dir/main.cpp.o -c /Users/admindyn/Desktop/TestCPlus/SRC/main.cpp
 
-binout/CMakeFiles/hellobin.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/hellobin.dir/main.c.i"
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/binout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/admindyn/Desktop/TestCPlus/SRC/main.c > CMakeFiles/hellobin.dir/main.c.i
+binout/CMakeFiles/hellobin.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hellobin.dir/main.cpp.i"
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/binout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/admindyn/Desktop/TestCPlus/SRC/main.cpp > CMakeFiles/hellobin.dir/main.cpp.i
 
-binout/CMakeFiles/hellobin.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/hellobin.dir/main.c.s"
-	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/binout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/admindyn/Desktop/TestCPlus/SRC/main.c -o CMakeFiles/hellobin.dir/main.c.s
+binout/CMakeFiles/hellobin.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hellobin.dir/main.cpp.s"
+	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/binout && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/admindyn/Desktop/TestCPlus/SRC/main.cpp -o CMakeFiles/hellobin.dir/main.cpp.s
 
-binout/CMakeFiles/hellobin.dir/main.c.o.requires:
+binout/CMakeFiles/hellobin.dir/main.cpp.o.requires:
 
-.PHONY : binout/CMakeFiles/hellobin.dir/main.c.o.requires
+.PHONY : binout/CMakeFiles/hellobin.dir/main.cpp.o.requires
 
-binout/CMakeFiles/hellobin.dir/main.c.o.provides: binout/CMakeFiles/hellobin.dir/main.c.o.requires
-	$(MAKE) -f binout/CMakeFiles/hellobin.dir/build.make binout/CMakeFiles/hellobin.dir/main.c.o.provides.build
-.PHONY : binout/CMakeFiles/hellobin.dir/main.c.o.provides
+binout/CMakeFiles/hellobin.dir/main.cpp.o.provides: binout/CMakeFiles/hellobin.dir/main.cpp.o.requires
+	$(MAKE) -f binout/CMakeFiles/hellobin.dir/build.make binout/CMakeFiles/hellobin.dir/main.cpp.o.provides.build
+.PHONY : binout/CMakeFiles/hellobin.dir/main.cpp.o.provides
 
-binout/CMakeFiles/hellobin.dir/main.c.o.provides.build: binout/CMakeFiles/hellobin.dir/main.c.o
+binout/CMakeFiles/hellobin.dir/main.cpp.o.provides.build: binout/CMakeFiles/hellobin.dir/main.cpp.o
 
 
 # Object files for target hellobin
 hellobin_OBJECTS = \
-"CMakeFiles/hellobin.dir/main.c.o"
+"CMakeFiles/hellobin.dir/main.cpp.o"
 
 # External object files for target hellobin
 hellobin_EXTERNAL_OBJECTS =
 
-bindir/hellobin: binout/CMakeFiles/hellobin.dir/main.c.o
+bindir/hellobin: binout/CMakeFiles/hellobin.dir/main.cpp.o
 bindir/hellobin: binout/CMakeFiles/hellobin.dir/build.make
 bindir/hellobin: binout/CMakeFiles/hellobin.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable ../bindir/hellobin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/admindyn/Desktop/TestCPlus/CPlusBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../bindir/hellobin"
 	cd /Users/admindyn/Desktop/TestCPlus/CPlusBuild/binout && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hellobin.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -99,7 +99,7 @@ binout/CMakeFiles/hellobin.dir/build: bindir/hellobin
 
 .PHONY : binout/CMakeFiles/hellobin.dir/build
 
-binout/CMakeFiles/hellobin.dir/requires: binout/CMakeFiles/hellobin.dir/main.c.o.requires
+binout/CMakeFiles/hellobin.dir/requires: binout/CMakeFiles/hellobin.dir/main.cpp.o.requires
 
 .PHONY : binout/CMakeFiles/hellobin.dir/requires
 
