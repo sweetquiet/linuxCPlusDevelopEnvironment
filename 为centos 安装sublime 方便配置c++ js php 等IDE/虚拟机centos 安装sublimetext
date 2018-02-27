@@ -1,0 +1,93 @@
+虚拟机centos 安装sublimetext
+
+第一 到sublimetext 官网下载最新的 程序包 
+
+下载到压缩包
+
+第二 在虚拟机将压缩包解压到我们专门建立的软件安装包
+
+方便维护自己安装过的软件
+
+
+我们将所有自己安装的软件安装到  /usr/local/personalbin
+下
+[root@bogon personalbin]# ls -la
+总用量 0
+drwxr-xr-x.  4 root root  47 2月  27 17:26 .
+drwxr-xr-x. 13 root root 150 2月  27 15:57 ..
+drwxr-xr-x.  3 root root  28 2月  27 17:30 sublimtextapps
+drwxr-xr-x.  3 root root  34 2月  27 15:57 vmwaretools
+[root@bogon personalbin]# 
+
+以上是目前刚安装的软件列表
+
+
+我们 为sublime 建立 单独的管理目录
+sublimetextapps
+
+
+[root@bogon sublimtextapps]# cd sublime_text_3/
+[root@bogon sublime_text_3]# ls -la
+总用量 17112
+drwxrwxr-x. 4 root root     208 9月  13 14:57 .
+drwxr-xr-x. 3 root root      28 2月  27 17:30 ..
+-rw-rw-r--. 1 root root   37339 9月  13 14:57 changelog.txt
+-rwxrwxr-x. 1 root root  492800 9月  13 14:57 crash_reporter
+drwxrwxr-x. 7 root root      75 9月  13 14:57 Icon
+drwxrwxr-x. 2 root root    4096 9月  13 14:57 Packages
+-rwxrwxr-x. 1 root root 7912032 9月  13 14:57 plugin_host
+-rw-rw-r--. 1 root root 2628887 9月  13 14:57 python3.3.zip
+-rw-rw-r--. 1 root root   28578 9月  13 14:57 sublime_plugin.py
+-rw-rw-r--. 1 root root   37575 9月  13 14:57 sublime.py
+-rwxrwxr-x. 1 root root 6361184 9月  13 14:57 sublime_text
+-rw-rw-r--. 1 root root     532 9月  13 14:57 sublime_text.desktop
+[root@bogon sublime_text_3]# cp sublime_text.desktop  /usr/share/applications/
+[root@bogon sublime_text_3]# ./sublime_text 
+[root@bogon sublime_text_3]# vi /usr/share/applications/sublime_text.desktop
+
+
+为了不用在命令行 每次 使用命令打开 sublime 这样麻烦
+
+我们 
+
+[root@bogon sublime_text_3]# cp sublime_text.desktop  /usr/share/applications/
+[root@bogon sublime_text_3]# ./sublime_text 
+[root@bogon sublime_text_3]# vi /usr/share/applications/sublime_text.desktop
+
+并修改 sublime_text.desktop
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Sublime Text
+GenericName=Text Editor
+Comment=Sophisticated text editor for code, markup and prose
+#主要修改这里1
+Exec=/usr/local/personalbin/sublimtextapps/sublime_text_3/sublime_text %F
+Terminal=false
+MimeType=text/plain;
+#主要修改这里4
+Icon=/usr/local/personalbin/sublimtextapps/sublime_text_3/Icon/48x48/sublime-text.png
+Categories=TextEditor;Development;
+StartupNotify=true
+Actions=Window;Document;
+
+[Desktop Action Window]
+Name=New Window
+#主要修改这里2
+Exec=/usr/local/personalbin/sublimtextapps/sublime_text_3/sublime_text -n
+OnlyShowIn=Unity;
+
+[Desktop Action Document]
+Name=New File
+#主要修改这里3
+Exec=/usr/local/personalbin/sublimtextapps/sublime_text_3 --command new_file
+OnlyShowIn=Unity;
+
+
+
+保存后 我们就可以在 centos 的 菜单栏 应用程序 下 的 编程下  找到 sublime的启动图标
+
+配置 c++ php js  等开发环境
+
+未完待续
