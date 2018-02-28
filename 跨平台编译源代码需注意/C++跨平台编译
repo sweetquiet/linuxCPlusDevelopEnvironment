@@ -1,0 +1,68 @@
+C++跨平台编译
+
+using namespace std;
+int main(int argc, const char * argv[]) {
+   
+
+#ifndef __cplusplus
+    
+#error A C++ compiler is required!
+    
+    
+#endif
+
+    cout << "This is the line number " << __LINE__;
+    cout << " of file " << __FILE__ << ".\n";
+    cout << "Its compilation began " << __DATE__;
+    cout << " at " << __TIME__ << ".\n";
+    cout << "The compiler gives a __cplusplus value of " << __cplusplus <<"\n";
+    
+#ifdef _WIN32
+    //define something for Windows (32-bit and 64-bit, this part is common)
+    cout << "WIN32位操作系统!\n";
+#ifdef _WIN64
+    //define something for Windows (64-bit only)
+    cout << "WIN64位操作系统!\n";
+#else
+    //define something for Windows (32-bit only)
+#endif
+    
+#elif __APPLE__
+    
+#include "TargetConditionals.h"
+    
+#if TARGET_IPHONE_SIMULATOR
+    // iOS Simulator
+    cout << "Apple Simulator操作系统!\n";
+#elif TARGET_OS_IPHONE
+    // iOS device
+    cout << "Apple IOS操作系统!\n";
+#elif TARGET_OS_MAC
+    // Other kinds of Mac OS
+    cout << "Apple Mac操作系统!\n";
+#else
+#   error "Unknown Apple platform"
+#endif
+    
+#elif __ANDROID__
+    // android
+#elif __linux__
+    // linux
+    cout << "linux操作系统!\n";
+#elif __unix__ // all unices not caught above
+    cout << "unix操作系统!\n";
+    // Unix
+#elif defined(_POSIX_VERSION)
+    // POSIX
+#else
+#   error "Unknown compiler"
+#endif
+    
+    
+#if defined(__linux__)
+    
+     cout << "__linux__操作系统!\n";
+#elif defined(__APPLE__)
+     cout << "__APPLE__操作系统!\n";
+#endif
+}
