@@ -1,0 +1,48 @@
+Windows SqlServer客户端
+
+财务电脑
+
+
+财务软件 要使用财务数据 旧的财务数据 存在sqlserver上
+		新的财务数据插入 也要插入到sqlserver
+
+财务总共 4 个人
+
+就有四台电脑
+
+管理者 机子 安装sqlserver 用于存储所有的财务数据
+
+其他三人 使用财务软件做账 自动连接 管理者的sqlserver服务
+
+获取历年的财务数据  并准备生成新的财务数据
+
+
+突发问题
+
+	三人中某一位工作人员  点击财务软件 无法运行 提示 no sqlserver 或 sqlserver 不存在 或者 网络不存在
+
+	证明 无法连接到sqlserver服务
+
+	分析 
+
+	首先 该工作人员 不需要启动 sqlserver 服务 是正常的 因为它是客户端
+
+	财务软件 会启动一个 连接sqlserver的客户端  因此不需要sqlserve服务
+
+	检查 windows 下的服务  计算机 管理 服务 或者 command alt del 在服务下寻找
+
+
+	那么接下来就是 sqlserver 连接
+
+
+	我们发现 需要 到c盘下  /windows/system32/drivers/etc/hosts 下
+
+	添加 域名  192.168.3.188 caiwudbserver
+
+	重新启动 财务软件 成功
+
+	
+
+
+
+

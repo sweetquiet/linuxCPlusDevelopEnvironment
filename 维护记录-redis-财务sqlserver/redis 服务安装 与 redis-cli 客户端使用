@@ -1,0 +1,489 @@
+redis 服务安装 与 redis-cli 客户端使用
+
+mac下 下载redis 源码包
+
+下载到 指定的目录 /usr/local/redisapp
+
+并在该目录下解压
+
+macserver:~ admindyn$ cd /usr/local/redisapp/redis-4.0.8
+
+直接make 编译
+
+
+
+按照redis文档 我们在 redis-4.0.8 下找到redis的服务的配置文件
+
+
+在 redis-4.0.8 下找到启动 redis 服务的命令  与 启动链接redis服务的客户端的命令
+
+
+那么 主要开发测试任务
+
+测试
+
+第一   使用启动redis服务的命令redis-server  启动redis服务
+
+macserver:src admindyn$ ./redis-server 
+18470:C 28 Feb 14:03:55.821 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+18470:C 28 Feb 14:03:55.821 # Redis version=4.0.8, bits=64, commit=00000000, modified=0, pid=18470, just started
+18470:C 28 Feb 14:03:55.821 # Warning: no config file specified, using the default config. In order to specify a config file use ./redis-server /path/to/redis.conf
+18470:M 28 Feb 14:03:55.822 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 4.0.8 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 18470
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+18470:M 28 Feb 14:03:55.823 # Server initialized
+18470:M 28 Feb 14:03:55.823 * Ready to accept connections
+
+#########################
+
+第二  使用启动连接redis服务的客户端的命令  redis-cli 链接redis服务
+
+	进行交互测试
+
+macserver:src admindyn$ ./redis-cli
+Could not connect to Redis at 127.0.0.1:6379: Connection refused
+Could not connect to Redis at 127.0.0.1:6379: Connection refused
+not connected> ping
+Could not connect to Redis at 127.0.0.1:6379: Connection refused
+not connected> ping
+PONG
+127.0.0.1:6379> QUIT
+
+
+第三  使用redis命令 查看 前 redis 服务的 默认配置情况
+
+
+127.0.0.1:6379> config get *
+  1) "dbfilename"
+  2) "dump.rdb"
+  3) "requirepass"
+  4) ""
+  5) "masterauth"
+  6) ""
+  7) "cluster-announce-ip"
+  8) ""
+  9) "unixsocket"
+ 10) ""
+ 11) "logfile"
+ 12) ""
+ 13) "pidfile"
+ 14) ""
+ 15) "slave-announce-ip"
+ 16) ""
+ 17) "maxmemory"
+ 18) "0"
+ 19) "proto-max-bulk-len"
+ 20) "536870912"
+ 21) "client-query-buffer-limit"
+ 22) "1073741824"
+ 23) "maxmemory-samples"
+ 24) "5"
+ 25) "lfu-log-factor"
+ 26) "10"
+ 27) "lfu-decay-time"
+ 28) "1"
+ 29) "timeout"
+ 30) "0"
+ 31) "active-defrag-threshold-lower"
+ 32) "10"
+ 33) "active-defrag-threshold-upper"
+ 34) "100"
+ 35) "active-defrag-ignore-bytes"
+ 36) "104857600"
+ 37) "active-defrag-cycle-min"
+ 38) "25"
+ 39) "active-defrag-cycle-max"
+ 40) "75"
+ 41) "auto-aof-rewrite-percentage"
+ 42) "100"
+ 43) "auto-aof-rewrite-min-size"
+ 44) "67108864"
+ 45) "hash-max-ziplist-entries"
+ 46) "512"
+ 47) "hash-max-ziplist-value"
+ 48) "64"
+ 49) "list-max-ziplist-size"
+ 50) "-2"
+ 51) "list-compress-depth"
+ 52) "0"
+ 53) "set-max-intset-entries"
+ 54) "512"
+ 55) "zset-max-ziplist-entries"
+ 56) "128"
+ 57) "zset-max-ziplist-value"
+ 58) "64"
+ 59) "hll-sparse-max-bytes"
+ 60) "3000"
+ 61) "lua-time-limit"
+ 62) "5000"
+ 63) "slowlog-log-slower-than"
+ 64) "10000"
+ 65) "latency-monitor-threshold"
+ 66) "0"
+ 67) "slowlog-max-len"
+ 68) "128"
+ 69) "port"
+ 70) "6379"
+ 71) "cluster-announce-port"
+ 72) "0"
+ 73) "cluster-announce-bus-port"
+ 74) "0"
+ 75) "tcp-backlog"
+ 76) "511"
+ 77) "databases"
+ 78) "16"
+ 79) "repl-ping-slave-period"
+ 80) "10"
+ 81) "repl-timeout"
+ 82) "60"
+ 83) "repl-backlog-size"
+ 84) "1048576"
+ 85) "repl-backlog-ttl"
+ 86) "3600"
+ 87) "maxclients"
+ 88) "10000"
+ 89) "watchdog-period"
+ 90) "0"
+ 91) "slave-priority"
+ 92) "100"
+ 93) "slave-announce-port"
+ 94) "0"
+ 95) "min-slaves-to-write"
+ 96) "0"
+ 97) "min-slaves-max-lag"
+ 98) "10"
+ 99) "hz"
+100) "10"
+101) "cluster-node-timeout"
+102) "15000"
+103) "cluster-migration-barrier"
+104) "1"
+105) "cluster-slave-validity-factor"
+106) "10"
+107) "repl-diskless-sync-delay"
+108) "5"
+109) "tcp-keepalive"
+110) "300"
+111) "cluster-require-full-coverage"
+112) "yes"
+113) "no-appendfsync-on-rewrite"
+114) "no"
+115) "slave-serve-stale-data"
+116) "yes"
+117) "slave-read-only"
+118) "yes"
+119) "stop-writes-on-bgsave-error"
+120) "yes"
+121) "daemonize"
+122) "no"
+123) "rdbcompression"
+124) "yes"
+125) "rdbchecksum"
+126) "yes"
+127) "activerehashing"
+128) "yes"
+129) "activedefrag"
+130) "no"
+131) "protected-mode"
+132) "yes"
+133) "repl-disable-tcp-nodelay"
+134) "no"
+135) "repl-diskless-sync"
+136) "no"
+137) "aof-rewrite-incremental-fsync"
+138) "yes"
+139) "aof-load-truncated"
+140) "yes"
+141) "aof-use-rdb-preamble"
+142) "no"
+143) "lazyfree-lazy-eviction"
+144) "no"
+145) "lazyfree-lazy-expire"
+146) "no"
+147) "lazyfree-lazy-server-del"
+148) "no"
+149) "slave-lazy-flush"
+150) "no"
+151) "maxmemory-policy"
+152) "noeviction"
+153) "loglevel"
+154) "notice"
+155) "supervised"
+156) "no"
+157) "appendfsync"
+158) "everysec"
+159) "syslog-facility"
+160) "local0"
+161) "appendonly"
+162) "no"
+163) "dir"
+164) "/usr/local/redisapp/redis-4.0.8/src"
+165) "save"
+166) "3600 1 300 100 60 10000"
+167) "client-output-buffer-limit"
+168) "normal 0 0 0 slave 268435456 67108864 60 pubsub 33554432 8388608 60"
+169) "unixsocketperm"
+170) "0"
+171) "slaveof"
+172) ""
+173) "notify-keyspace-events"
+174) ""
+175) "bind"
+176) ""
+127.0.0.1:6379> 
+
+
+第三----1   查看redis服务当前的运行情况
+
+
+127.0.0.1:6379> info
+# Server
+redis_version:4.0.8
+redis_git_sha1:00000000
+redis_git_dirty:0
+redis_build_id:531ae262cc6789d0
+redis_mode:standalone
+os:Darwin 16.7.0 x86_64
+arch_bits:64
+multiplexing_api:kqueue
+atomicvar_api:atomic-builtin
+gcc_version:4.2.1
+process_id:21679
+run_id:16b06203df6ac9b15d2b5d82e8ddf98d9fc2601e
+tcp_port:6379
+uptime_in_seconds:906
+uptime_in_days:0
+hz:10
+lru_clock:9853476
+executable:/usr/local/redisapp/redis-4.0.8/src/./redis-server
+config_file:
+
+# Clients
+connected_clients:2
+client_longest_output_list:0
+client_biggest_input_buf:0
+blocked_clients:0
+
+# Memory
+used_memory:1032704
+used_memory_human:1008.50K
+used_memory_rss:2056192
+used_memory_rss_human:1.96M
+used_memory_peak:1032704
+used_memory_peak_human:1008.50K
+used_memory_peak_perc:100.09%
+used_memory_overhead:1029832
+used_memory_startup:963232
+used_memory_dataset:2872
+used_memory_dataset_perc:4.13%
+total_system_memory:8589934592
+total_system_memory_human:8.00G
+used_memory_lua:37888
+used_memory_lua_human:37.00K
+maxmemory:0
+maxmemory_human:0B
+maxmemory_policy:noeviction
+mem_fragmentation_ratio:1.99
+mem_allocator:libc
+active_defrag_running:0
+lazyfree_pending_objects:0
+
+# Persistence
+loading:0
+rdb_changes_since_last_save:2
+rdb_bgsave_in_progress:0
+rdb_last_save_time:1519802010
+rdb_last_bgsave_status:ok
+rdb_last_bgsave_time_sec:-1
+rdb_current_bgsave_time_sec:-1
+rdb_last_cow_size:0
+aof_enabled:0
+aof_rewrite_in_progress:0
+aof_rewrite_scheduled:0
+aof_last_rewrite_time_sec:-1
+aof_current_rewrite_time_sec:-1
+aof_last_bgrewrite_status:ok
+aof_last_write_status:ok
+aof_last_cow_size:0
+
+# Stats
+total_connections_received:2
+total_commands_processed:12
+instantaneous_ops_per_sec:0
+total_net_input_bytes:618
+total_net_output_bytes:20567
+instantaneous_input_kbps:0.00
+instantaneous_output_kbps:0.00
+rejected_connections:0
+sync_full:0
+sync_partial_ok:0
+sync_partial_err:0
+expired_keys:0
+evicted_keys:0
+keyspace_hits:1
+keyspace_misses:2
+pubsub_channels:1
+pubsub_patterns:0
+latest_fork_usec:0
+migrate_cached_sockets:0
+slave_expires_tracked_keys:0
+active_defrag_hits:0
+active_defrag_misses:0
+active_defrag_key_hits:0
+active_defrag_key_misses:0
+
+# Replication
+role:master
+connected_slaves:0
+master_replid:fdecf854f740a8974714ffe858189ba36f51019f
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:0
+second_repl_offset:-1
+repl_backlog_active:0
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:0
+repl_backlog_histlen:0
+
+# CPU
+used_cpu_sys:0.65
+used_cpu_user:0.28
+used_cpu_sys_children:0.00
+used_cpu_user_children:0.00
+
+# Cluster
+cluster_enabled:0
+
+# Keyspace
+db0:keys=2,expires=0,avg_ttl=0
+127.0.0.1:6379> 
+
+第四 熟悉 redis 支持的存储数据的功能
+
+
+   4.1  redis  插入一条数据 仅一个字段
+
+   127.0.0.1:6379> set runoobkey redisvalue
+OK
+127.0.0.1:6379> exists runoobkey
+(integer) 1
+127.0.0.1:6379> get runoobkey
+"redisvalue"
+
+	4.2  redis  插入一条数据 一个hash数据类型 对应 我们开发中的json数据结构
+
+127.0.0.1:6379> hmset hashkey1 name redistutorial desciption test2018 likes 20 visitors 2300
+OK
+127.0.0.1:6379> hgetall hashkey1
+1) "name"
+2) "redistutorial"
+3) "desciption"
+4) "test2018"
+5) "likes"
+6) "20"
+7) "visitors"
+8) "2300"
+
+	4.3  redis  修改刚插入的那条hash数据 
+
+127.0.0.1:6379> hmset hashkey1 name redistutorial2 desciption test2018-2 likes 30 visitors 2400
+OK
+127.0.0.1:6379> hgetall hashkey1
+1) "name"
+2) "redistutorial2"
+3) "desciption"
+4) "test2018-2"
+5) "likes"
+6) "30"
+7) "visitors"
+8) "2400"
+127.0.0.1:6379> 
+
+	4.4  redis  那我们要有序的插入多条相同数据结构的数据 用时间戳做 key吗 还是在 某个字段添加时间戳字段？？
+
+
+第五 上面 我们都是在redis 服务 和客户端在同一台机子
+
+	我们远程服务执行redis键命令
+
+	在远程 redis 服务上执行命令，同样我们使用的也是 redis-cli 命令
+
+	$ redis-cli -h host -p port -a password
+
+	$redis-cli -h 127.0.0.1 -p 6379 -a "mypass"
+	redis 127.0.0.1:6379>
+	redis 127.0.0.1:6379> PING
+
+	PONG
+
+
+第六 遇到 报错
+
+客户端报错
+	(error) MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance is configured to report errors during writes if RDB snapshotting fails (stop-writes-on-bgsave-error option). Please check the Redis logs for details about the RDB error.
+127.0.0.1:6379> 
+
+
+对应服务器端报错
+	21341:C 28 Feb 15:08:50.052 # Failed opening the RDB file dump.rdb (in server root dir /usr/local/redisapp/redis-4.0.8/src) for saving: Permission denied
+18470:M 28 Feb 15:08:50.152 # Background saving error
+
+
+怀疑 没有 root 启动 redis 服务  导致 redis 服务没有权限 将数据存储到磁盘 只能暂时使用内存 最后内存达到redis上限 故而报错
+
+
+关闭 上次的redis-server 进程
+
+重新 启动redis-server
+macserver:src admindyn$ sudo ./redis-server 
+21679:C 28 Feb 15:13:30.837 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+21679:C 28 Feb 15:13:30.839 # Redis version=4.0.8, bits=64, commit=00000000, modified=0, pid=21679, just started
+21679:C 28 Feb 15:13:30.839 # Warning: no config file specified, using the default config. In order to specify a config file use ./redis-server /path/to/redis.conf
+21679:M 28 Feb 15:13:30.840 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 4.0.8 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 21679
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+21679:M 28 Feb 15:13:30.841 # Server initialized
+21679:M 28 Feb 15:13:30.841 * Ready to accept connections
+
+
+
+
+
+
+开发  
+
+	需要有redis的支持各种开发语言的开发包 选择一种开发语言即可
+
+
+
