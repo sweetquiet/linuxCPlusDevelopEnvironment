@@ -1,0 +1,53 @@
+早上 刚上班 打开mac 打开 linux 虚拟机 linux网络连接不上
+
+打开 linux 虚拟机
+
+安装c++ 开发环境
+
+
+[root@bogon yum.repos.d]# yum group install "Development Tools"
+
+发现 提示 无法访问 指定yum源的 域名地址
+
+检查网络连接 
+
+发现 mac  有网 
+
+但是 虚拟机 昨天是挂起  今天 没有重启linux 系统
+
+发现 linux 虚拟机网络连接 不正常
+
+重启 发现 网络正常
+
+yum开发包安装成功
+
+
+注意一点  yum源 检查
+
+
+cd /etc/yum.repo.d
+
+该目录下 是 yum 源 所有源缓存的仓库 链接 
+
+
+我们替换旧的yum源前 先备份 以免新的yum源 不适合我们的操作系统版本
+
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+
+
+然后 在当前目录下下载新的yum源包
+
+CentOS 7
+
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+
+或者
+
+curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+
+第三步：运行yum makecache生成缓存
+
+yum clean all
+
+yum makecache
+

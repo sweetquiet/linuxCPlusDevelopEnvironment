@@ -1,0 +1,22 @@
+CMake  Configure 确定生成的makefile针对的开发环境调整
+
+第一次使用CMake时 点击Configure 会弹出对话框 让我们选择CMake 生成的
+
+makefile 所针对的开发环境
+
+第一次使用前 Generate  右侧 Current Generator 为None 表明还未选择
+
+因此是 None 这时 CMake 会弹框 要求我们选择
+
+
+但是 后面 如果临时想调整
+
+发现点击Configure  不会再出现对话框 因为
+ Generate  右侧 Current Generator 已经不是None 已经指明了开发环境
+
+那该如何办呢
+
+
+点击Cmake 菜单栏的 File 下 有一个 Delete Cache  发现 点击后
+
+我们再去点击Configure  就可以重现设置makefile的 针对的开发环境了
