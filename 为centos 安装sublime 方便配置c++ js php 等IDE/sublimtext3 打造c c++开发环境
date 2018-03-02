@@ -1,0 +1,57 @@
+sublimtext3 打造c c++开发环境
+
+纯净sublime 一般都应先安装 package control 这个插件管理器
+
+  点击sublime的菜单栏 view->show console ；现在打开了控制台， 这个控制台有上下两栏， 上面一栏会实时显示sublime执行了什么插件，输出执行结果， 如果你安装的某个插件不能正常运行，应该先在这里看看有没有报错。下面栏是一个输入框，可以运行python代码。我们输入下面的代码点击回车运行， 就能安装好package control了
+
+import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
+
+	linux ctrl shift + p 调用 package control
+
+	mac command shif + p 调用 切记
+
+
+
+第一
+	gcc运行c语言，g++运行c++语言，在sublime中运行以及在cmd中运行的方法。
+
+第二 
+	ctags 安装 支持代码导航
+第三 
+	C++ snippets 自动补全
+第四 
+	sublime 的 build sysytem 配置  
+	测试是否配置成功
+
+	先将 Build System 选为 C++
+
+	按住 Sublime Text 快捷键 编译和运行
+
+
+
+
+##########Mac 下  虚拟机  centos#######
+
+
+sublime text 搭建
+
+
+	第一 下载 sublime text 源码 安装到 centos
+
+	第二 配置 sublime  快捷启动
+
+	第三  配置sublime 插件管理
+
+		下载package control 源码 官网下载
+
+		在 sublime 菜单栏  prefrence 下  找到 browse package 下 
+
+		它会进入 Packages 但是 我们要把packagecontrol
+
+		源码 安装到 Packages的上级目录的 Installed Packages
+
+		下 
+
+
+
+未完待续
