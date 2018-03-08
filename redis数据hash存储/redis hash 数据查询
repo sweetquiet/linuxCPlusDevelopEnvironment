@@ -1,0 +1,29 @@
+redis hash 数据查询
+
+Redis的Hash类型不支持多级hash
+
+127.0.0.1:6379> keys *
+
+所有hash表名
+
+1) "as_account_db"
+2) "as_info_db"
+3) "as_app_db"
+127.0.0.1:6379> 
+
+
+hgetall as_account_db
+
+127.0.0.1:6379> hkeys as_account_db
+指定hash表的所有字段
+
+1) "bxzy-lora"
+
+指定hash表的指定字段的 value值
+hget as_account_db bxzy-lora
+
+
+
+
+
+
