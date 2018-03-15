@@ -1,0 +1,61 @@
+比较 c 语言的 assert 与 swift 中的guard 与 常用的if语句的关系
+
+我们 习惯写if语句
+
+func test(char* data)
+{
+	if(data!=NULL)
+	{
+	/*
+     满足我们的条件 就执行我们的代码
+	*/
+	
+	}
+
+}
+
+func test2(char* data)
+{
+/*
+  assert 和 guard 就是保证 想保证的语句 为真
+
+  则执行assert 语句块之后 真正要执行的代码
+
+*/
+	assert(data!=NULL);
+	/*
+	满足我们的条件则往下执行我们下面的代码
+	*/
+
+}
+
+
+
+func test3(char* data)
+{
+/*
+  Guard 就是保证 想保证的语句 为真
+
+  则执行guard 语句块之后 真正要执行的代码
+
+*/
+ print("Guard 确保 guard的语句执行正确 如果失败 执行else 语句块  该else语句块 必有return")
+	guard(data!=NULL) else {
+	   return
+	}
+	/*
+	满足我们的条件则往下继续执行我们下面的代码
+	*/
+
+}
+
+
+ /*
+
+guard  assert  比 if 优势在于 避免 花括号 语句块 嵌套过深  
+
+就像 我们写两三次for 循环  最后梳理代码 不好梳理
+
+代码过长时  那个花括号 是哪一层循环的  半天梳理不出来
+
+ */
