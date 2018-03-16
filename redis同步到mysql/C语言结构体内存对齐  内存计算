@@ -1,0 +1,8 @@
+C语言结构体内存对齐  内存计算
+
+从代码 计算结构体的内存大小 使用sizeof  很方便
+
+但是 我们不使用 sizeof  我们设计结构体时  是否就能知道他要占多少字节
+的内存  这一点 能做到 就需要 看看这个文章
+
+http://blog.csdn.net/doniexun/article/details/38294935
