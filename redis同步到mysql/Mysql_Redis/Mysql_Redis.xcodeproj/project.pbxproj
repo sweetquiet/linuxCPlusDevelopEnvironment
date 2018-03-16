@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ECCA16E7205B5CD200F9C30A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCA16E6205B5CD200F9C30A /* main.c */; };
+		ECCA16FD205B5D5D00F9C30A /* mysqlclient.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCA16F9205B5D5D00F9C30A /* mysqlclient.c */; };
+		ECCA16FE205B5D5D00F9C30A /* redisclient.c in Sources */ = {isa = PBXBuildFile; fileRef = ECCA16FC205B5D5D00F9C30A /* redisclient.c */; };
+		ECCA1705205B69F100F9C30A /* libmysqlclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECCA1704205B69F100F9C30A /* libmysqlclient.a */; };
+		ECCA1706205B75CE00F9C30A /* libhiredis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECCA16EF205B5D0100F9C30A /* libhiredis.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ECCA16E1205B5CD200F9C30A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		ECCA16E3205B5CD200F9C30A /* Mysql_Redis */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mysql_Redis; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECCA16E6205B5CD200F9C30A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		ECCA16EE205B5D0100F9C30A /* hiredis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hiredis.h; sourceTree = "<group>"; };
+		ECCA16EF205B5D0100F9C30A /* libhiredis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libhiredis.a; sourceTree = "<group>"; };
+		ECCA16F0205B5D0100F9C30A /* read.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = read.h; sourceTree = "<group>"; };
+		ECCA16F1205B5D0100F9C30A /* redis-cli */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "redis-cli"; sourceTree = "<group>"; };
+		ECCA16F2205B5D0100F9C30A /* redis-server */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "redis-server"; sourceTree = "<group>"; };
+		ECCA16F3205B5D0100F9C30A /* sds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sds.h; sourceTree = "<group>"; };
+		ECCA16F8205B5D5D00F9C30A /* mysqlclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mysqlclient.h; sourceTree = "<group>"; };
+		ECCA16F9205B5D5D00F9C30A /* mysqlclient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mysqlclient.c; sourceTree = "<group>"; };
+		ECCA16FA205B5D5D00F9C30A /* redisclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = redisclient.h; sourceTree = "<group>"; };
+		ECCA16FB205B5D5D00F9C30A /* datastruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datastruct.h; sourceTree = "<group>"; };
+		ECCA16FC205B5D5D00F9C30A /* redisclient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = redisclient.c; sourceTree = "<group>"; };
+		ECCA16FF205B623F00F9C30A /* SQL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQL.h; sourceTree = "<group>"; };
+		ECCA1704205B69F100F9C30A /* libmysqlclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmysqlclient.a; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ECCA16E0205B5CD200F9C30A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECCA1706205B75CE00F9C30A /* libhiredis.a in Frameworks */,
+				ECCA1705205B69F100F9C30A /* libmysqlclient.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ECCA16DA205B5CD200F9C30A = {
+			isa = PBXGroup;
+			children = (
+				ECCA16E5205B5CD200F9C30A /* Mysql_Redis */,
+				ECCA16E4205B5CD200F9C30A /* Products */,
+				ECCA1700205B697B00F9C30A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		ECCA16E4205B5CD200F9C30A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECCA16E3205B5CD200F9C30A /* Mysql_Redis */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ECCA16E5205B5CD200F9C30A /* Mysql_Redis */ = {
+			isa = PBXGroup;
+			children = (
+				ECCA1703205B69F100F9C30A /* mysql */,
+				ECCA16ED205B5D0100F9C30A /* redis */,
+				ECCA16E6205B5CD200F9C30A /* main.c */,
+				ECCA16FB205B5D5D00F9C30A /* datastruct.h */,
+				ECCA16F9205B5D5D00F9C30A /* mysqlclient.c */,
+				ECCA16F8205B5D5D00F9C30A /* mysqlclient.h */,
+				ECCA16FC205B5D5D00F9C30A /* redisclient.c */,
+				ECCA16FA205B5D5D00F9C30A /* redisclient.h */,
+				ECCA16FF205B623F00F9C30A /* SQL.h */,
+			);
+			path = Mysql_Redis;
+			sourceTree = "<group>";
+		};
+		ECCA16ED205B5D0100F9C30A /* redis */ = {
+			isa = PBXGroup;
+			children = (
+				ECCA16EE205B5D0100F9C30A /* hiredis.h */,
+				ECCA16EF205B5D0100F9C30A /* libhiredis.a */,
+				ECCA16F0205B5D0100F9C30A /* read.h */,
+				ECCA16F1205B5D0100F9C30A /* redis-cli */,
+				ECCA16F2205B5D0100F9C30A /* redis-server */,
+				ECCA16F3205B5D0100F9C30A /* sds.h */,
+			);
+			path = redis;
+			sourceTree = "<group>";
+		};
+		ECCA1700205B697B00F9C30A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ECCA1703205B69F100F9C30A /* mysql */ = {
+			isa = PBXGroup;
+			children = (
+				ECCA1704205B69F100F9C30A /* libmysqlclient.a */,
+			);
+			path = mysql;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ECCA16E2205B5CD200F9C30A /* Mysql_Redis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECCA16EA205B5CD200F9C30A /* Build configuration list for PBXNativeTarget "Mysql_Redis" */;
+			buildPhases = (
+				ECCA16DF205B5CD200F9C30A /* Sources */,
+				ECCA16E0205B5CD200F9C30A /* Frameworks */,
+				ECCA16E1205B5CD200F9C30A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mysql_Redis;
+			productName = Mysql_Redis;
+			productReference = ECCA16E3205B5CD200F9C30A /* Mysql_Redis */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ECCA16DB205B5CD200F9C30A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = admindyn;
+				TargetAttributes = {
+					ECCA16E2205B5CD200F9C30A = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = ECCA16DE205B5CD200F9C30A /* Build configuration list for PBXProject "Mysql_Redis" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = ECCA16DA205B5CD200F9C30A;
+			productRefGroup = ECCA16E4205B5CD200F9C30A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ECCA16E2205B5CD200F9C30A /* Mysql_Redis */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ECCA16DF205B5CD200F9C30A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECCA16E7205B5CD200F9C30A /* main.c in Sources */,
+				ECCA16FE205B5D5D00F9C30A /* redisclient.c in Sources */,
+				ECCA16FD205B5D5D00F9C30A /* mysqlclient.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		ECCA16E8205B5CD200F9C30A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/mysql/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/mysql/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		ECCA16E9205B5CD200F9C30A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/mysql/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/mysql/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		ECCA16EB205B5CD200F9C30A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 58W4HKZ65K;
+				HEADER_SEARCH_PATHS = /usr/local/mysql/include;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/mysql/lib,
+					"$(PROJECT_DIR)/Mysql_Redis/redis",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ECCA16EC205B5CD200F9C30A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 58W4HKZ65K;
+				HEADER_SEARCH_PATHS = /usr/local/mysql/include;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/mysql/lib,
+					"$(PROJECT_DIR)/Mysql_Redis/redis",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ECCA16DE205B5CD200F9C30A /* Build configuration list for PBXProject "Mysql_Redis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECCA16E8205B5CD200F9C30A /* Debug */,
+				ECCA16E9205B5CD200F9C30A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECCA16EA205B5CD200F9C30A /* Build configuration list for PBXNativeTarget "Mysql_Redis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECCA16EB205B5CD200F9C30A /* Debug */,
+				ECCA16EC205B5CD200F9C30A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ECCA16DB205B5CD200F9C30A /* Project object */;
+}
