@@ -1,0 +1,132 @@
+数据库更新
+
+
+操作MySQL数据库，删除表中的某一行数据提示如下错误：ERROR 1175 (HY000): You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column 
+先清理 本地mysql 数据库两张表
+
+show variables like 'sql_safe%';
+set sql_safe_updates=off;
+delete from NS_MOTE_INFO;
+delete from AS_MOTE_INFO;
+
+
+
+linux 下 新系统 配置 要更新的数据库
+
+[root@bogon mysql]# service mysql start
+Redirecting to /bin/systemctl start mysql.service
+[root@bogon mysql]# mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+[root@bogon mysql]# mysql -u root 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.6.39 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create
+
+
+
+
+记录 
+
+
+[root@bogon mysql]# mysql -u root 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.6.39 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> create database JfinalDB
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use JfinalDB;
+Database changed
+mysql> CREATE TABLE AS_MOTE_INFO (deveui VARCHAR(64) NOT NULL,classmode VARCHAR(64) NULL,place_holder VARCHAR(64) NULL,place_holder2 VARCHAR(64) NULL,appeui VARCHAR(64) NULL,appkey VARCHAR(64) NULL,appskey VARCHAR(64) NULL,nwkskey VARCHAR(64) NULL,devnonce VARCHAR(64) NULL,netid VARCHAR(64) NULL,place_holder1 VARCHAR(64) NULL,rx1droffset VARCHAR(64) NULL,rx2dr VARCHAR(64) NULL,rxdelay VARCHAR(64) NULL,rx2_freq VARCHAR(64) NULL,down_seqnum VARCHAR(64) NULL,up_seqnum VARCHAR(64) NULL,systime VARCHAR(64) NULL,datr VARCHAR(64) NULL,codr VARCHAR(64) NULL,standard VARCHAR(64) NULL,devaddr VARCHAR(64) NULL,appnonce VARCHAR(64) NULL,PRIMARY KEY (`deveui`));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from AS_MOTE_INFO;
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE NS_MOTE_INFO (deveui VARCHAR(64) NOT NULL,classmode VARCHAR(64) NULL,place_holder VARCHAR(64) NULL,place_holder2 VARCHAR(64) NULL,appeui VARCHAR(64) NULL,nwkskey VARCHAR(64) NULL,devnonce VARCHAR(64) NULL,netid VARCHAR(64) NULL,rx1droffset VARCHAR(64) NULL,rx2dr VARCHAR(64) NULL,rxdelay VARCHAR(64) NULL,rx2_freq VARCHAR(64) NULL,standard VARCHAR(64) NULL,rxdelay_join VARCHAR(64) NULL,devaddr VARCHAR(64) NULL,PRIMARY KEY (`deveui`));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from NS_MOTE_INFO;
+Empty set (0.00 sec)
+
+mysql> quit;
+Bye
+[root@bogon mysql]# 
+
+
+
+
+
+登录mysql 添加用户为 我们 编好程序的 用户名密码
+
+[root@bogon bin]# mysql -u root
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.6.39 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> UPDATE mysql.user SET password=PASSWORD('asd1453NMDmysql') WHERE User='root';
+Query OK, 4 rows affected (0.00 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> exit;
+Bye
+[root@bogon bin]# mysql -u root -p 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.6.39 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> exit
+Bye
+[root@bogon bin]# 
+
