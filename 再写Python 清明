@@ -1,0 +1,9 @@
+再写Python 清明
+
+这里打开Python IDE
+	先看一下我们的python的版本 python3
+	再看一下我们的pyhton安装的支持的模块modules
+	File 下的 Path Browse  而不是 Class Browse 因为这个是精确匹配查找有没有
+	而Path Browse 是把python IDE 安装一些模块的开发包 所在位置都列举了
+
+开始开发 需求 操作redis 与 mysql 数据库 小工具
