@@ -7,3 +7,151 @@
 	而Path Browse 是把python IDE 安装一些模块的开发包 所在位置都列举了
 
 开始开发 需求 操作redis 与 mysql 数据库 小工具
+
+下载python操作mysql的 驱动
+	https://dev.mysql.com/downloads/connector/python/
+
+下载 python mysqlAPI 模块 库
+python
+admindyn$ python3 --version
+Python 3.5.2
+
+
+macserver:~ admindyn$ pip3 install pymysql
+Collecting pymysql
+  Downloading PyMySQL-0.8.0-py2.py3-none-any.whl (83kB)
+    100% |████████████████████████████████| 92kB 305kB/s 
+Installing collected packages: pymysql
+Successfully installed pymysql-0.8.0
+macserver:~ admindyn$ 
+
+import pymysql
+
+
+macserver:~ admindyn$ pip3 install redis
+Collecting redis
+  Downloading redis-2.10.6-py2.py3-none-any.whl (64kB)
+    100% |████████████████████████████████| 71kB 256kB/s 
+Installing collected packages: redis
+Successfully installed redis-2.10.6
+macserver:~ admindyn$ 
+
+import redis
+
+
+安装了 3.5 又安装了 3.7 后来删了3.7 
+macserver:Versions admindyn$ sudo rm -rf 3.7
+Password:
+macserver:Versions admindyn$ ls -la
+total 0
+drwxrwxr-x   3 root  wheel  102  4  9 17:23 .
+drwxr-xr-x   6 root  wheel  204  4  9 16:12 ..
+drwxrwxr-x  10 root  admin  340 12 27 14:07 3.5
+macserver:Versions admindyn$ 
+
+不删除 影响后面的包 默认安装目录 导致 导入模块时 not found
+
+发现 不更新到 3.7  无法使用pip3 安装redisapi 模块？？
+
+但是更新到新的3.7 当时在3.5 下的依赖包又找不到
+
+只能合并
+
+cd /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/
+
+
+合并 日志
+
+
+
+admindyn$ cd /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/
+macserver:site-packages admindyn$ ls -la
+total 16
+drwxrwxr-x   14 root      admin   476  4  9 17:31 .
+drwxrwxr-x  208 root      admin  7072  3 29 20:12 ..
+-rw-rw-r--    1 root      admin   119  3 29 20:12 README.txt
+drwxrwxr-x    4 root      admin   136  4  9 17:30 __pycache__
+-rw-rw-r--    1 root      admin   126  4  9 17:30 easy_install.py
+drwxr-xr-x    6 admindyn  admin   204  4  9 17:31 hiredis
+drwxr-xr-x    7 admindyn  admin   238  4  9 17:31 hiredis-0.2.0-py3.7.egg-info
+drwxrwxr-x   23 root      admin   782  4  9 17:30 pip
+drwxrwxr-x   10 root      admin   340  4  9 17:30 pip-9.0.3.dist-info
+drwxrwxr-x    7 root      admin   238  4  9 17:30 pkg_resources
+drwxr-xr-x   11 admindyn  admin   374  4  9 17:31 redis
+drwxr-xr-x    9 admindyn  admin   306  4  9 17:31 redis-2.10.6.dist-info
+drwxrwxr-x   42 root      admin  1428  4  9 17:30 setuptools
+drwxrwxr-x   13 root      admin   442  4  9 17:30 setuptools-39.0.1.dist-info
+macserver:site-packages admindyn$ cp -rf hiredis  /Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/
+macserver:site-packages admindyn$ cp -rf redis  /Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/
+macserver:site-packages admindyn$ cd /Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/
+macserver:site-packages admindyn$ ls -la
+total 1448
+drwxrwxr-x   61 root      admin    2074  4  9 17:38 .
+drwxrwxr-x  206 root      admin    7004  6 27  2016 ..
+drwxr-xr-x    9 root      admin     306  3 24  2017 PyMySQL-0.7.10.dist-info
+drwxr-xr-x    7 admindyn  admin     238  3 21 14:07 PyYAML-3.12-py3.5.egg-info
+-rw-rw-r--    1 root      admin     119  6 27  2016 README
+drwxrwxr-x    9 root      admin     306  3 24  2017 __pycache__
+-rwxr-xr-x    1 admindyn  admin  424416  3 21 14:07 _yaml.cpython-35m-darwin.so
+drwxr-xr-x    9 root      admin     306  2  9  2017 beautifulsoup4-4.5.3.dist-info
+drwxr-xr-x   11 root      admin     374  2  9  2017 bs4
+drwxr-xr-x    8 root      admin     272  2  9  2017 bs4-0.0.1-py3.5.egg-info
+drwxr-xr-x    9 root      admin     306  3 24  2017 cycler-0.10.0.dist-info
+-rw-r--r--    1 root      admin   15959  3 24  2017 cycler.py
+drwxr-xr-x   12 root      admin     408  3 24  2017 dateutil
+-rw-rw-r--    1 root      admin     126 11 28  2016 easy_install.py
+drwxr-xr-x    6 root      admin     204  2  9  2017 et_xmlfile
+drwxr-xr-x    7 root      admin     238  2  9  2017 et_xmlfile-1.0.1-py3.5.egg-info
+drwxr-xr-x   11 admindyn  admin     374  3 21 14:07 future
+drwxr-xr-x    8 admindyn  admin     272  3 21 14:07 future-0.16.0-py3.5.egg-info
+drwxr-xr-x    6 admindyn  admin     204  4  9 17:38 hiredis
+drwxr-xr-x    6 admindyn  admin     204  3 21 14:07 iso8601
+drwxr-xr-x    9 admindyn  admin     306  3 21 14:07 iso8601-0.1.12.dist-info
+drwxr-xr-x    7 root      admin     238  2  9  2017 jdcal-1.3-py3.5.egg-info
+-rw-r--r--    1 root      admin   12556  9 19  2016 jdcal.py
+drwxr-xr-x    7 admindyn  admin     238  3 21 14:07 libfuturize
+drwxr-xr-x    6 admindyn  admin     204  3 21 14:07 libpasteurize
+drwxr-xr-x   88 root      admin    2992  3 24  2017 matplotlib
+-rw-r--r--    1 root      admin    1170  3 24  2017 matplotlib-2.0.0-py3.5-nspkg.pth
+drwxr-xr-x   10 root      admin     340  3 24  2017 matplotlib-2.0.0.dist-info
+drwxr-xr-x   10 root      admin     340  3 24  2017 mpl_toolkits
+drwxr-xr-x   28 root      admin     952  3 24  2017 numpy
+drwxr-xr-x    9 root      admin     306  3 24  2017 numpy-1.12.1.dist-info
+drwxr-xr-x   23 root      admin     782  2  9  2017 openpyxl
+drwxr-xr-x    9 root      admin     306  2  9  2017 openpyxl-2.4.2-py3.5.egg-info
+drwxr-xr-x   35 root      admin    1190  3 24  2017 pandas
+drwxr-xr-x    9 root      admin     306  3 24  2017 pandas-0.19.2.dist-info
+drwxr-xr-x    9 admindyn  admin     306  3 21 14:07 past
+drwxrwxr-x   23 root      admin     782  8 17  2017 pip
+drwxr-xr-x   10 admindyn  admin     340  8 17  2017 pip-9.0.1.dist-info
+drwxrwxr-x    6 root      admin     204 11 28  2016 pkg_resources
+-rw-r--r--    1 root      admin      90  3 24  2017 pylab.py
+drwxr-xr-x   16 root      admin     544  3 24  2017 pymysql
+drwxr-xr-x    9 root      admin     306  3 24  2017 pyparsing-2.2.0.dist-info
+-rw-r--r--    1 root      admin  231039  3 24  2017 pyparsing.py
+drwxr-xr-x    7 root      admin     238  2  9  2017 pyperclip
+drwxr-xr-x    7 root      admin     238  2  9  2017 pyperclip-1.5.27-py3.5.egg-info
+drwxr-xr-x   10 root      admin     340  3 24  2017 python_dateutil-2.6.0.dist-info
+drwxr-xr-x   10 root      admin     340  3 24  2017 pytz
+drwxr-xr-x   10 root      admin     340  3 24  2017 pytz-2016.10.dist-info
+drwxr-xr-x   11 admindyn  admin     374  4  9 17:38 redis
+drwxr-xr-x   20 root      admin     680  2  9  2017 requests
+drwxr-xr-x    9 root      admin     306  2  9  2017 requests-2.13.0.dist-info
+drwxr-xr-x   29 root      admin     986  2  9  2017 scratchpad
+drwxr-xr-x    6 admindyn  admin     204 12 27 14:07 selenium
+drwxr-xr-x    9 admindyn  admin     306 12 27 14:07 selenium-3.8.0.dist-info
+drwxr-xr-x   12 admindyn  admin     408  3 21 14:07 serial
+drwxr-xr-x    9 admindyn  admin     306  3 21 14:07 serial-0.0.51.dist-info
+drwxrwxr-x   34 root      admin    1156 11 28  2016 setuptools
+drwxrwxr-x   12 root      admin     408 11 28  2016 setuptools-20.10.1.dist-info
+drwxr-xr-x    9 root      admin     306  3 24  2017 six-1.10.0.dist-info
+-rw-r--r--    1 root      admin   30098  3 24  2017 six.py
+drwxr-xr-x   20 admindyn  admin     680  3 21 14:07 yaml
+macserver:site-packages admindyn$ 
+
+
+
+
+合并 python的第三方 依赖包 后  使用python  的 redis 和 mysql  正常
+
+
