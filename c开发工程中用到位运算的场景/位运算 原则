@@ -1,0 +1,84 @@
+位运算 原则
+
+
+关于数的移位，特别需要注意正数，三码相同，所以无论左移还是右移都是补0.
+
+而负数的补码就需要注意，左移在右边补0，右移需要在左边补1，有一个很有趣的误区是，认为符号位保持不变，仅仅移动数据位，这是不对的，因为无论数据位还是符号位，都是二进制，在整体大迁移的过程中，符号位也是要跟随潮流的。只不过，为了保证右移后，和原来的符号数一样，因此，负数在右移时左边补1.
+
+比如8位机器数(补码)：1,110 0110,右移一位是：1,111 0011,开始的符号位变成了现在的数据位。
+
+移位分为：
+
+逻辑移位
+算术移位
+其中逻辑移位最简单，不管左移右移，移出来的空位补0即可。
+
+算术移位特别需要注意，原来的符号位一样移动。因为移位是宏观的变化，不允许任何元素保持不动。所以左移时，正数有可能变为负数，负数有可能变为正数。因为左移原来的符号位丢了，右边补的是0。而右移时不会改变符号性，因为右移是将数据减半，减半不可能减成相反的符号的。而左移可能溢出，溢出的特征就是符号跃迁。
+
+
+
+
+
+
+位运算
+
+
+在工程中用来干嘛
+
+
+
+第一
+
+	 获取一个数据的指定位
+         获取一个数据的指定位。例如获得整型数a=的低八位数据的操作为a=a&0xFF。321=
+         0000 0001 0100 0001 & 0xFF =0000 0000 1111 11111
+         = 0000 0000 0100 0001
+         获得整型数a=的高八位数据的操作为a=a&0xFF00。==a&0XFF00==
+         321=0000 0001 0100 0001 & 0XFF00=1111 1111 0000 0000
+         = 0000 0001 0000 0000
+
+
+
+
+
+第二
+
+C语言16位拆成高低八位，和高低八位合成16位数据
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+char right,left,temp;//right表示第八位，left表示高八位
+int size_right,size_left,size_temp;
+short int number,size_number;
+short int number_two,number_three;
+//int 是四个字节 short int 是两个字节
+int main()
+{
+    number =32343; //65536个数范围是 -32768-32767
+    size_number = sizeof(number);
+    size_right = sizeof(right);
+    size_left = sizeof(left);
+    size_temp = sizeof(temp);
+    printf("size_number=%d个字节\n",size_number);
+    printf("size_left=%d个字节\n",size_left);
+    printf("size_right=%d个字节\n",size_right);
+    printf("size_temp=%d个字节\n",temp);
+    printf("number=%d\n",number);
+    right = number&0XFF;//低八位
+    left = number>>8;//高八位
+    printf("right = %d\n",right);
+    printf("left  = %d\n",left);
+    printf("number_two=%d\n",left*256+right);
+    //前取高八位，在取低八位
+    left=(number>>8)&0XFF; //先取高八位
+    right=number&0XFF;     //再取第八位
+    printf("number_two=%d\n",left*256+right);
+    //现在要把高八位和第八位合并
+    number_three=left;
+    number_three<<=8;
+    number_three|=right;
+    printf("number_three=%d",number_three);
+    return 0;
+}

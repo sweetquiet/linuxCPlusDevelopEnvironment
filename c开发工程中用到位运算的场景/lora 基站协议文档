@@ -1,0 +1,177 @@
+lora 基站协议文档
+
+https://blog.csdn.net/iotisan/article/details/72633960
+
+Concentrator 集中器
+
+第一 上行数据
+
+urxpk 数据格式主要用于基站向NS发送的基站接收到的无线数据
+
+time  String 非必须字段  UTC time of receipt of the LoRa frame. 同步时间
+
+freq  通信频率 必须字段 The centre frequency of the received signal with units of MHz
+
+chan  通信频道 必须字段 Concentrator “IF” channel on which the frame was received
+
+
+
+基站的CRC  stat 校验码 状态值 1 或者 -1 必须字段
+
+modu 模组    必须字段
+
+		Lora 模组  MHZ FSK 频移键控 HZ
+
+	 	可以说这是两种基站的信号工作模式
+
+
+datr   必须字段
+
+专业术语及其缩写：
+
+FHSS 跳频扩频技术             FIFO 先进先出队列，这里代表队列寄存器  
+
+PA 功率放大器                       LNA 低噪声放大器
+
+SNR 信噪比        			SF 扩频因子                                                                           
+
+PLL 锁相环                            CAD 信道活动检测
+
+CR 编码率    						BW带宽                                                                    
+
+RS符号速率                           Preamble 序头
+
+
+
+Datarate identifier.When "modu" equals "LORA", "datr" comprises "SFnBWm", where 'n' is an integer representing the frame's 'spreading factor' and 'm' is an in representing the frame's bandwidth in units kHz.When "modu" equals "FSK" " datr" comprise integer representing the frame's bit rate in Hz  必须字段
+
+
+
+Cora  String  if modu is Lora    必须字段
+
+RSSI，Received Signal Strength Indication  接收的信号强度指示。
+
+lsnr The measured received signal to nose ratio （ratio 比例） in units of dB 信噪比  必须字段
+
+
+Size  非必须字段
+
+Data   String  The frame payload,encoded into base64  必须字段
+
+rxpk json 格式
+
+"rxpk": [
+{
+"time":"2013-03-31T16:21:17.528002Z", "tmst":3512348611,
+"chan":2,
+"rfch":0, "freq":866.349812,
+"stat":1, "modu":"LORA",
+"datr":"SF7BW125",
+"codr":"4/6",
+"rssi":-35,
+"lsnr":5.1,
+"size":32,
+"data":"-DS4CGaDCdG+48eJNM3Vai-zDpsR71Pn9CPA9uCON84"
+},
+{
+"time":"2013-03-31T16:21:17.532038Z", "tmst":3316387610,
+"chan":0,
+"rfch":0, "freq":863.00981,
+"stat":1, "modu":"LORA",
+"datr":"SF10BW125",
+"codr":"4/7",
+"rssi":-38,
+"lsnr":5.5,
+"size":32, "data":"ysgRl452xNLep9S1NTIg2lomKDxUgn3DJ7DE+b00Ass"
+}
+]
+
+
+第二 下行数据 
+
+dtxpk 数据格式主要用于NS向基站发送的下行数据：
+
+
+txpk JSON 格式
+
+imme  Boolean   if true, the gateway is commanded to transmit the frame immediately 非必须字段
+
+
+tmst   nsigned integer < 232   If "imme" is no true and "tmst" is present, the gateway is commanded to transmit the frame hen its internal timestamp counter equals the  value of "tmst". 非必须字段
+
+time   必须字段 String  UTC time. The precision is one microsecond. format is ISO 8601.If "imme" is false or not present and "tmst" is resent, the gateway is commanded to transmit the frame at this time.
+
+
+freq   非必须字段 The centre frequency on when the frame is to be ransmitted in units of MHz.
+
+rfch   必须字段  选择天线信道  The antenna to which the gateway is commnded to transmit the frame.
+
+
+powe	非必须字段
+
+modu	string 非必须字段  指明发射模式	
+		“LORA”, representing LoRa modulation
+		“FSK”, representing FSK modulation
+
+datr    非必须字段 数据传输速度 扩频因子与带宽
+
+codr   string 必须字段
+
+ipol   bool  必须字段 If true, commands gateway to invert the polority of the transmitted bits. LoRa Server sets value to    true when "modu" equals "LORA", otherwise the value is omitted.
+
+size 非必须字段
+
+ncrc 非必须字段
+
+data 非必须字段  The frame payload,encoded into base64
+
+
+第三 状态信息
+
+ugwstatus 数据格式主要用于基站向NS发送的基站状态数据，
+
+time  string  UTC system time of the gateway. The precision is one second. The format is ISO 8601
+
+lati float, containing up to 5 decimal places
+
+The latitude of the gateway’s position in degrees. units of degrees North of the equator
+
+long float, containing up to 5 decimal places
+
+The longitude of the gateway’s position in degree, units of degrees East of the prime meridian
+
+
+alti signed integer  the altitude of the gateway’s postion in degree, units of degrees 
+
+
+rxnb   网关收到的无线射频数据包数	The number of radio frames received since gateway start 
+
+rxok   网关收到的CRC校验正确的无线射频数据包数  	The number of radio frames received with correct CRC since gateway start
+
+
+rwfw    转发到服务器的数据包数   The number of radio frames forwarded to the server since gateway start
+
+
+ackr    收发通信百分比    The proportion of radio frames that were forwarded to the gateway’s network server and ack nowledged by the server since gateway start
+
+
+dwnb   The number of radio frames received (from the network server) for transmission since gateway start
+
+
+txnb
+	   The number of radio frames transmitted since gateway start
+
+json 举例
+
+"stat":
+{
+"time":"2014-01-12 08:59:28 GMT", "lati":46.24000,
+"long":3.25230,
+"alti":145,
+"rxnb":2,
+"rxok":2,
+"rxfw":2,
+"ackr":100.0,
+"dwnb":2,
+"txnb":2
+}
