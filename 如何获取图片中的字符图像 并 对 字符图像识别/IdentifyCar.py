@@ -1,5 +1,5 @@
 import numpy as np
-from skimage import data,color
+from skimage import measure,data,color
 from skimage.morphology import disk
 import skimage.filters.rank as sfr
 #图像处理的辅助工具库
@@ -380,11 +380,88 @@ for  i  in  range( 256 ):
 
 #  convert to binary image by the table 
 
-imBim = Image(auto)
-bim  =  imBim.point(table,'1')
+imH = Image.fromarray(auto)
+
+bim  =  imH.point(table,'1')
 
 plt.figure(num=6,figsize=(12,8),dpi=96) #设置窗口大小
 plt.suptitle('er zhi hua')
 plt.imshow(bim,plt.cm.gray)
+
+#bim.save("erzhihua_img.jpg")
+
+
+#边缘检测
+'''
+边缘检测，获取牌照以及字符的轮廓。
+对比其他边缘检测算子，本系统选用了对弱边缘有较精确的提取能力，
+同时又能较大程度保留车牌轮廓纹理的Canny算子，
+由本文第三章知道Canny边缘检测算子主要实现步骤有四：
+首先用高斯滤波器平滑预处理前小节二值化后的车辆图像简单有效的车牌定位算法
+（附源码和详细解析），消除部分噪声，
+然后使用梯度工具，
+计算前一步骤作用后的图像简单有效的车牌定位算法（附源码和详细解析）、
+简单有效的车牌定位算法（附源码和详细解析）方向的梯度并用公式3.17
+得到幅值和方向角，之后采用非极大值抑制(NMS)方法细化梯度幅值（
+另一种说法，模），缩小方向角θ，最终使用双阈值法定位并提取出边缘。
+'''
+
+#对得到二值图像进行边缘检测和开闭操作进行数字形态学处理
+plt.figure(num=7,figsize=(12,8),dpi=96) #设置窗口大小
+plt.suptitle('bian yuan jian ce')
+
+img =color.rgb2gray(np.array(bim))
+auto =sfr.bottomhat(img, disk(5))  #半径为5的圆形滤波器
+
+
+plt.subplot(321)
+plt.title('origin image')
+plt.imshow(img,plt.cm.gray)
+
+plt.subplot(322)
+plt.title('filted image')
+plt.imshow(auto,plt.cm.gray)
+
+img =color.rgb2gray(auto)
+auto =sfr.bottomhat(img, disk(5))  #半径为5的圆形滤波器
+
+plt.subplot(323)
+plt.title('origin image')
+plt.imshow(img,plt.cm.gray)
+
+plt.subplot(324)
+plt.title('filted image')
+plt.imshow(auto,plt.cm.gray)
+
+img =color.rgb2gray(auto)
+auto =sfr.tophat(img, disk(5))  #半径为5的圆形滤波器
+
+plt.subplot(325)
+plt.title('origin image')
+plt.imshow(img,plt.cm.gray)
+
+plt.subplot(326)
+plt.title('filted image')
+plt.imshow(auto,plt.cm.gray)
+
+
+
+#检测所有图形的轮廓
+contours = measure.find_contours(auto, 0.5)
+
+
+#绘制轮廓
+fig, axes = plt.subplots(1,2,figsize=(8,8))#设置窗口大小
+plt.suptitle('bian yuan jian ce2')
+ax0, ax1= axes.ravel()
+ax0.imshow(auto,plt.cm.gray)
+ax0.set_title('original image')
+
+rows,cols=img.shape
+ax1.axis([0,rows,cols,0])
+for n, contour in enumerate(contours):
+    ax1.plot(contour[:, 1], contour[:, 0], linewidth=2)
+ax1.axis('image')
+ax1.set_title('contours')
 
 plt.show()
