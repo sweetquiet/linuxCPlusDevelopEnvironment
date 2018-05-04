@@ -1,4 +1,7 @@
 import numpy as np
+from skimage import data,color
+from skimage.morphology import disk
+import skimage.filters.rank as sfr
 #图像处理的辅助工具库
 from PIL import Image,ImageDraw,ImageEnhance
 #import mlab as mlab
@@ -154,6 +157,24 @@ RGB彩色图像在MATLAB中是
 
 '''
 #灰度图
+
+'''
+将当前图像转换为其他模式，并且返回新的图像。
+
+当从一个调色板图像转换时，这个方法通过这个调色板来转换像素。
+如果不对变量mode赋值，该方法将会选择一种模式，
+在没有调色板的情况下，
+使得图像和调色板中的所有信息都可以被表示出来。
+
+当从一个颜色图像转换为黑白图像时，PIL库使用ITU-R601-2 luma转换公式：
+
+L = R * 299/1000 + G * 587/1000 + B * 114/1000
+
+当转换为2位图像（模式“1”）时，源图像首先被转换为黑白图像。
+结果数据中大于127的值被设置为白色，其他的设置为黑色；
+这样图像会出现抖动。如果要使用其他阈值，更改阈值127，
+可以使用方法point()。为了去掉图像抖动现象，
+'''
 imgGray = np.array(imgCompress.convert('L'))
 im2 = 255 - imgGray                 # 对图像进行反相处理
 
@@ -236,13 +257,12 @@ plt.title('f(x) =255 *(x/255)^2')
 plt.imshow(im4,cmap='gray')
 
 
-plt.figure(num=3,figsize=(12,8),dpi=96) #设置窗口大小
 
 #注意 以上所有的图片展示区域设置后 最后统一 调用这个 展示
 
 # 灰度拉伸 暂时 不做 灰度拉伸 标准解释
 
-# 图像局部增强
+# 图像局部增强1
 
 '''
 图像局部增强，突出车牌区域。
@@ -287,6 +307,84 @@ plt.figure(num=3,figsize=(12,8),dpi=96) #设置窗口大小
 '''
 
 
+'''
+autolevel
 
+这个词在photoshop里面翻译成自动色阶，
+用局部直方图来对图片进行滤波分级。
+
+该滤波器局部地拉伸灰度像素值的直方图，以覆盖整个像素值范围。
+'''
+# 图像局部增强2
+plt.figure(num=3,figsize=(12,8),dpi=96) #设置窗口大小
+plt.suptitle('base filters')
+img =color.rgb2gray(np.array(Image.open('./car.jpg')))
+auto =sfr.autolevel(img, disk(5))  #半径为5的圆形滤波器
+
+
+plt.subplot(121)
+plt.title('origin image')
+plt.imshow(img,plt.cm.gray)
+
+plt.subplot(122)
+plt.title('filted image')
+plt.imshow(auto,plt.cm.gray)
+
+plt.figure(num=4,figsize=(12,8),dpi=96) #设置窗口大小
+plt.suptitle('bi yun suan')
+#bottomhat: 此滤波器先计算图像的形态学闭运算，
+#然后用原图像减去运算的结果值，有点像黑帽操作
+img =color.rgb2gray(np.array(Image.open('./car.jpg')))
+auto =sfr.bottomhat(img, disk(5))  #半径为5的圆形滤波器
+
+
+plt.subplot(121)
+plt.title('origin image')
+plt.imshow(img,plt.cm.gray)
+
+plt.subplot(122)
+plt.title('filted image')
+plt.imshow(auto,plt.cm.gray)
+
+plt.figure(num=5,figsize=(12,8),dpi=96) #设置窗口大小
+plt.suptitle('kai yun suan')
+# 此滤波器先计算图像的形态学开运算，
+#然后用原图像减去运算的结果值，有点像白帽操作
+img =color.rgb2gray(np.array(Image.open('./car.jpg')))
+auto =sfr.tophat(img, disk(5))  #半径为5的圆形滤波器
+
+
+plt.subplot(121)
+plt.title('origin image')
+plt.imshow(img,plt.cm.gray)
+
+plt.subplot(122)
+plt.title('filted image')
+plt.imshow(auto,plt.cm.gray)
+
+
+
+#图像二值化
+
+ #  setup a converting table with constant threshold 
+threshold  =   80 
+table  =  []
+for  i  in  range( 256 ):
+	if  i  <  threshold:
+		table.append(0)
+	else:
+		table.append( 1 )
+
+# 灰度图
+#  convert to grey level image 
+
+#  convert to binary image by the table 
+
+imBim = Image(auto)
+bim  =  imBim.point(table,'1')
+
+plt.figure(num=6,figsize=(12,8),dpi=96) #设置窗口大小
+plt.suptitle('er zhi hua')
+plt.imshow(bim,plt.cm.gray)
 
 plt.show()
