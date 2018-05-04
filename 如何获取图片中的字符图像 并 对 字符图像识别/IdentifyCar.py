@@ -1,11 +1,14 @@
 import numpy as np
+from numpy.linalg import cholesky
 from skimage import measure,data,color
 from skimage.morphology import disk
 import skimage.filters.rank as sfr
+from skimage import img_as_float, img_as_ubyte
 #图像处理的辅助工具库
 from PIL import Image,ImageDraw,ImageEnhance
 #import mlab as mlab
 import matplotlib as mat
+import matplotlib.mlab as mlab 
 import matplotlib.pyplot as plt
 
 
@@ -14,7 +17,12 @@ import matplotlib.pyplot as plt
 #获取原始图像
 
 img = Image.open('./car.jpg')
-
+'''
+为了保证三个通道 我们这里需要指定图片模式 
+方便操作
+1，L，P，RGB，RGBA，CMYK，YCbCr，I，F。
+'''
+img = img.convert('RGB')
 #读取图片并转为数组
 im = np.array(img)
 
@@ -24,7 +32,27 @@ im = np.array(img)
 print(im.shape)
 print(im.dtype)
 
+# 获取图像的维度，行数，列数以及通道数
+rowBins, colBins, channel=im.shape
+print('图像的维度，行数，列数以及通道数')
+print(rowBins)
+print(colBins)
+print(channel)
+# 图像的尺寸
+print('source img Width')
+print(img.width)
+print('source img Height')
+print(img.height)
+# 求图像的最大值，最小值，均值
+print('图像的最大值，最小值，均值')
+print(im.max())
+print(im.min())
+print(im.mean())
+
+
 #输出位于坐标100,100，颜色通道为r的像素值
+
+print('输出位于坐标100,100，颜色通道为r的像素值')
 print (im[100,100,0])
 
 
@@ -105,11 +133,16 @@ plt.axis('off')
 
 #获取原始图像的直方图
 
-arr = img.histogram()
+#arr = img.histogram()
+
+arr = np.histogram(a=np.array(img).flatten(),bins=rowBins,normed=False)
 
 plt.subplot(row,column,2)
 plt.title('source zhi fang tu')
-n, bins, patches = plt.hist(arr, bins=256, normed=0,edgecolor='None',facecolor='red')
+#https://blog.csdn.net/icamera0/article/details/50683106
+
+
+n, bins, patches = plt.hist(arr, bins=rowBins, normed=0,edgecolor='None',facecolor='red')
 print("直方图向量")
 print(n)
 print("各个bin的区间范围")
@@ -131,10 +164,7 @@ print(patches[1])
 
 #图像压缩
 
-print('source img Width')
-print(img.width)
-print('source img Height')
-print(img.height)
+
 
 
 imgCompress = img.resize((128,128),Image.BILINEAR)
@@ -193,7 +223,8 @@ plt.imshow(imgGray,cmap='gray')
 #灰度图直方图
 #arr = np.array(imgCompress.convert('L').histogram()).flatten()
 #其中的flatten()函数是numpy包里面的，用于将二维数组序列化成一维数组。
-# 前一个数组是直方图的统计量，后一个数组是每个bin的中间值
+
+#arr = np.histogram(a=np.array(imgCompress.convert('L')).flatten(),bins=rowBins,normed=False)
 arr = imgCompress.convert('L').histogram()
 plt.subplot(row,column,5)
 plt.title('gray zhi fang tu')
@@ -222,15 +253,21 @@ patches: 返回每个bin里面包含的数据，是一个list
 '''
 
 #这里的 直方图 没有均衡化 处理 等 
-n, bins, patches = plt.hist(arr, bins=256, normed=1,edgecolor='None',facecolor='red')
+
+## 前一个数组是直方图的统计量，后一个数组是每个bin的中间值
+n, bins, patches = plt.hist(arr, bins=rowBins, normed=1,edgecolor='None',facecolor='red')
 print("直方图向量")
 print(n)
 print("各个bin的区间范围")
 print(bins)
 print("每个bin里面包含的数据，是一个list")
+print(type(patches))
 print(patches)
+print(type(patches[0]))
 print(patches[0])
 print(patches[1])
+
+
 
 plt.subplot(row,column,7)
 
@@ -318,7 +355,10 @@ autolevel
 # 图像局部增强2
 plt.figure(num=3,figsize=(12,8),dpi=96) #设置窗口大小
 plt.suptitle('base filters')
-img =color.rgb2gray(np.array(Image.open('./car.jpg')))
+# 图像数据类型的转换
+imgS = Image.open('./car.jpg').convert('RGB')
+imgUByte=img_as_float(imgS)
+img =color.rgb2gray(np.array(imgUByte))
 auto =sfr.autolevel(img, disk(5))  #半径为5的圆形滤波器
 
 
@@ -334,7 +374,9 @@ plt.figure(num=4,figsize=(12,8),dpi=96) #设置窗口大小
 plt.suptitle('bi yun suan')
 #bottomhat: 此滤波器先计算图像的形态学闭运算，
 #然后用原图像减去运算的结果值，有点像黑帽操作
-img =color.rgb2gray(np.array(Image.open('./car.jpg')))
+imgS = Image.open('./car.jpg').convert('RGB')
+imgUByte=img_as_float(imgS)
+img =color.rgb2gray(np.array(imgUByte))
 auto =sfr.bottomhat(img, disk(5))  #半径为5的圆形滤波器
 
 
@@ -350,7 +392,9 @@ plt.figure(num=5,figsize=(12,8),dpi=96) #设置窗口大小
 plt.suptitle('kai yun suan')
 # 此滤波器先计算图像的形态学开运算，
 #然后用原图像减去运算的结果值，有点像白帽操作
-img =color.rgb2gray(np.array(Image.open('./car.jpg')))
+imgS = Image.open('./car.jpg').convert('RGB')
+imgUByte=img_as_float(imgS)
+img =color.rgb2gray(np.array(imgUByte))
 auto =sfr.tophat(img, disk(5))  #半径为5的圆形滤波器
 
 
@@ -444,7 +488,11 @@ plt.subplot(326)
 plt.title('filted image')
 plt.imshow(auto,plt.cm.gray)
 
+imgS = Image.open('./car.jpg').convert('RGB').convert('L')
+imgUByte=img_as_float(imgS)
+autoSource = np.array(imgUByte)
 
+auto =   auto - autoSource
 
 #检测所有图形的轮廓
 contours = measure.find_contours(auto, 0.5)
@@ -463,5 +511,36 @@ for n, contour in enumerate(contours):
     ax1.plot(contour[:, 1], contour[:, 0], linewidth=2)
 ax1.axis('image')
 ax1.set_title('contours')
+
+plt.figure(num=9,figsize=(12,8),dpi=96) #设置窗口大小
+plt.suptitle('biao zhun zheng tai')
+print('标准正态分布')
+
+# example data  
+mu = 100 # mean of distribution  
+sigma = 15 # standard deviation of distribution  
+x = mu + sigma * np.random.randn(10000)  
+      
+num_bins = 50  
+# the histogram of the data  
+plt.subplot(211)
+n, bins, patches = plt.hist(x, num_bins, normed=1, facecolor='blue', alpha=0.5)  
+# add a 'best fit' line  
+y = mlab.normpdf(bins, mu, sigma)  
+plt.plot(bins, y, 'r--')  
+plt.xlabel('Smarts')  
+plt.ylabel('Probability')  
+plt.title(r'Histogram of IQ: $\mu=100$, $\sigma=15$') 
+
+# 二维正态分布
+print('二维正态分布')
+sampleNo = 1000;
+mu = np.array([[1, 5]])
+Sigma = np.array([[1, 0.5], [1.5, 3]])
+R = cholesky(Sigma)
+s = np.dot(np.random.randn(sampleNo, 2), R) + mu
+plt.subplot(212)
+# 注意绘制的是散点图，而不是直方图
+plt.plot(s[:,0],s[:,1],'+')
 
 plt.show()
