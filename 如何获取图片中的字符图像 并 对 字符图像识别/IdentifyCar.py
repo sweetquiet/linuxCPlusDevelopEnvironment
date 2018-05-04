@@ -122,7 +122,7 @@ plt.figure(num=2,figsize=(12,8),dpi=96) #设置窗口大小
 
 row = 3
 
-column = 3
+column = 4
 
 plt.suptitle('Multi_Image1') # 图片名称
 
@@ -135,14 +135,19 @@ plt.axis('off')
 
 #arr = img.histogram()
 
-arr = np.histogram(a=np.array(img).flatten(),bins=rowBins,normed=False)
-
+#彩色直方图只能叠加
 plt.subplot(row,column,2)
 plt.title('source zhi fang tu')
 #https://blog.csdn.net/icamera0/article/details/50683106
+r,g,b=img.split()
 
+ar=np.array(r).flatten()
+plt.hist(ar, bins=256, normed=1,facecolor='r',edgecolor='r')
+ag=np.array(g).flatten()
+plt.hist(ag, bins=256, normed=1, facecolor='g',edgecolor='g')
+ab=np.array(b).flatten()
 
-n, bins, patches = plt.hist(arr, bins=rowBins, normed=0,edgecolor='None',facecolor='red')
+n, bins, patches = plt.hist(ab, bins=256, normed=1, facecolor='b',edgecolor='b')
 print("直方图向量")
 print(n)
 print("各个bin的区间范围")
@@ -151,6 +156,10 @@ print("每个bin里面包含的数据，是一个list")
 print(patches)
 print(patches[0])
 print(patches[1])
+
+
+
+
 
 '''
 目前图像采集设备的分辨率普遍较高，拍摄出来的图像一般都较大，
@@ -212,7 +221,7 @@ im3 = (100.0/255) * imgGray + 100    # 将图像像素值变换到 100...200 区
 
 im4 = 255.0 * (imgGray/255.0)**2     # 对图像像素值求平方后得到的图像(二次函数变换，使较暗的像素值变得更小)
 
-plt.subplot(row,column,4)
+plt.subplot(row,column,5)
 
 plt.title('gray1 image')
 
@@ -225,8 +234,8 @@ plt.imshow(imgGray,cmap='gray')
 #其中的flatten()函数是numpy包里面的，用于将二维数组序列化成一维数组。
 
 #arr = np.histogram(a=np.array(imgCompress.convert('L')).flatten(),bins=rowBins,normed=False)
-arr = imgCompress.convert('L').histogram()
-plt.subplot(row,column,5)
+arr = np.array(imgCompress.convert('L')).flatten()
+plt.subplot(row,column,6)
 plt.title('gray zhi fang tu')
 '''
 arr: 需要计算直方图的一维数组
@@ -252,7 +261,9 @@ bins: 返回各个bin的区间范围
 patches: 返回每个bin里面包含的数据，是一个list
 '''
 
-#这里的 直方图 没有均衡化 处理 等 
+#这里的 直方图 没有均衡化 处理 等 https://www.cnblogs.com/smallpi/p/4550360.html
+
+
 
 ## 前一个数组是直方图的统计量，后一个数组是每个bin的中间值
 n, bins, patches = plt.hist(arr, bins=rowBins, normed=1,edgecolor='None',facecolor='red')
@@ -268,29 +279,39 @@ print(patches[0])
 print(patches[1])
 
 
+x = np.arange(255)
 
+# 画出变换函数图像1曲线 反相 f(x) = 255 - x
 plt.subplot(row,column,7)
-
 plt.title('f(x) = 255 - x')
+plt.plot(x,255-x) 
 
-#显示灰度图 要加参数 cmap
 
+#显示灰度图1 要加参数 cmap
+plt.subplot(row,column,8)
+plt.title('f(x) = 255 - x')
 plt.imshow(im2,cmap='gray')
 
-plt.subplot(row,column,8)
-
+# 画出变换函数图像2曲线 f(x) = (100/255)*x + 100
+plt.subplot(row,column,9)
 plt.title('f(x) = (100/255)*x + 100')
+plt.plot(x,(x/255.0)*100+100) 
 
-#显示灰度图 要加参数 cmap
-
+#显示灰度图变换2 要加参数 cmap
+plt.subplot(row,column,10)
+plt.title('f(x) = (100/255)*x + 100')
 plt.imshow(im3,cmap='gray')
 
-plt.subplot(row,column,9)
 
+# 画出变换函数图像3曲线 f(x) =255 *(x/255)^2
+plt.subplot(row,column,11)
 plt.title('f(x) =255 *(x/255)^2')
+plt.plot(x,255*(x/255.0)**2) 
 
-#显示灰度图 要加参数 cmap
 
+#显示灰度图3 要加参数 cmap
+plt.subplot(row,column,12)
+plt.title('f(x) =255 *(x/255)^2')
 plt.imshow(im4,cmap='gray')
 
 
@@ -355,8 +376,10 @@ autolevel
 # 图像局部增强2
 plt.figure(num=3,figsize=(12,8),dpi=96) #设置窗口大小
 plt.suptitle('base filters')
+
+imgS = Image.open('./car.jpg').convert('RGB').convert('L')
+
 # 图像数据类型的转换
-imgS = Image.open('./car.jpg').convert('RGB')
 imgUByte=img_as_float(imgS)
 img =color.rgb2gray(np.array(imgUByte))
 auto =sfr.autolevel(img, disk(5))  #半径为5的圆形滤波器
@@ -370,15 +393,18 @@ plt.subplot(122)
 plt.title('filted image')
 plt.imshow(auto,plt.cm.gray)
 
+
+
+
+#闭运算
 plt.figure(num=4,figsize=(12,8),dpi=96) #设置窗口大小
 plt.suptitle('bi yun suan')
 #bottomhat: 此滤波器先计算图像的形态学闭运算，
 #然后用原图像减去运算的结果值，有点像黑帽操作
-imgS = Image.open('./car.jpg').convert('RGB')
+imgS = Image.open('./car.jpg').convert('RGB').convert('L')
 imgUByte=img_as_float(imgS)
 img =color.rgb2gray(np.array(imgUByte))
 auto =sfr.bottomhat(img, disk(5))  #半径为5的圆形滤波器
-
 
 plt.subplot(121)
 plt.title('origin image')
@@ -388,11 +414,16 @@ plt.subplot(122)
 plt.title('filted image')
 plt.imshow(auto,plt.cm.gray)
 
+
+
+
+
+#开运算
 plt.figure(num=5,figsize=(12,8),dpi=96) #设置窗口大小
 plt.suptitle('kai yun suan')
 # 此滤波器先计算图像的形态学开运算，
 #然后用原图像减去运算的结果值，有点像白帽操作
-imgS = Image.open('./car.jpg').convert('RGB')
+imgS = Image.open('./car.jpg').convert('RGB').convert('L')
 imgUByte=img_as_float(imgS)
 img =color.rgb2gray(np.array(imgUByte))
 auto =sfr.tophat(img, disk(5))  #半径为5的圆形滤波器
