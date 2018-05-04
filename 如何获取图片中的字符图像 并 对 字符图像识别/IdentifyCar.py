@@ -1,7 +1,8 @@
 import numpy as np
 from numpy.linalg import cholesky
 from skimage import measure,data,color
-from skimage.morphology import disk
+from skimage.morphology import disk,square,rectangle
+import skimage.morphology as openclose
 import skimage.filters.rank as sfr
 from skimage import img_as_float, img_as_ubyte
 #图像处理的辅助工具库
@@ -10,7 +11,10 @@ from PIL import Image,ImageDraw,ImageEnhance
 import matplotlib as mat
 import matplotlib.mlab as mlab 
 import matplotlib.pyplot as plt
+import scipy.signal as signal
 
+
+#https://blog.csdn.net/u013378306/article/details/70156842?locationNum=1&fps=1
 
 #基于数学形态学的车牌粗定位算法
 #图像采集设备获取的车辆图像质量往往不符合要求需要进行图像预处理操作
@@ -219,7 +223,13 @@ im2 = 255 - imgGray                 # 对图像进行反相处理
 
 im3 = (100.0/255) * imgGray + 100    # 将图像像素值变换到 100...200 区间
 
-im4 = 255.0 * (imgGray/255.0)**2     # 对图像像素值求平方后得到的图像(二次函数变换，使较暗的像素值变得更小)
+#im4 = 255.0 * (imgGray/255.0)**2     # 对图像像素值求平方后得到的图像(二次函数变换，使较暗的像素值变得更小)
+
+maxL = imgGray.max()
+
+minL = imgGray.min()
+
+im4 = (255.0/(maxL - minL))*imgGray - (255*minL)/(maxL-minL)
 
 plt.subplot(row,column,5)
 
@@ -295,7 +305,7 @@ plt.imshow(im2,cmap='gray')
 # 画出变换函数图像2曲线 f(x) = (100/255)*x + 100
 plt.subplot(row,column,9)
 plt.title('f(x) = (100/255)*x + 100')
-plt.plot(x,(x/255.0)*100+100) 
+plt.plot(x,(100/255.0)*x+100) 
 
 #显示灰度图变换2 要加参数 cmap
 plt.subplot(row,column,10)
@@ -306,8 +316,10 @@ plt.imshow(im3,cmap='gray')
 # 画出变换函数图像3曲线 f(x) =255 *(x/255)^2
 plt.subplot(row,column,11)
 plt.title('f(x) =255 *(x/255)^2')
-plt.plot(x,255*(x/255.0)**2) 
+#plt.plot(x,255*(x/255.0)**2) 
 
+#灰度变换 使用的算法 选择这个
+plt.plot(x,(255.0/(maxL - minL))*x - (255*minL)/(maxL-minL))
 
 #显示灰度图3 要加参数 cmap
 plt.subplot(row,column,12)
@@ -317,8 +329,39 @@ plt.imshow(im4,cmap='gray')
 
 
 #注意 以上所有的图片展示区域设置后 最后统一 调用这个 展示
-
+#这里的 直方图 没有均衡化 处理 等 https://www.cnblogs.com/smallpi/p/4550360.html
 # 灰度拉伸 暂时 不做 灰度拉伸 标准解释
+
+'''
+直方图均衡化是利用直方图的累积函数作为灰度变换函数，对图像进行转换。直方图均衡化可以增强图像的对比度。
+
+累积函数和概率论中的累积分布函数类似。
+例如对于还有5个数的序列[1,2,3,4,5],其累积函数含有5个数，
+第一个数是1，第二个是1+2=3，……，
+第五个数是1+2+3+4+5=15，所以其累积函数是[1,3,6,10,15]。
+'''
+def histeq(image_array,image_bins=256):
+    
+    # 将图像矩阵转化成直方图数据，返回元组(频数，直方图区间坐标)
+    image_array2,bins = np.histogram(image_array.flatten(),image_bins)
+
+    # 计算直方图的累积函数
+    cdf = image_array2.cumsum()
+
+    # 将累积函数转化到区间[0,255]
+    cdf = (255.0/cdf[-1])*cdf
+    
+    # 原图像矩阵利用累积函数进行转化，插值过程
+    image2_array = np.interp(image_array.flatten(),bins[:-1],cdf)
+
+    # 返回均衡化后的图像矩阵和累积函数
+    return image2_array.reshape(image_array.shape),cdf
+
+
+im4,cfun= histeq(im4)
+
+
+
 
 # 图像局部增强1
 
@@ -375,7 +418,7 @@ autolevel
 '''
 # 图像局部增强2
 plt.figure(num=3,figsize=(12,8),dpi=96) #设置窗口大小
-plt.suptitle('base filters')
+plt.suptitle('zi dong se jie')
 
 imgS = Image.open('./car.jpg').convert('RGB').convert('L')
 
@@ -385,12 +428,21 @@ img =color.rgb2gray(np.array(imgUByte))
 auto =sfr.autolevel(img, disk(5))  #半径为5的圆形滤波器
 
 
-plt.subplot(121)
+plt.subplot(221)
+plt.title('jun heng zhi fang tu')
+plt.hist(im4.flatten(),256)
+
+
+plt.subplot(222)
+plt.title('jun heng img')
+plt.imshow(im4,plt.cm.gray)
+
+plt.subplot(223)
 plt.title('origin image')
 plt.imshow(img,plt.cm.gray)
 
-plt.subplot(122)
-plt.title('filted image')
+plt.subplot(224)
+plt.title('zi dong se jie image')
 plt.imshow(auto,plt.cm.gray)
 
 
@@ -404,14 +456,14 @@ plt.suptitle('bi yun suan')
 imgS = Image.open('./car.jpg').convert('RGB').convert('L')
 imgUByte=img_as_float(imgS)
 img =color.rgb2gray(np.array(imgUByte))
-auto =sfr.bottomhat(img, disk(5))  #半径为5的圆形滤波器
+auto =openclose.closing(img, disk(5))  #半径为5的圆形滤波器
 
 plt.subplot(121)
 plt.title('origin image')
 plt.imshow(img,plt.cm.gray)
 
 plt.subplot(122)
-plt.title('filted image')
+plt.title('bi yun suan image')
 plt.imshow(auto,plt.cm.gray)
 
 
@@ -421,12 +473,11 @@ plt.imshow(auto,plt.cm.gray)
 #开运算
 plt.figure(num=5,figsize=(12,8),dpi=96) #设置窗口大小
 plt.suptitle('kai yun suan')
-# 此滤波器先计算图像的形态学开运算，
-#然后用原图像减去运算的结果值，有点像白帽操作
-imgS = Image.open('./car.jpg').convert('RGB').convert('L')
-imgUByte=img_as_float(imgS)
+
+#这里选择 灰度拉伸变换的 图 基础上 做开运算
+imgUByte=img_as_float(im4)
 img =color.rgb2gray(np.array(imgUByte))
-auto =sfr.tophat(img, disk(5))  #半径为5的圆形滤波器
+autoOpen =openclose.opening(img, disk(5))  #半径为5的圆形滤波器
 
 
 plt.subplot(121)
@@ -434,39 +485,64 @@ plt.title('origin image')
 plt.imshow(img,plt.cm.gray)
 
 plt.subplot(122)
-plt.title('filted image')
+plt.title('kai yun suan image')
+plt.imshow(autoOpen,plt.cm.gray)
+
+
+#图像增强
+
+plt.figure(num=6,figsize=(12,8),dpi=96) #设置窗口大小
+plt.suptitle('hei mao-bai mao-er zhi hua')
+
+#黑帽 原图像减去它的闭运算
+imgS = Image.open('./car.jpg').convert('RGB').convert('L')
+imgUByte=img_as_float(imgS)
+img =color.rgb2gray(np.array(imgUByte))
+auto =openclose.black_tophat(img, disk(5))  #半径为5的圆形滤波器
+
+
+plt.subplot(321)
+plt.title('origin image')
+plt.imshow(img,plt.cm.gray)
+
+plt.subplot(322)
+plt.title('hei mao image')
 plt.imshow(auto,plt.cm.gray)
 
+#白帽 原图像减去它的开运算
+
+#imgS = Image.open('./car.jpg').convert('RGB').convert('L')
+imgUByte=img_as_float(im4)
+img =color.rgb2gray(np.array(imgUByte))
+autoBaiMao =openclose.white_tophat(img, disk(5))  #半径为5的圆形滤波器
+
+
+plt.subplot(323)
+plt.title('origin image')
+plt.imshow(img,plt.cm.gray)
+
+plt.subplot(324)
+plt.title('bai mao image')
+plt.imshow(autoBaiMao,plt.cm.gray)
 
 
 #图像二值化
+#展示二值化
 
- #  setup a converting table with constant threshold 
-threshold  =   80 
-table  =  []
-for  i  in  range( 256 ):
-	if  i  <  threshold:
-		table.append(0)
-	else:
-		table.append( 1 )
+#灰度拉伸后的图 减去 灰度拉伸开运算后的图 进行二值化
 
-# 灰度图
-#  convert to grey level image 
+#bim = Image.fromarray(im4-autoOpen).convert('1') 
 
-#  convert to binary image by the table 
-
-imH = Image.fromarray(auto)
-
-bim  =  imH.point(table,'1')
-
-plt.figure(num=6,figsize=(12,8),dpi=96) #设置窗口大小
-plt.suptitle('er zhi hua')
+bim = Image.fromarray(autoBaiMao).convert('1')
+plt.subplot(325)
+plt.title('erzhihua')
 plt.imshow(bim,plt.cm.gray)
 
 #bim.save("erzhihua_img.jpg")
 
 
 #边缘检测
+#http://www.cnblogs.com/smallpi/p/4555854.html
 '''
 边缘检测，获取牌照以及字符的轮廓。
 对比其他边缘检测算子，本系统选用了对弱边缘有较精确的提取能力，
@@ -485,45 +561,153 @@ plt.imshow(bim,plt.cm.gray)
 plt.figure(num=7,figsize=(12,8),dpi=96) #设置窗口大小
 plt.suptitle('bian yuan jian ce')
 
-img =color.rgb2gray(np.array(bim))
-auto =sfr.bottomhat(img, disk(5))  #半径为5的圆形滤波器
+def imconv(image_array,suanzi):
+    '''计算卷积
+        参数
+        image_array 原灰度图像矩阵
+        suanzi      算子
+        返回
+        原图像与算子卷积后的结果矩阵
+    '''
+    image = image_array.copy()     # 原图像矩阵的深拷贝
+    
+    dim1,dim2 = image.shape
+
+    # 对每个元素与算子进行乘积再求和(忽略最外圈边框像素)
+    for i in range(1,dim1-1):
+        for j in range(1,dim2-1):
+            image[i,j] = (image_array[(i-1):(i+2),(j-1):(j+2)]*suanzi).sum()
+    
+    # 由于卷积后灰度值不一定在0-255之间，统一化成0-255
+    image = image*(255.0/image.max())
+
+    # 返回结果矩阵
+    return image
 
 
-plt.subplot(321)
-plt.title('origin image')
-plt.imshow(img,plt.cm.gray)
+# x方向的Prewitt算子
+suanzi_x = np.array([[-1, 0, 1],
+                    [ -1, 0, 1],
+                    [ -1, 0, 1]])
 
-plt.subplot(322)
-plt.title('filted image')
-plt.imshow(auto,plt.cm.gray)
+# y方向的Prewitt算子
+suanzi_y = np.array([[-1,-1,-1],
+                     [ 0, 0, 0],
+                     [ 1, 1, 1]])
 
-img =color.rgb2gray(auto)
-auto =sfr.bottomhat(img, disk(5))  #半径为5的圆形滤波器
+'''
+我们 还是采用Canny算子 结合 高斯 来 解决我们的需求 
+首先用高斯滤波器平滑预处理
+前小节二值化后的车辆图像简单有效的车牌定位算法（附源码和详细解析），
+消除部分噪声，然后使用梯度工具，
+计算前一步骤作用后的图像简单有效的车牌定位算法（附源码和详细解析）、
+简单有效的车牌定位算法（附源码和详细解析）方向的梯度
+并用公式3.17得到幅值和方向角，
+之后采用非极大值抑制(NMS)方法细化梯度幅值（另一种说法，模），
+缩小方向角θ，最终使用双阈值法定位并提取出边缘。
+'''
 
-plt.subplot(323)
-plt.title('origin image')
-plt.imshow(img,plt.cm.gray)
 
-plt.subplot(324)
-plt.title('filted image')
-plt.imshow(auto,plt.cm.gray)
+# 生成高斯算子的函数
+def func(x,y,sigma=1):
+    return 100*(1/(2*np.pi*sigma))*np.exp(-((x-2)**2+(y-2)**2)/(2.0*sigma**2))
 
-img =color.rgb2gray(auto)
-auto =sfr.tophat(img, disk(5))  #半径为5的圆形滤波器
+# 生成标准差为5的5*5高斯算子
+suanzi1 = np.fromfunction(func,(5,5),sigma=5)
 
-plt.subplot(325)
-plt.title('origin image')
-plt.imshow(img,plt.cm.gray)
+# Laplace扩展算子
+suanzi2 = np.array([[1, 1, 1],
+                    [1,-8, 1],
+                    [1, 1, 1]])
 
-plt.subplot(326)
-plt.title('filted image')
-plt.imshow(auto,plt.cm.gray)
 
-imgS = Image.open('./car.jpg').convert('RGB').convert('L')
-imgUByte=img_as_float(imgS)
-autoSource = np.array(imgUByte)
+#bim 是 灰度拉伸 并 图像增强 并 二值化的 图像
 
-auto =   auto - autoSource
+# 转化成图像矩阵
+image_array = np.array(bim)
+
+
+
+# 利用生成的高斯算子与原图像进行卷积对图像进行平滑处理
+image_blur = signal.convolve2d(image_array, suanzi1, mode="same")
+
+
+# 得到x方向矩阵
+image_x = imconv(image_array,suanzi_x)
+
+# 得到y方向矩阵
+image_y = imconv(image_array,suanzi_y)
+
+# 得到梯度矩阵
+image_xy = np.sqrt(image_x**2+image_y**2)
+
+
+
+# 梯度矩阵统一到0-255
+image_xy = (255.0/image_xy.max())*image_xy
+
+# 对平滑后的图像进行边缘检测
+image2 = signal.convolve2d(image_blur, suanzi2, mode="same")
+
+# 结果转化到0-255
+image2 = (image2/float(image2.max()))*255
+
+# 将大于灰度平均值的灰度值变成255（白色），便于观察边缘
+image2[image2>image2.mean()] = 255
+
+# 显示图像
+plt.subplot(1,2,1)
+plt.imshow(image_array,cmap=plt.cm.gray)
+plt.axis("off")
+plt.subplot(1,2,2)
+plt.imshow(image_xy,cmap=plt.cm.gray)
+plt.axis("off")
+
+plt.figure(num=8,figsize=(12,8),dpi=96) #设置窗口大小
+plt.suptitle('cu ding wei')
+# 先对 Canny算子的结果闭运算
+'''
+对已经提取边缘轮廓的车辆图像简单有效的车牌定位算法（附源码和详细解析）
+作闭运算。首先取简单有效的车牌定位算法（附源码和详细解析）大小的矩形模核，
+对图像简单有效的车牌定位算法（附源码和详细解析）作膨胀操作，填补孔洞，
+连通车牌区域，然后再用同等大小的矩形核模腐蚀，消除孤立的小区域，
+保留大块连通的区域，
+最后获得处理后图像简单有效的车牌定位算法（附源码和详细解析）。
+'''
+bg1 =openclose.closing(image_xy, rectangle(5,19))
+# 再开运算
+'''
+再对图像bg1作开运算。同样，
+首先选取[5,19]大小的矩形核模，对图像bg1作腐蚀操作，
+进一步消除非车牌区域的小块噪声区域，
+然后再用等大核模膨胀，得到消除了大部分背景噪声的车牌图像bg2。
+'''
+bg2 =openclose.opening(bg1, rectangle(5,19))
+'''
+再对上一步获取的图像bg2作[11,5]大小的矩阵核模开运算。
+具体操作与第二步类似。得到基本只有车牌区域的二值图bg3，初步定位出车牌。
+'''
+#再开运算
+bg3 =openclose.opening(bg2, rectangle(11,5))
+#开运算是先腐蚀后膨胀的过程，可以消除图像上细小的噪声，并平滑物体的边界
+#闭运算是先膨胀后腐蚀的过程，可以填充物体内细小的空洞，并平滑物体边界
+plt.subplot(1,2,1)
+plt.title('bg3')
+plt.imshow(bg3,cmap=plt.cm.gray)
+plt.axis("off")
+#消除细小对象
+bg4 =openclose.opening(bg3, rectangle(11,5))
+bg5 =openclose.opening(bg4, rectangle(11,5))
+bg6 =openclose.opening(bg5, rectangle(11,5))
+bg7 =openclose.opening(bg6, rectangle(11,5))
+plt.subplot(1,2,2)
+plt.title('bg7')
+plt.imshow(bg4,cmap=plt.cm.gray)
+plt.axis("off")
+
+
+
+auto =  im4 - bg7
 
 #检测所有图形的轮廓
 contours = measure.find_contours(auto, 0.5)
@@ -532,6 +716,7 @@ contours = measure.find_contours(auto, 0.5)
 #绘制轮廓
 fig, axes = plt.subplots(1,2,figsize=(8,8))#设置窗口大小
 plt.suptitle('bian yuan jian ce2')
+
 ax0, ax1= axes.ravel()
 ax0.imshow(auto,plt.cm.gray)
 ax0.set_title('original image')
@@ -543,7 +728,11 @@ for n, contour in enumerate(contours):
 ax1.axis('image')
 ax1.set_title('contours')
 
-plt.figure(num=9,figsize=(12,8),dpi=96) #设置窗口大小
+
+
+#蓝色像素统计、行列扫描的车牌精确定位算法
+
+plt.figure(num=10,figsize=(12,8),dpi=96) #设置窗口大小
 plt.suptitle('biao zhun zheng tai')
 print('标准正态分布')
 
