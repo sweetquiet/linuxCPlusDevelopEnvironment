@@ -1,0 +1,5 @@
+/Users/admindyn/Desktop/dailyspace/tempmac/Base64KeyDir/sources/build/CMakeFiles/rebuild_cache.dir
+/Users/admindyn/Desktop/dailyspace/tempmac/Base64KeyDir/sources/build/CMakeFiles/edit_cache.dir
+/Users/admindyn/Desktop/dailyspace/tempmac/Base64KeyDir/sources/build/sources/CMakeFiles/rebuild_cache.dir
+/Users/admindyn/Desktop/dailyspace/tempmac/Base64KeyDir/sources/build/sources/CMakeFiles/edit_cache.dir
+/Users/admindyn/Desktop/dailyspace/tempmac/Base64KeyDir/sources/build/sources/CMakeFiles/Base64Key.dir

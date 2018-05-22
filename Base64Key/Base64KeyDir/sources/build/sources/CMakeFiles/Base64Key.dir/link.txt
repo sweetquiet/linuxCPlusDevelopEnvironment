@@ -1,0 +1,1 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -O0 -g -ggdb -funsigned-char -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/Base64Key.dir/base64.c.o CMakeFiles/Base64Key.dir/main.c.o  -o ../bindir/Base64Key 
