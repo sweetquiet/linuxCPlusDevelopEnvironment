@@ -1,0 +1,285 @@
+将c++作为更好的c来使用 使用注意
+
+第一  单参数的构造函数 设置为explicit
+
+c++ 构造函数 单参数 的 最好 设置关键字explicit  必须显式调用该构造函数
+避免 隐式的类型转换  造成程序代码解读困难
+
+隐式转换 只需要确保 c++ 默认的 一些支持 比如 double 与 int；const char* 与 string
+
+我们新构造的数据类型 最好 都设置为只允许显式调用 避免混淆
+
+
+第二 c 指针传值 与 c++ 引用传值
+
+对于结构体 大型数据 函数传参我们c 使用 指针传参
+要操作指针引用的结构体数据成员  只能使用地址操作符访问
+
+void f (struct Foo* fp) 
+{
+	/*
+	通过fp来访问Foo结构 数据成员
+	地址操作符 间接访问
+	*/
+	fp->x = ...
+}
+
+struct Foo a;
+
+f(&a)
+
+注意 标准c 中 只有指针的概念  并且 & 取地址的操作符 并没有引用的机制 C++ 引入了
+
+c++引用
+
+void f (Foo &fr)
+{
+	/*
+	直接访问Foo的数据成员
+	*/
+	fr.x = ..
+}
+
+
+
+第三 c IO 类型不安全 printf 并不能确保参数数据项与字符串格式匹配 但是c++ cout
+
+要求将该输出流操作 转换为数据类型中的 operator<<stream 函数的调用 因此自定义数据类型
+
+需要实现对应的函数
+
+这里 设计运算符重载概念 运算符+ 与 运算符<<
+
+关键字operator是函数名的一部分
+
+operator+(const complex&,const complex &);
+complex::operator+(const complex &); 
+
+以上两个函数等价 实现任何一个 就可以自定义数据类型的加法运算
+
+ostream& operator<<(ostream& os,const complex& c)
+{
+	
+	os<<'{'<<c.real<<','<<c.image<<'}';
+
+	return os;
+}
+
+
+
+
+第四 引用
+
+
+int & current();
+
+int a[4] = {0,1,2,3};
+
+int index = 0;
+
+main ()
+{
+	 int a = 1;  
+     int& b = a;  
+  
+     cout<<"a:address->" <<&a<< endl;  
+     cout<<"b:address->" <<&b<< endl; 
+
+     int d1 = 4;  
+     const int & d2 = d1;  
+     d1 = 5;//d1改变，d2的值也会改变。  
+     //d2 = 6;//不能给常量（不能被修改的量）赋值。 
+	
+	current() = 10;
+	index = 3;
+	current() = 20;
+
+	for (int i = 0;i < 4;++i)
+	{
+		printf("%d",a[i]);
+	}
+
+}
+
+int & current()
+{
+	
+	return a[index];
+}
+
+
+第五 c++ 流操作 cin cout
+
+cin 流提取器 将提取到的 实例化到内存指定的变量中
+
+cout 流插入起（插入数据到终端屏幕输出流输出 或文件追加）
+
+输入输出流 格式化输入输出 使用setf unsetf 设置格式化约束条件 如何与 操纵器对应
+
+最常见操纵器 endl
+
+main(){
+	const size_t BUFSIZ = 128;
+
+	char s[BUFSIZ];
+
+	while(cin.getline(s,BUFSIZE))
+		cout << s << '\n';
+}
+
+
+第六  在一个函数声明中的缺省参数用于指示该函数从它的函数原型中取值 
+
+一个具有原型的函数
+
+int minutes(int hrx,int min = 0);
+
+第七 将c++作为更好的c来使用
+
+
+在c++ 中 const 声明默认的是内部连接
+而在c中是外部连接 
+这意味着在文件作用域内 可以使用const定义取代头文件中的#define定义的宏
+但是如果希望一个const对象具有外部连接特性 就必须使用关键字extern
+
+
+在c中可以将指向任意类型的指针指向空类型void*
+或 将指针从空类型void* 指向任何其他类型 这允许你在没有指针类型转换的情况下使用malloc
+
+没有指针类型转换的情况下使用malloc
+
+char* p = malloc(strlen(s)+1);
+
+而c++ 的类型系统不允许在没有转换类型的情况下从一个空类型指针指向其他类型
+
+否则无论如何上例中都应当使用new运算符
+
+打印输出 字符数组 整形数组的 地址 在c++使用cout 与c中使用printf 有区别
+
+int a[] = {0,1,2,3,4};
+
+cout<<"a == "<<(void*)a <<endl;
+
+cout<<"sizeof a == " << sizeof a <<endl;
+
+cout<<"contents a ==" << a <<endl;
+
+
+第八 可变长参数 在c++ 与 swift 中 貌似都认为不安全的c
+
+
+
+第九  指针运算 技巧
+
+同一数组的两个指针
+对两个指向该数组元素的指针 两个指针进行相减可以得到两个地址之间数组元素的个数
+
+
+当const 出现在星号前面的任意位置时 表明所指向的内容不允许被修改改变
+
+也可以把const 放在星号后面来声明指针本身不可改变
+
+void inspect(const void* ptr,size_t nbytes)
+{
+	
+	const unsigned char* p = (const unsigned char*)ptr;
+	cout.setf(ios::hex,ios:basefield);
+
+	for(int i = 0; i<nbytes;++i)
+	{
+		cout<<"byte"<<setw(2)<<setfill('')<<i<<":  "<<setw(2)<<setfill('0')<<int(p[i])<<endl;
+	}
+
+}
+
+第十 位域结构 联合体  
+
+第十一 sizeof
+
+int a [] = {0,1,2,3,4};
+
+int * p = a;
+
+sizeof a ;//20 sizeof 来计算出指定内存所占用的内存空间大小
+
+
+sizeof p ; //4
+
+第十二 
+
+void f(int b [],size_t n)
+{
+	
+	for(int i = 0;i<n;++i)
+	{
+	  cout<<b[i]<<' ';
+	}
+	b[2] = 99;
+}
+
+void f(int* b,size-t n); 
+
+效果等价 当你把数组作为参数传递给一个函数 其实
+是传递了数组第一个元素的指针
+
+int a [] = {0,1,2,3,4};
+
+size_t n = sizeof a / sizeof a[0];
+
+f(a,n);
+
+最后打印 a  发现 a 中的 第三个元素被修改为99
+
+
+
+第十三 二维数组
+
+int a[][4] = {{0,1,2,3},{4,5,6,7},{8.9,0,1}};
+
+
+int (*p) [4] =a;//指向包含四个整型成员的数组
+
+size_t nrows = sizeof a / sizeof a[0];
+
+size_t ncols = sizeof a[0] / sizeof a[0][0];
+
+for (int i = 0 ; i < nrows ; ++i)
+{
+	for (int j = 0;j < ncols ; ++j)
+	{
+		cout << p[i][j] << ' ';
+	}
+
+	cout << endl;
+
+}
+
+第十四  c++ 函数抽象 虚函数 继承
+
+当提供给用户一个函数接口 在用户不做任何干涉的情况下
+函数接口的行为根据和它相互作用的对象的类型而自动改变 产生多态 
+
+
+
+也就是 虚函数 
+
+如果f是一个虚函数 表达式p->f 能调用任何数量的在一个
+继承层次结构中相互关联的函数 这取决于基类
+指针p在执行时实际上所指向的对象类型
+
+第十五 函数重载 是
+
+void swap(int&x ,int &y);
+
+void swap(float&x,float&y);
+
+但是 函数 重载 还不如 函数抽象 继承 更别说不如模版
+
+一个类中 出现多次同名函数 但是 参数 个数 或者 参数类型不同
+c++的重载 但是 太赘余
+
+因此 发明模版  模版 算法 暂时忽略数据结构
+
+
+第十六 模版  未完待续
+
