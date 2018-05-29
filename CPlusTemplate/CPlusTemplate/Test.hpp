@@ -24,6 +24,10 @@ public:
     void funcBitMask(void);
     
     void funcBits(void);
+    
+    long funcFac(long n);
+    
+    
 };
 
 

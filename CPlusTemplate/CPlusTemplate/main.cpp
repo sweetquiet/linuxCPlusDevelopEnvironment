@@ -7,6 +7,11 @@
 //
 
 
+
+#include "FileHandler.hpp"
+
+#include "DataQianTao.hpp"
+#include "Date.hpp"
 #include "DataDynamicCast.hpp"
 
 #include "DataYouYuan.hpp"
@@ -296,6 +301,28 @@ std::cout<<obj.max<int>(1, i)<<std::endl;
     data.calcuate();
     
     data.printV(data);
+    
+    //
+    
+    Date d1,d2(1951,10,1);
+    
+    cout<< "d1 = "<< &d1 << endl;
+    
+    cout<< "d2 = "<< &d2 << endl;
+    
+    
+    //
+    
+    
+    Test t;
+    long n = 3;
+    t.funcFac(n);
+    
+    
+    FileHandler f;
+    
+    f.funcTest();
+    
     
     
     

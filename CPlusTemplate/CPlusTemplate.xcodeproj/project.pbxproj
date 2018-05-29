@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC1D556220BCE142006B796A /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC1D556020BCE142006B796A /* Date.cpp */; };
+		EC1D556520BCE8BF006B796A /* DataQianTao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC1D556320BCE8BF006B796A /* DataQianTao.cpp */; };
+		EC1D556820BCF41C006B796A /* FileHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC1D556620BCF41C006B796A /* FileHandler.cpp */; };
 		EC35650D204D277200EF9CED /* Originator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC35650B204D277200EF9CED /* Originator.cpp */; };
 		EC356510204D278F00EF9CED /* Memento.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC35650E204D278F00EF9CED /* Memento.cpp */; };
 		EC359B70204CDD15000EDC34 /* ProductBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC359B6E204CDD15000EDC34 /* ProductBuilder.cpp */; };
@@ -50,6 +53,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EC1D556020BCE142006B796A /* Date.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Date.cpp; sourceTree = "<group>"; };
+		EC1D556120BCE142006B796A /* Date.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Date.hpp; sourceTree = "<group>"; };
+		EC1D556320BCE8BF006B796A /* DataQianTao.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataQianTao.cpp; sourceTree = "<group>"; };
+		EC1D556420BCE8BF006B796A /* DataQianTao.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DataQianTao.hpp; sourceTree = "<group>"; };
+		EC1D556620BCF41C006B796A /* FileHandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FileHandler.cpp; sourceTree = "<group>"; };
+		EC1D556720BCF41C006B796A /* FileHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FileHandler.hpp; sourceTree = "<group>"; };
+		EC1D556920BCF5DA006B796A /* test */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test; sourceTree = "<group>"; };
 		EC35650B204D277200EF9CED /* Originator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Originator.cpp; sourceTree = "<group>"; };
 		EC35650C204D277200EF9CED /* Originator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Originator.hpp; sourceTree = "<group>"; };
 		EC35650E204D278F00EF9CED /* Memento.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Memento.cpp; sourceTree = "<group>"; };
@@ -140,6 +150,13 @@
 			isa = PBXGroup;
 			children = (
 				EC70C2CB20464B56004FE7A5 /* main.cpp */,
+				EC1D556920BCF5DA006B796A /* test */,
+				EC1D556620BCF41C006B796A /* FileHandler.cpp */,
+				EC1D556720BCF41C006B796A /* FileHandler.hpp */,
+				EC1D556320BCE8BF006B796A /* DataQianTao.cpp */,
+				EC1D556420BCE8BF006B796A /* DataQianTao.hpp */,
+				EC1D556020BCE142006B796A /* Date.cpp */,
+				EC1D556120BCE142006B796A /* Date.hpp */,
 				EC539B6220BBFC9B002C3D14 /* DataDynamicCast.cpp */,
 				EC539B6320BBFC9B002C3D14 /* DataDynamicCast.hpp */,
 				EC539B5F20BBF98B002C3D14 /* DataYouYuan.cpp */,
@@ -276,6 +293,8 @@
 				EC359B7C204CEEA4000EDC34 /* State.cpp in Sources */,
 				EC70C2CC20464B56004FE7A5 /* main.cpp in Sources */,
 				ECE3CFEA206A472600874723 /* DataDuoTai.cpp in Sources */,
+				EC1D556220BCE142006B796A /* Date.cpp in Sources */,
+				EC1D556820BCF41C006B796A /* FileHandler.cpp in Sources */,
 				ECE3CFE4206A2F4800874723 /* DataClass.cpp in Sources */,
 				EC359B73204CE049000EDC34 /* Builder.cpp in Sources */,
 				ECE3CFED206A49EE00874723 /* DataDuoTai1.cpp in Sources */,
@@ -284,6 +303,7 @@
 				EC8DF37F2047919000A2C3E5 /* ProductAbstract.cpp in Sources */,
 				EC359B70204CDD15000EDC34 /* ProductBuilder.cpp in Sources */,
 				EC70C2D420464B88004FE7A5 /* TemplateObj.cpp in Sources */,
+				EC1D556520BCE8BF006B796A /* DataQianTao.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

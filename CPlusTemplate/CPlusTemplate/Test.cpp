@@ -169,5 +169,43 @@ cout.setf(ios::hex,ios::basefield);
     cout<<endl;
 }
 
+void print_current(int depth, long n)
+{
+    int i;
+    //缩进以表示深度
+    for (i = 0; i< depth; ++i) {
+        fputs(" ", stdout);
+    }
+    printf("%ld\n",n);
+    
+}
+
+long Test::funcFac(long n)
+{
+    
+    static int depth = 0 ;
+    
+    auto long result ;
+    
+    print_current(++depth, n);
+    
+    result = (n <= 1)? 1:n * funcFac(n - 1);
+    
+    print_current(depth--, result);
+    
+    
+    return  result;
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
 
 
