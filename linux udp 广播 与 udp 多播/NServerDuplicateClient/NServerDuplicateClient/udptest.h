@@ -19,4 +19,6 @@ void testUDPDuoBoClient(void);
 
 void testUDPDuoBoServer(void);
 
+void testUDP_NServer_Client(void);
+
 #endif /* udptest_h */

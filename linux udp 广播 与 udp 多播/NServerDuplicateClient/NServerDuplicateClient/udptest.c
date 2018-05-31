@@ -6,13 +6,64 @@
 //  Copyright © 2018年 admindyn. All rights reserved.
 //
 
-#include <unistd.h>
-#include <string.h>
-#include <sys/types.h>
+
+
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <inttypes.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>          /* for socket/bind/listen() */
+#ifdef __APPLE__
+//苹果操作系统!
+#include <sys/fcntl.h>
+#include <netinet/tcp.h>
+#include <netinet/tcp_timer.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+#include <errno.h>
+#include <string.h>
+#include <pthread.h>
+
+#if TARGET_IPHONE_SIMULATOR
+
+// 苹果下的iOS 模拟器操作系统
+
+
+
+#elif TARGET_OS_IPHONE
+// 苹果下的iOS操作系统
+
+#elif TARGET_OS_MAC
+// 苹果下的MAC 操作系统
+
+
+#else
+
+// 苹果下的其他 操作系统
+
+#endif
+
+#elif __linux__
+//linux操作系统!
+/* for socket/bind/listen() */
+#include <linux/tcp.h>          /* for TCP_NODELAY */
+#include <pthread.h>
+
+#else
+//其他操作系统 可能是 UNIX 或者 Windows
+
+
+#endif
+
 #include "udptest.h"
 
 /*广播*/
@@ -394,7 +445,9 @@ void testUDPDuoBoClient(void)
     memset(&mcast_addr, 0, sizeof(mcast_addr));
     
     mcast_addr.sin_family= AF_INET;
-    
+    /*
+     将一个点分十进制的IP字符串转换成一个长整数型数（u_long类型）
+     */
     mcast_addr.sin_addr.s_addr = inet_addr(MCAST_ADDR);
     
     mcast_addr.sin_port = htons(MCAST_PORT);
@@ -429,6 +482,95 @@ void testUDPDuoBoClient(void)
     
     
 }
+
+void testUDP_NServer_Client(void)
+{
+    int fd;
+    const char *ip = "127.0.0.1";
+    unsigned short port = 8083;
+    struct sockaddr_in sip;
+    const char *buff = "hello, world";
+    
+#ifdef __APPLE__
+    //苹果操作系统!
+    
+    fd = socket(AF_INET, SOCK_DGRAM , 0);
+    
+#if TARGET_IPHONE_SIMULATOR
+    
+    // 苹果下的iOS 模拟器操作系统
+    
+    
+    
+#elif TARGET_OS_IPHONE
+    // 苹果下的iOS操作系统
+    
+#elif TARGET_OS_MAC
+    // 苹果下的MAC 操作系统
+    
+    
+#else
+    
+    // 苹果下的其他 操作系统
+    
+#endif
+    
+#elif __linux__
+    //linux操作系统!
+    /* for socket/bind/listen() */
+    
+    fd = socket(AF_INET, SOCK_STREAM | SOCK_CLOEXEC, 0);
+    
+#else
+    //其他操作系统 可能是 UNIX 或者 Windows
+    
+    
+#endif
+    
+    
+    if (fd<0) {
+        printf("%s/%d: %s\n", __FILE__, __LINE__, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+    
+    (void)memset(&sip, 0, sizeof(sip));
+    sip.sin_family = AF_INET;
+    sip.sin_port = htons(port);
+    if(inet_pton(AF_INET, ip, &sip.sin_addr) <= 0) {
+        printf("%s/%d: %s\n", __FILE__, __LINE__, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+    int flag = 1;
+    /*
+     端口复用真正的用处主要在经常会碰到端口尚未完全关闭的情况，这时如果不设置端口复用，则无法完成绑定，因为端口还处于被别的套接口绑定的状态之中
+     */
+    setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
+    
+    if (connect(fd, (struct sockaddr*)&sip, sizeof(sip)) < 0) {
+        printf("%s/%d: %s\n", __FILE__, __LINE__, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+    
+    while (1) {
+        int len = send(fd, buff, strlen(buff), 0);
+        printf("send %d\n", len);
+        
+        char rec_buff[64] = {0};
+        len = recv(fd, rec_buff, sizeof(rec_buff), 0);
+        if (len == 0) {
+            printf("recv FIN\n");
+            break;
+        } else {
+            printf("recv msg, %d/%s\n", len, rec_buff);
+        }
+        
+        sleep(3);
+    }
+    
+    close(fd);
+    
+}
+
 
 /*
  

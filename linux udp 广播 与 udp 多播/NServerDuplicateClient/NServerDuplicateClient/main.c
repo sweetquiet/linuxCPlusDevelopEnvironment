@@ -14,15 +14,17 @@ int main(int argc, const char * argv[]) {
     printf("Hello, World!\n");
     
     /*广播客户端 不需要有专门的广播服务器*/
-   //testUDPGuangBoClient();
+  // testUDPGuangBoClient();
     
    /*多播客户端*/
     
-    testUDPDuoBoClient();
+   // testUDPDuoBoClient();
     
     
     
+    /*NServer UDP 测试*/
     
+    testUDP_NServer_Client();
     
     
     

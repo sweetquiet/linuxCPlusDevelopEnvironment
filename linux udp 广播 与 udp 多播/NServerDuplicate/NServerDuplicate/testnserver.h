@@ -11,4 +11,16 @@
 
 #include <stdio.h>
 
+void testNServerUDPServer(void);
+
+void testNServerUDPClient(void);
+
+
+
+
+
+
+
+
+
 #endif /* testnserver_h */

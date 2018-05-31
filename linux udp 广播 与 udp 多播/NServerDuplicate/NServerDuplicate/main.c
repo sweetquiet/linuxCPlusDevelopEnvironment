@@ -24,10 +24,10 @@ int main(int argc, const char * argv[]) {
      多播服务端
      */
     
-    testUDPDuoBoServer();
+  //  testUDPDuoBoServer();
     
-    
-    
+   
+    testNServerUDPServer();
     
     
     

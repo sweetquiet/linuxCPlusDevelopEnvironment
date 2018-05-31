@@ -20,6 +20,7 @@
  7) 而发送通道，每调用一次send_pkt()打开一次；
  */
 
+#include <stdbool.h>
 #include "ev.h"
 #include "Queue.h"
 #include <stdio.h>
@@ -64,7 +65,17 @@ typedef struct SOCKET_CLIENT_t{
     
 }SOCKET_CLIENT_T;
 
+void* error_JUSTRET(void);
 
+void* error_close(int fd);
+
+void* error_free(SOCKET_CONN_T* conn);
+
+void free_conn(SOCKET_CONN_T*cn);
+
+void readyKeyLoopStart(void);
+
+void start_event_loop(void);
 
 SOCKET_CONN_T* get_socket_conn(void);
 
@@ -86,6 +97,9 @@ void socket_udp_write(EV_P_ ev_io *w, int revents);
 void* InitTCPSocketServerQueue(char* ip,unsigned short port,socketIO_callback readCallBack,socketIO_callback writeCallBack);
 
 void socket_tcp_accept(EV_P_ ev_io *w, int revents);
+
+
+int init_client_conn(void);
 
 void add_socket_client_conn(PKT*pkt);
 

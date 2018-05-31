@@ -75,6 +75,82 @@ static SOCKET_CONN_T *conn = NULL;       /* 维护socket连接 */
 static struct msghdr msg;            /* 报文信息结构体 */
 static struct iovec iovec;           /* 报文缓存向量 */
 
+static ev_idle idle;                 /* 空闲事件观测器 */
+static int count = 0;
+
+
+void* error_JUSTRET(void)
+{
+    return NULL;
+}
+void* error_close(int fd)
+{
+    printf("close udp\n");
+    close(fd);
+    return NULL;
+}
+void* error_free(SOCKET_CONN_T* conn)
+{
+    printf("free udp\n");
+    free_conn(conn);
+    return NULL;
+}
+
+void idle_main(void)
+{
+    count++;
+    if (count / 30000000) {
+        printf("in IDLE\n");
+        count = 0;
+    }
+}
+/* IDLE事件观测器的回调函数 */
+static void idle_cb (EV_P_ ev_idle *w, int revents)
+{
+    (void)idle_main();
+}
+
+void readyKeyLoopStart(void)
+{
+/* 这里忽略了 该异常信号的 处理 SIG_ ignore*/
+    
+    
+    signal(SIGPIPE, SIG_IGN);
+    
+    /* 初始化事件循环 */
+    loop = EV_DEFAULT;
+    
+    /* 预分配链接结构; magic 100: 预分配结构数量 */
+    int conn_num = 100;
+    conn = (SOCKET_CONN_T*)malloc(conn_num * sizeof(SOCKET_CONN_T));
+    (void)memset(conn, 0, conn_num * sizeof(SOCKET_CONN_T));
+    for (int i=0; i<conn_num-1; i++) {
+        conn[i].next = &conn[i+1];
+    }
+    conn[conn_num-1].next = NULL;
+    
+}
+void start_event_loop(void)
+{
+    /* 注册idle事件 这里必须用 否则程序 不能够保活*/
+    ev_idle_init (&idle, idle_cb);
+    ev_idle_start (EV_A_ &idle);
+   
+    /*
+     初始化 loop 结束后，调用这个函数开始 loop。如果 flags == 0，直至 loop 没有活跃的时间或者是调用了 ev_bread 之后停止。
+     */
+    
+    /* 开启libev事件循环
+     
+     使用函数ev_run(loop, int flags)。
+     
+     这里解释一下flags的作用，用于设置ev_loop的运行方式：
+     
+     通常设置为0，表示该ev_loop在所有watcher结束后停止，也可以手动break
+     */
+    ev_run(EV_A_ 0);
+}
+
 SOCKET_CONN_T* get_socket_conn()
 {
     
@@ -139,7 +215,8 @@ void* InitUDPSocketServerQueue(char* ip,unsigned short port,socketIO_callback re
     do {
         tmp_conn = get_socket_conn();
         if (tmp_conn == NULL) {
-            goto JUST_RET;
+            
+            return  error_JUSTRET();
         }
         tmp_conn->readCallBack = readCallBack;
         tmp_conn->writeCallBack = writeCallBack;
@@ -151,7 +228,7 @@ void* InitUDPSocketServerQueue(char* ip,unsigned short port,socketIO_callback re
         serverIP.sin_family = AF_INET;
         serverIP.sin_port = htons(port);
         if(inet_pton(AF_INET, ip, &serverIP.sin_addr) <= 0) {
-            goto FREE;
+           return error_free(tmp_conn);
         }
     } while(0);
     
@@ -162,8 +239,8 @@ void* InitUDPSocketServerQueue(char* ip,unsigned short port,socketIO_callback re
      http://blog.csdn.net/ttyttytty12/article/details/8141910
      */
     fd = socket(AF_INET, SOCK_DGRAM , 0);
-    int flags = fcntl (fd, F_GETFL, 0);
-    fcntl (fd, F_SETFL, flags | FNONBLOCK|FD_CLOEXEC);
+    //int flags = fcntl (fd, F_GETFL, 0);
+    //fcntl (fd, F_SETFL, flags | FNONBLOCK|FD_CLOEXEC);
 #if TARGET_IPHONE_SIMULATOR
     
     // 苹果下的iOS 模拟器操作系统
@@ -197,45 +274,84 @@ void* InitUDPSocketServerQueue(char* ip,unsigned short port,socketIO_callback re
     
     if (fd == -1) {
         printf("init server socket error\n");
-        goto FREE;
+          return error_free(tmp_conn);
+       
     }
     
     int flag = 1;
+    
+ 
+    /*
+     端口复用真正的用处主要在经常会碰到端口尚未完全关闭的情况，这时如果不设置端口复用，则无法完成绑定，因为端口还处于被别的套接口绑定的状态之中
+     */
+   
     setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
     
     if (bind(fd, (const struct sockaddr *)&serverIP, sizeof(struct sockaddr_in)) == -1) {
         printf("set option server socket error\n");
-        goto CLOSEFD;
+          return error_close(fd);
     }
     //    printf("[watch] fd = %d\n",fd);
     
 
-    
+    /*
+     Libev通过分配和注册watcher对不同类型的事件进行监听
+     这些事件的监听是异步进行的，触发任意一个监听的事件，都可以根据我们的设定进行某些操作。
+     */
+    /*
+     第一参数 设置监听者 ev_io
+     
+     第二参数 设置监听者收到监听激活状态后 调用的函数回调
+     
+     第三参数 监听者监听的激活源（激活源）
+     
+     第四参数 监听者监听激活源的那一方面 是读 还是写
+     */
     ev_io_init(&tmp_conn->readFd, socket_udp_read, fd, EV_READ);
     
     ev_io_init(&tmp_conn->writeFd, socket_udp_write, fd, EV_WRITE);
     
+    /*
+     
+     */
+    ev_io_start(EV_A_  &tmp_conn->readFd);
+   // ev_io_start(EV_A_  &tmp_conn->writeFd);
+    
 
-    
-    
-CLOSEFD:
-    close(fd);
-FREE:
-    free_conn(tmp_conn);
-JUST_RET:
-    return NULL;
+
     
     return NULL;
 }
 
 void socket_udp_read(EV_P_ ev_io *w, int revents)
 {
+    if (w->active ==0) {
+        printf("监听者acrive未被激活\n");
+    }
+    if (w->pending ==0) {
+        printf("监听者pending未被激活\n");
+    }
+    
     SOCKET_CONN_T *tmp_conn = (SOCKET_CONN_T *)w->data;
     
+    if (w->events&EV_READ) {
+        printf("监听read事件\n");
+    }
+    if (w->events&EV_WRITE) {
+        printf("监听write事件\n");
+    }
+    if ((w->events & ~(EV__IOFDSET | EV_READ | EV_WRITE))) {
+        printf("libev: ev_io_start called with illegal event mask\n");
+    }
     if (revents & EV_ERROR) {
         printf("socket libev read udp error\n");
         return;
     }
+   /*
+    assert(表达式);
+    如果表达式的值为假，整个程序将退出，
+    */
+
     
     common_intnet_generic_read(tmp_conn, true, false);
 }
@@ -289,7 +405,7 @@ void* InitTCPSocketServerQueue(char* ip,unsigned short port,socketIO_callback re
     do {
         tmp_conn = get_socket_conn();
         if (tmp_conn == NULL) {
-            goto JUST_RET;
+            return error_JUSTRET();
         }
         tmp_conn->readCallBack = readCallBack;
         tmp_conn->writeCallBack = writeCallBack;
@@ -305,7 +421,7 @@ void* InitTCPSocketServerQueue(char* ip,unsigned short port,socketIO_callback re
         serverIP.sin_family = AF_INET;
         serverIP.sin_port = htons(port);
         if(inet_pton(AF_INET, ip, &serverIP.sin_addr) <= 0) {
-            goto FREE;
+           return error_free(tmp_conn);
         }
     } while(0);
     
@@ -328,7 +444,7 @@ void* InitTCPSocketServerQueue(char* ip,unsigned short port,socketIO_callback re
      SOCK_CLOEXEC    Set  the  close-on-exec (FD_CLOEXEC) flag on the new file descriptor.  See the description of the O_CLOEXEC flag in open(2) for reasons why
      this may be useful.
      */
-#pragma mark 获取和设置文件阻塞flags
+/* 获取和设置文件阻塞flags*/
     
     int flags = fcntl (fd, F_GETFL, 0);
     fcntl (fd, F_SETFL, flags | FNONBLOCK|FD_CLOEXEC);
@@ -359,40 +475,56 @@ void* InitTCPSocketServerQueue(char* ip,unsigned short port,socketIO_callback re
 #endif
     if (fd == -1) {
         printf("tcp socket init error\n");
-        goto FREE;
+        return error_close(fd);
     }
     
     int flag = 1;                  /* 设置地址重用，非阻塞模式 */
     setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
     if (setsockopt(fd, IPPROTO_TCP, TCP_NODELAY, &flag, sizeof(flag)) == -1) {
         printf("set tcp socket option error\n");
-        goto CLOSEFD;
+        return error_close(fd);
     }
     
     if (bind(fd, (const struct sockaddr *)&serverIP, sizeof(struct sockaddr_in)) == -1) {
         printf("bind tcp server ip fail\n");
-        goto CLOSEFD;
+         return error_close(fd);
     }
 
     if (listen(fd, 512) == -1) {   /* magic 512: linux系统推荐值 */
         printf("listen tcp server fail\n");
-        goto CLOSEFD;
+         return error_close(fd);
     }
     
+    /*
+     Libev通过分配和注册watcher对不同类型的事件进行监听
+     这些事件的监听是异步进行的，触发任意一个监听的事件，都可以根据我们的设定进行某些操作。
+     */
+    /*
+     第一参数 设置监听者 ev_io
+     
+     第二参数 设置监听者收到监听激活状态后 调用的函数回调
+     
+     第三参数 监听者监听的激活源（激活源）
+     
+     第四参数 监听者监听激活源的那一方面 是读 还是写
+     */
+    /*
+     每次TCP 三次握手后 才调用到这里
+     
+     监听套接字 只要进程活着 监听套接字 就一直活着
+     
+     一旦监听到 新的客户端要连接
+     
+     就被激活
+     
+     然后调用 accept 函数
+     */
     
     ev_io_init(&tmp_conn->readFd, socket_tcp_accept, fd, EV_READ);
     
     ev_io_start(EV_A_  &tmp_conn->readFd);
     
-    
-    
-    
-CLOSEFD:
-    close(fd);
-FREE:
-    free_conn(tmp_conn);
-JUST_RET:
-    return NULL;
+
     
     return NULL;
     
@@ -426,6 +558,10 @@ void socket_tcp_accept(EV_P_ ev_io *w, int revents)
      要求监听的 IO 文件描述符 这里就是上一级的
      
      socket监听描述符
+     
+     accept 返回不同于之前的 监听套接字
+     
+     返回的是 连接套接字 我们后续的端与端之间的传输 使用该套接字
      
      */
     
@@ -530,7 +666,12 @@ void common_intnet_generic_read(SOCKET_CONN_T*conn,bool store_remote_addr,bool c
     }
     
     /*
-     读写IO的 起始指针
+     读写IO的 起始指针 这里读写就直接将数据填充到了pkt buff地址
+     pkt 内存 在程序启动时 先建立了socket连接的链表
+     
+     而socket连接的链表中每个节点 是一个socket连接的维护信息
+     
+     每个socket连接 又维护一个 socket 报文的 队列
      */
     iovec.iov_base = conn->pkt.buff;
     

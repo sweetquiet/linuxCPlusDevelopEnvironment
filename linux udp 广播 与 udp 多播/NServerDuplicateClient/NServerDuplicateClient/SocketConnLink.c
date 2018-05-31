@@ -150,6 +150,9 @@ void* InitUDPSocketServerQueue(char* ip,unsigned short port,socketIO_callback re
         
         serverIP.sin_family = AF_INET;
         serverIP.sin_port = htons(port);
+        /*
+         这个函数转换字符串到网络地址，第一个参数af是地址簇，第二个参数*src是来源地址，第三个参数* dst接收转换后的数据。
+         */
         if(inet_pton(AF_INET, ip, &serverIP.sin_addr) <= 0) {
             goto FREE;
         }
@@ -201,6 +204,9 @@ void* InitUDPSocketServerQueue(char* ip,unsigned short port,socketIO_callback re
     }
     
     int flag = 1;
+    /*
+     端口复用真正的用处主要在经常会碰到端口尚未完全关闭的情况，这时如果不设置端口复用，则无法完成绑定，因为端口还处于被别的套接口绑定的状态之中
+     */
     setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
     
     if (bind(fd, (const struct sockaddr *)&serverIP, sizeof(struct sockaddr_in)) == -1) {
@@ -215,7 +221,10 @@ void* InitUDPSocketServerQueue(char* ip,unsigned short port,socketIO_callback re
     
     ev_io_init(&tmp_conn->writeFd, socket_udp_write, fd, EV_WRITE);
     
-
+/*
+ 
+ */
+    ev_io_start(EV_A_  &tmp_conn->readFd);
     
     
 CLOSEFD:
