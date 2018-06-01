@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ECC9C00420C0EF5C00A864E1 /* AEST.c in Sources */ = {isa = PBXBuildFile; fileRef = ECC9C00220C0EF5C00A864E1 /* AEST.c */; };
+		ECC9C00720C0F9FB00A864E1 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = ECC9C00520C0F9FA00A864E1 /* aes.c */; };
 		ECE0C3D620BFC6BC00BB31F3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = ECE0C3D520BFC6BC00BB31F3 /* main.c */; };
 		ECE0C45E20BFC70E00BB31F3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE0C45D20BFC70D00BB31F3 /* libcrypto.a */; };
 		ECE0C46120BFCE7A00BB31F3 /* LoraTest.c in Sources */ = {isa = PBXBuildFile; fileRef = ECE0C45F20BFCE7A00BB31F3 /* LoraTest.c */; };
@@ -25,6 +27,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ECC9C00220C0EF5C00A864E1 /* AEST.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = AEST.c; sourceTree = "<group>"; };
+		ECC9C00320C0EF5C00A864E1 /* AEST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEST.h; sourceTree = "<group>"; };
+		ECC9C00520C0F9FA00A864E1 /* aes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes.c; sourceTree = "<group>"; };
+		ECC9C00620C0F9FA00A864E1 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		ECE0C3D220BFC6BC00BB31F3 /* CAESKEY */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CAESKEY; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE0C3D520BFC6BC00BB31F3 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		ECE0C3DF20BFC70D00BB31F3 /* __DECC_INCLUDE_EPILOGUE.H */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = __DECC_INCLUDE_EPILOGUE.H; sourceTree = "<group>"; };
@@ -190,6 +196,10 @@
 			children = (
 				ECE0C3DC20BFC70D00BB31F3 /* openssl */,
 				ECE0C3D520BFC6BC00BB31F3 /* main.c */,
+				ECC9C00220C0EF5C00A864E1 /* AEST.c */,
+				ECC9C00320C0EF5C00A864E1 /* AEST.h */,
+				ECC9C00520C0F9FA00A864E1 /* aes.c */,
+				ECC9C00620C0F9FA00A864E1 /* aes.h */,
 				ECE0C45F20BFCE7A00BB31F3 /* LoraTest.c */,
 				ECE0C46020BFCE7A00BB31F3 /* LoraTest.h */,
 			);
@@ -412,6 +422,8 @@
 			files = (
 				ECE0C3D620BFC6BC00BB31F3 /* main.c in Sources */,
 				ECE0C46120BFCE7A00BB31F3 /* LoraTest.c in Sources */,
+				ECC9C00420C0EF5C00A864E1 /* AEST.c in Sources */,
+				ECC9C00720C0F9FB00A864E1 /* aes.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
