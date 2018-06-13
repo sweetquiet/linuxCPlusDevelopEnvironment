@@ -54,25 +54,7 @@
 #  define AES_DEC_256_OTFK  /* AES decryption with 'on the fly' 256 bit keying */
 #endif
 
-#define N_ROW                   4
-#define N_COL                   4
-#define N_BLOCK   (N_ROW * N_COL)
-#define N_MAX_ROUNDS           14
-
-typedef unsigned char uint_8t;
-
-typedef uint_8t return_type;
-
-/*  Warning: The key length for 256 bit keys overflows a byte
-    (see comment below)
-*/
-
-typedef uint_8t length_type;
-
-typedef struct
-{   uint_8t ksch[(N_MAX_ROUNDS + 1) * N_BLOCK];
-    uint_8t rnd;
-} aes_context;
+#include "DataType.h"
 
 /*  The following calls are for a precomputed key schedule
 

@@ -35,9 +35,7 @@ void copy_block_copy_nn(void* dest,const void*src,size_t srclen);
 
 
 
-
-
-
+static void copy_copy_and_key( void *d, const void *s, const void *k );
 
 
 
