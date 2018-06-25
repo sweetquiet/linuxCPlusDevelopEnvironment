@@ -1,0 +1,1 @@
+/root/Desktop/CPlusSourceCode/NSMYSQL/build/src/CMakeFiles/nserver-redis-mysql.dir
