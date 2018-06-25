@@ -1,0 +1,1 @@
+socket 服务端timewait 多 使用SO_REUSEADDR 使用setsockopt()设置socket描述符的
