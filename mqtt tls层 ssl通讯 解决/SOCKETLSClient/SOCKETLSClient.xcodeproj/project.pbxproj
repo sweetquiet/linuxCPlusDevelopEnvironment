@@ -1,0 +1,561 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC3C84F420E371FB007E7611 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = EC3C84F320E371FB007E7611 /* main.c */; };
+		EC3C857D20E3728C007E7611 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3C857B20E3728C007E7611 /* libcrypto.a */; };
+		EC3C857E20E3728C007E7611 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3C857C20E3728C007E7611 /* libssl.a */; };
+		EC3C858020E374DD007E7611 /* testcontent.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = EC3C857F20E37475007E7611 /* testcontent.txt */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EC3C84EE20E371FB007E7611 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				EC3C858020E374DD007E7611 /* testcontent.txt in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EC3C84F020E371FB007E7611 /* SOCKETLSClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SOCKETLSClient; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC3C84F320E371FB007E7611 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		EC3C84FD20E3728C007E7611 /* __DECC_INCLUDE_EPILOGUE.H */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = __DECC_INCLUDE_EPILOGUE.H; sourceTree = "<group>"; };
+		EC3C84FE20E3728C007E7611 /* __DECC_INCLUDE_PROLOGUE.H */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = __DECC_INCLUDE_PROLOGUE.H; sourceTree = "<group>"; };
+		EC3C84FF20E3728C007E7611 /* bio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bio.h; sourceTree = "<group>"; };
+		EC3C850020E3728C007E7611 /* comp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comp.h; sourceTree = "<group>"; };
+		EC3C850120E3728C007E7611 /* conf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conf.h; sourceTree = "<group>"; };
+		EC3C850220E3728C007E7611 /* constant_time_locl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constant_time_locl.h; sourceTree = "<group>"; };
+		EC3C850320E3728C007E7611 /* cryptlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cryptlib.h; sourceTree = "<group>"; };
+		EC3C850420E3728C007E7611 /* dane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dane.h; sourceTree = "<group>"; };
+		EC3C850520E3728C007E7611 /* dso.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dso.h; sourceTree = "<group>"; };
+		EC3C850620E3728C007E7611 /* dsoerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsoerr.h; sourceTree = "<group>"; };
+		EC3C850720E3728C007E7611 /* err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = err.h; sourceTree = "<group>"; };
+		EC3C850820E3728C007E7611 /* nelem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nelem.h; sourceTree = "<group>"; };
+		EC3C850920E3728C007E7611 /* numbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numbers.h; sourceTree = "<group>"; };
+		EC3C850A20E3728C007E7611 /* o_dir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = o_dir.h; sourceTree = "<group>"; };
+		EC3C850B20E3728C007E7611 /* o_str.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = o_str.h; sourceTree = "<group>"; };
+		EC3C850C20E3728C007E7611 /* rand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rand.h; sourceTree = "<group>"; };
+		EC3C850D20E3728C007E7611 /* refcount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = refcount.h; sourceTree = "<group>"; };
+		EC3C850E20E3728C007E7611 /* sockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sockets.h; sourceTree = "<group>"; };
+		EC3C850F20E3728C007E7611 /* thread_once.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread_once.h; sourceTree = "<group>"; };
+		EC3C851120E3728C007E7611 /* __DECC_INCLUDE_EPILOGUE.H */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = __DECC_INCLUDE_EPILOGUE.H; sourceTree = "<group>"; };
+		EC3C851220E3728C007E7611 /* __DECC_INCLUDE_PROLOGUE.H */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = __DECC_INCLUDE_PROLOGUE.H; sourceTree = "<group>"; };
+		EC3C851320E3728C007E7611 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
+		EC3C851420E3728C007E7611 /* asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1.h; sourceTree = "<group>"; };
+		EC3C851520E3728C007E7611 /* asn1_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1_mac.h; sourceTree = "<group>"; };
+		EC3C851620E3728C007E7611 /* asn1err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1err.h; sourceTree = "<group>"; };
+		EC3C851720E3728C007E7611 /* asn1t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1t.h; sourceTree = "<group>"; };
+		EC3C851820E3728C007E7611 /* async.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = async.h; sourceTree = "<group>"; };
+		EC3C851920E3728C007E7611 /* asyncerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asyncerr.h; sourceTree = "<group>"; };
+		EC3C851A20E3728C007E7611 /* bio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bio.h; sourceTree = "<group>"; };
+		EC3C851B20E3728C007E7611 /* bioerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bioerr.h; sourceTree = "<group>"; };
+		EC3C851C20E3728C007E7611 /* blowfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blowfish.h; sourceTree = "<group>"; };
+		EC3C851D20E3728C007E7611 /* bn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bn.h; sourceTree = "<group>"; };
+		EC3C851E20E3728C007E7611 /* bnerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bnerr.h; sourceTree = "<group>"; };
+		EC3C851F20E3728C007E7611 /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		EC3C852020E3728C007E7611 /* buffererr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffererr.h; sourceTree = "<group>"; };
+		EC3C852120E3728C007E7611 /* camellia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camellia.h; sourceTree = "<group>"; };
+		EC3C852220E3728C007E7611 /* cast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cast.h; sourceTree = "<group>"; };
+		EC3C852320E3728C007E7611 /* cmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmac.h; sourceTree = "<group>"; };
+		EC3C852420E3728C007E7611 /* cms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cms.h; sourceTree = "<group>"; };
+		EC3C852520E3728C007E7611 /* cmserr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmserr.h; sourceTree = "<group>"; };
+		EC3C852620E3728C007E7611 /* comp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comp.h; sourceTree = "<group>"; };
+		EC3C852720E3728C007E7611 /* comperr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comperr.h; sourceTree = "<group>"; };
+		EC3C852820E3728C007E7611 /* conf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conf.h; sourceTree = "<group>"; };
+		EC3C852920E3728C007E7611 /* conf_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conf_api.h; sourceTree = "<group>"; };
+		EC3C852A20E3728C007E7611 /* conferr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conferr.h; sourceTree = "<group>"; };
+		EC3C852B20E3728C007E7611 /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
+		EC3C852C20E3728C007E7611 /* cryptoerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cryptoerr.h; sourceTree = "<group>"; };
+		EC3C852D20E3728C007E7611 /* ct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ct.h; sourceTree = "<group>"; };
+		EC3C852E20E3728C007E7611 /* cterr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cterr.h; sourceTree = "<group>"; };
+		EC3C852F20E3728C007E7611 /* des.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = des.h; sourceTree = "<group>"; };
+		EC3C853020E3728C007E7611 /* dh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dh.h; sourceTree = "<group>"; };
+		EC3C853120E3728C007E7611 /* dherr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dherr.h; sourceTree = "<group>"; };
+		EC3C853220E3728C007E7611 /* dsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsa.h; sourceTree = "<group>"; };
+		EC3C853320E3728C007E7611 /* dsaerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsaerr.h; sourceTree = "<group>"; };
+		EC3C853420E3728C007E7611 /* dtls1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dtls1.h; sourceTree = "<group>"; };
+		EC3C853520E3728C007E7611 /* e_os2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2.h; sourceTree = "<group>"; };
+		EC3C853620E3728C007E7611 /* ebcdic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ebcdic.h; sourceTree = "<group>"; };
+		EC3C853720E3728C007E7611 /* ec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ec.h; sourceTree = "<group>"; };
+		EC3C853820E3728C007E7611 /* ecdh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecdh.h; sourceTree = "<group>"; };
+		EC3C853920E3728C007E7611 /* ecdsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecdsa.h; sourceTree = "<group>"; };
+		EC3C853A20E3728C007E7611 /* ecerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecerr.h; sourceTree = "<group>"; };
+		EC3C853B20E3728C007E7611 /* engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engine.h; sourceTree = "<group>"; };
+		EC3C853C20E3728C007E7611 /* engineerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engineerr.h; sourceTree = "<group>"; };
+		EC3C853D20E3728C007E7611 /* err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = err.h; sourceTree = "<group>"; };
+		EC3C853E20E3728C007E7611 /* evp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evp.h; sourceTree = "<group>"; };
+		EC3C853F20E3728C007E7611 /* evperr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evperr.h; sourceTree = "<group>"; };
+		EC3C854020E3728C007E7611 /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
+		EC3C854120E3728C007E7611 /* idea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idea.h; sourceTree = "<group>"; };
+		EC3C854220E3728C007E7611 /* kdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kdf.h; sourceTree = "<group>"; };
+		EC3C854320E3728C007E7611 /* kdferr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kdferr.h; sourceTree = "<group>"; };
+		EC3C854420E3728C007E7611 /* lhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lhash.h; sourceTree = "<group>"; };
+		EC3C854520E3728C007E7611 /* md2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md2.h; sourceTree = "<group>"; };
+		EC3C854620E3728C007E7611 /* md4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md4.h; sourceTree = "<group>"; };
+		EC3C854720E3728C007E7611 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
+		EC3C854820E3728C007E7611 /* mdc2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mdc2.h; sourceTree = "<group>"; };
+		EC3C854920E3728C007E7611 /* modes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modes.h; sourceTree = "<group>"; };
+		EC3C854A20E3728C007E7611 /* obj_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obj_mac.h; sourceTree = "<group>"; };
+		EC3C854B20E3728C007E7611 /* objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objects.h; sourceTree = "<group>"; };
+		EC3C854C20E3728C007E7611 /* objectserr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objectserr.h; sourceTree = "<group>"; };
+		EC3C854D20E3728C007E7611 /* ocsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ocsp.h; sourceTree = "<group>"; };
+		EC3C854E20E3728C007E7611 /* ocsperr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ocsperr.h; sourceTree = "<group>"; };
+		EC3C854F20E3728C007E7611 /* opensslconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opensslconf.h; sourceTree = "<group>"; };
+		EC3C855020E3728C007E7611 /* opensslconf.h.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = opensslconf.h.in; sourceTree = "<group>"; };
+		EC3C855120E3728C007E7611 /* opensslv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opensslv.h; sourceTree = "<group>"; };
+		EC3C855220E3728C007E7611 /* ossl_typ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ossl_typ.h; sourceTree = "<group>"; };
+		EC3C855320E3728C007E7611 /* pem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem.h; sourceTree = "<group>"; };
+		EC3C855420E3728C007E7611 /* pem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem2.h; sourceTree = "<group>"; };
+		EC3C855520E3728C007E7611 /* pemerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pemerr.h; sourceTree = "<group>"; };
+		EC3C855620E3728C007E7611 /* pkcs12.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkcs12.h; sourceTree = "<group>"; };
+		EC3C855720E3728C007E7611 /* pkcs12err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkcs12err.h; sourceTree = "<group>"; };
+		EC3C855820E3728C007E7611 /* pkcs7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkcs7.h; sourceTree = "<group>"; };
+		EC3C855920E3728C007E7611 /* pkcs7err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkcs7err.h; sourceTree = "<group>"; };
+		EC3C855A20E3728C007E7611 /* rand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rand.h; sourceTree = "<group>"; };
+		EC3C855B20E3728C007E7611 /* randerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = randerr.h; sourceTree = "<group>"; };
+		EC3C855C20E3728C007E7611 /* rc2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rc2.h; sourceTree = "<group>"; };
+		EC3C855D20E3728C007E7611 /* rc4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rc4.h; sourceTree = "<group>"; };
+		EC3C855E20E3728C007E7611 /* rc5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rc5.h; sourceTree = "<group>"; };
+		EC3C855F20E3728C007E7611 /* ripemd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ripemd.h; sourceTree = "<group>"; };
+		EC3C856020E3728C007E7611 /* rsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsa.h; sourceTree = "<group>"; };
+		EC3C856120E3728C007E7611 /* rsaerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsaerr.h; sourceTree = "<group>"; };
+		EC3C856220E3728C007E7611 /* safestack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safestack.h; sourceTree = "<group>"; };
+		EC3C856320E3728C007E7611 /* seed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = seed.h; sourceTree = "<group>"; };
+		EC3C856420E3728C007E7611 /* sha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha.h; sourceTree = "<group>"; };
+		EC3C856520E3728C007E7611 /* srp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = srp.h; sourceTree = "<group>"; };
+		EC3C856620E3728C007E7611 /* srtp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = srtp.h; sourceTree = "<group>"; };
+		EC3C856720E3728C007E7611 /* ssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl.h; sourceTree = "<group>"; };
+		EC3C856820E3728C007E7611 /* ssl2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl2.h; sourceTree = "<group>"; };
+		EC3C856920E3728C007E7611 /* ssl3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl3.h; sourceTree = "<group>"; };
+		EC3C856A20E3728C007E7611 /* sslerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sslerr.h; sourceTree = "<group>"; };
+		EC3C856B20E3728C007E7611 /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		EC3C856C20E3728C007E7611 /* store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = store.h; sourceTree = "<group>"; };
+		EC3C856D20E3728C007E7611 /* storeerr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = storeerr.h; sourceTree = "<group>"; };
+		EC3C856E20E3728C007E7611 /* symhacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = symhacks.h; sourceTree = "<group>"; };
+		EC3C856F20E3728C007E7611 /* tls1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tls1.h; sourceTree = "<group>"; };
+		EC3C857020E3728C007E7611 /* ts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ts.h; sourceTree = "<group>"; };
+		EC3C857120E3728C007E7611 /* tserr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tserr.h; sourceTree = "<group>"; };
+		EC3C857220E3728C007E7611 /* txt_db.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = txt_db.h; sourceTree = "<group>"; };
+		EC3C857320E3728C007E7611 /* ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ui.h; sourceTree = "<group>"; };
+		EC3C857420E3728C007E7611 /* uierr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uierr.h; sourceTree = "<group>"; };
+		EC3C857520E3728C007E7611 /* whrlpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = whrlpool.h; sourceTree = "<group>"; };
+		EC3C857620E3728C007E7611 /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
+		EC3C857720E3728C007E7611 /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
+		EC3C857820E3728C007E7611 /* x509err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509err.h; sourceTree = "<group>"; };
+		EC3C857920E3728C007E7611 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		EC3C857A20E3728C007E7611 /* x509v3err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3err.h; sourceTree = "<group>"; };
+		EC3C857B20E3728C007E7611 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		EC3C857C20E3728C007E7611 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		EC3C857F20E37475007E7611 /* testcontent.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testcontent.txt; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC3C84ED20E371FB007E7611 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC3C857E20E3728C007E7611 /* libssl.a in Frameworks */,
+				EC3C857D20E3728C007E7611 /* libcrypto.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC3C84E720E371FB007E7611 = {
+			isa = PBXGroup;
+			children = (
+				EC3C84F220E371FB007E7611 /* SOCKETLSClient */,
+				EC3C84F120E371FB007E7611 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC3C84F120E371FB007E7611 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC3C84F020E371FB007E7611 /* SOCKETLSClient */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC3C84F220E371FB007E7611 /* SOCKETLSClient */ = {
+			isa = PBXGroup;
+			children = (
+				EC3C84FA20E3728C007E7611 /* openssl */,
+				EC3C84F320E371FB007E7611 /* main.c */,
+				EC3C857F20E37475007E7611 /* testcontent.txt */,
+			);
+			path = SOCKETLSClient;
+			sourceTree = "<group>";
+		};
+		EC3C84FA20E3728C007E7611 /* openssl */ = {
+			isa = PBXGroup;
+			children = (
+				EC3C84FB20E3728C007E7611 /* include */,
+				EC3C857B20E3728C007E7611 /* libcrypto.a */,
+				EC3C857C20E3728C007E7611 /* libssl.a */,
+			);
+			path = openssl;
+			sourceTree = "<group>";
+		};
+		EC3C84FB20E3728C007E7611 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				EC3C84FC20E3728C007E7611 /* internal */,
+				EC3C851020E3728C007E7611 /* openssl */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		EC3C84FC20E3728C007E7611 /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				EC3C84FD20E3728C007E7611 /* __DECC_INCLUDE_EPILOGUE.H */,
+				EC3C84FE20E3728C007E7611 /* __DECC_INCLUDE_PROLOGUE.H */,
+				EC3C84FF20E3728C007E7611 /* bio.h */,
+				EC3C850020E3728C007E7611 /* comp.h */,
+				EC3C850120E3728C007E7611 /* conf.h */,
+				EC3C850220E3728C007E7611 /* constant_time_locl.h */,
+				EC3C850320E3728C007E7611 /* cryptlib.h */,
+				EC3C850420E3728C007E7611 /* dane.h */,
+				EC3C850520E3728C007E7611 /* dso.h */,
+				EC3C850620E3728C007E7611 /* dsoerr.h */,
+				EC3C850720E3728C007E7611 /* err.h */,
+				EC3C850820E3728C007E7611 /* nelem.h */,
+				EC3C850920E3728C007E7611 /* numbers.h */,
+				EC3C850A20E3728C007E7611 /* o_dir.h */,
+				EC3C850B20E3728C007E7611 /* o_str.h */,
+				EC3C850C20E3728C007E7611 /* rand.h */,
+				EC3C850D20E3728C007E7611 /* refcount.h */,
+				EC3C850E20E3728C007E7611 /* sockets.h */,
+				EC3C850F20E3728C007E7611 /* thread_once.h */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+		EC3C851020E3728C007E7611 /* openssl */ = {
+			isa = PBXGroup;
+			children = (
+				EC3C851120E3728C007E7611 /* __DECC_INCLUDE_EPILOGUE.H */,
+				EC3C851220E3728C007E7611 /* __DECC_INCLUDE_PROLOGUE.H */,
+				EC3C851320E3728C007E7611 /* aes.h */,
+				EC3C851420E3728C007E7611 /* asn1.h */,
+				EC3C851520E3728C007E7611 /* asn1_mac.h */,
+				EC3C851620E3728C007E7611 /* asn1err.h */,
+				EC3C851720E3728C007E7611 /* asn1t.h */,
+				EC3C851820E3728C007E7611 /* async.h */,
+				EC3C851920E3728C007E7611 /* asyncerr.h */,
+				EC3C851A20E3728C007E7611 /* bio.h */,
+				EC3C851B20E3728C007E7611 /* bioerr.h */,
+				EC3C851C20E3728C007E7611 /* blowfish.h */,
+				EC3C851D20E3728C007E7611 /* bn.h */,
+				EC3C851E20E3728C007E7611 /* bnerr.h */,
+				EC3C851F20E3728C007E7611 /* buffer.h */,
+				EC3C852020E3728C007E7611 /* buffererr.h */,
+				EC3C852120E3728C007E7611 /* camellia.h */,
+				EC3C852220E3728C007E7611 /* cast.h */,
+				EC3C852320E3728C007E7611 /* cmac.h */,
+				EC3C852420E3728C007E7611 /* cms.h */,
+				EC3C852520E3728C007E7611 /* cmserr.h */,
+				EC3C852620E3728C007E7611 /* comp.h */,
+				EC3C852720E3728C007E7611 /* comperr.h */,
+				EC3C852820E3728C007E7611 /* conf.h */,
+				EC3C852920E3728C007E7611 /* conf_api.h */,
+				EC3C852A20E3728C007E7611 /* conferr.h */,
+				EC3C852B20E3728C007E7611 /* crypto.h */,
+				EC3C852C20E3728C007E7611 /* cryptoerr.h */,
+				EC3C852D20E3728C007E7611 /* ct.h */,
+				EC3C852E20E3728C007E7611 /* cterr.h */,
+				EC3C852F20E3728C007E7611 /* des.h */,
+				EC3C853020E3728C007E7611 /* dh.h */,
+				EC3C853120E3728C007E7611 /* dherr.h */,
+				EC3C853220E3728C007E7611 /* dsa.h */,
+				EC3C853320E3728C007E7611 /* dsaerr.h */,
+				EC3C853420E3728C007E7611 /* dtls1.h */,
+				EC3C853520E3728C007E7611 /* e_os2.h */,
+				EC3C853620E3728C007E7611 /* ebcdic.h */,
+				EC3C853720E3728C007E7611 /* ec.h */,
+				EC3C853820E3728C007E7611 /* ecdh.h */,
+				EC3C853920E3728C007E7611 /* ecdsa.h */,
+				EC3C853A20E3728C007E7611 /* ecerr.h */,
+				EC3C853B20E3728C007E7611 /* engine.h */,
+				EC3C853C20E3728C007E7611 /* engineerr.h */,
+				EC3C853D20E3728C007E7611 /* err.h */,
+				EC3C853E20E3728C007E7611 /* evp.h */,
+				EC3C853F20E3728C007E7611 /* evperr.h */,
+				EC3C854020E3728C007E7611 /* hmac.h */,
+				EC3C854120E3728C007E7611 /* idea.h */,
+				EC3C854220E3728C007E7611 /* kdf.h */,
+				EC3C854320E3728C007E7611 /* kdferr.h */,
+				EC3C854420E3728C007E7611 /* lhash.h */,
+				EC3C854520E3728C007E7611 /* md2.h */,
+				EC3C854620E3728C007E7611 /* md4.h */,
+				EC3C854720E3728C007E7611 /* md5.h */,
+				EC3C854820E3728C007E7611 /* mdc2.h */,
+				EC3C854920E3728C007E7611 /* modes.h */,
+				EC3C854A20E3728C007E7611 /* obj_mac.h */,
+				EC3C854B20E3728C007E7611 /* objects.h */,
+				EC3C854C20E3728C007E7611 /* objectserr.h */,
+				EC3C854D20E3728C007E7611 /* ocsp.h */,
+				EC3C854E20E3728C007E7611 /* ocsperr.h */,
+				EC3C854F20E3728C007E7611 /* opensslconf.h */,
+				EC3C855020E3728C007E7611 /* opensslconf.h.in */,
+				EC3C855120E3728C007E7611 /* opensslv.h */,
+				EC3C855220E3728C007E7611 /* ossl_typ.h */,
+				EC3C855320E3728C007E7611 /* pem.h */,
+				EC3C855420E3728C007E7611 /* pem2.h */,
+				EC3C855520E3728C007E7611 /* pemerr.h */,
+				EC3C855620E3728C007E7611 /* pkcs12.h */,
+				EC3C855720E3728C007E7611 /* pkcs12err.h */,
+				EC3C855820E3728C007E7611 /* pkcs7.h */,
+				EC3C855920E3728C007E7611 /* pkcs7err.h */,
+				EC3C855A20E3728C007E7611 /* rand.h */,
+				EC3C855B20E3728C007E7611 /* randerr.h */,
+				EC3C855C20E3728C007E7611 /* rc2.h */,
+				EC3C855D20E3728C007E7611 /* rc4.h */,
+				EC3C855E20E3728C007E7611 /* rc5.h */,
+				EC3C855F20E3728C007E7611 /* ripemd.h */,
+				EC3C856020E3728C007E7611 /* rsa.h */,
+				EC3C856120E3728C007E7611 /* rsaerr.h */,
+				EC3C856220E3728C007E7611 /* safestack.h */,
+				EC3C856320E3728C007E7611 /* seed.h */,
+				EC3C856420E3728C007E7611 /* sha.h */,
+				EC3C856520E3728C007E7611 /* srp.h */,
+				EC3C856620E3728C007E7611 /* srtp.h */,
+				EC3C856720E3728C007E7611 /* ssl.h */,
+				EC3C856820E3728C007E7611 /* ssl2.h */,
+				EC3C856920E3728C007E7611 /* ssl3.h */,
+				EC3C856A20E3728C007E7611 /* sslerr.h */,
+				EC3C856B20E3728C007E7611 /* stack.h */,
+				EC3C856C20E3728C007E7611 /* store.h */,
+				EC3C856D20E3728C007E7611 /* storeerr.h */,
+				EC3C856E20E3728C007E7611 /* symhacks.h */,
+				EC3C856F20E3728C007E7611 /* tls1.h */,
+				EC3C857020E3728C007E7611 /* ts.h */,
+				EC3C857120E3728C007E7611 /* tserr.h */,
+				EC3C857220E3728C007E7611 /* txt_db.h */,
+				EC3C857320E3728C007E7611 /* ui.h */,
+				EC3C857420E3728C007E7611 /* uierr.h */,
+				EC3C857520E3728C007E7611 /* whrlpool.h */,
+				EC3C857620E3728C007E7611 /* x509.h */,
+				EC3C857720E3728C007E7611 /* x509_vfy.h */,
+				EC3C857820E3728C007E7611 /* x509err.h */,
+				EC3C857920E3728C007E7611 /* x509v3.h */,
+				EC3C857A20E3728C007E7611 /* x509v3err.h */,
+			);
+			path = openssl;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC3C84EF20E371FB007E7611 /* SOCKETLSClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC3C84F720E371FB007E7611 /* Build configuration list for PBXNativeTarget "SOCKETLSClient" */;
+			buildPhases = (
+				EC3C84EC20E371FB007E7611 /* Sources */,
+				EC3C84ED20E371FB007E7611 /* Frameworks */,
+				EC3C84EE20E371FB007E7611 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SOCKETLSClient;
+			productName = SOCKETLSClient;
+			productReference = EC3C84F020E371FB007E7611 /* SOCKETLSClient */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC3C84E820E371FB007E7611 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = admindyn;
+				TargetAttributes = {
+					EC3C84EF20E371FB007E7611 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 58W4HKZ65K;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = EC3C84EB20E371FB007E7611 /* Build configuration list for PBXProject "SOCKETLSClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EC3C84E720E371FB007E7611;
+			productRefGroup = EC3C84F120E371FB007E7611 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC3C84EF20E371FB007E7611 /* SOCKETLSClient */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC3C84EC20E371FB007E7611 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC3C84F420E371FB007E7611 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EC3C84F520E371FB007E7611 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		EC3C84F620E371FB007E7611 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		EC3C84F820E371FB007E7611 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 58W4HKZ65K;
+				HEADER_SEARCH_PATHS = /Users/admindyn/Desktop/dailyspace/tempmac/SOCKETLSClient/SOCKETLSClient/openssl/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SOCKETLSClient/openssl",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EC3C84F920E371FB007E7611 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 58W4HKZ65K;
+				HEADER_SEARCH_PATHS = /Users/admindyn/Desktop/dailyspace/tempmac/SOCKETLSClient/SOCKETLSClient/openssl/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SOCKETLSClient/openssl",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC3C84EB20E371FB007E7611 /* Build configuration list for PBXProject "SOCKETLSClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC3C84F520E371FB007E7611 /* Debug */,
+				EC3C84F620E371FB007E7611 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC3C84F720E371FB007E7611 /* Build configuration list for PBXNativeTarget "SOCKETLSClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC3C84F820E371FB007E7611 /* Debug */,
+				EC3C84F920E371FB007E7611 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC3C84E820E371FB007E7611 /* Project object */;
+}
