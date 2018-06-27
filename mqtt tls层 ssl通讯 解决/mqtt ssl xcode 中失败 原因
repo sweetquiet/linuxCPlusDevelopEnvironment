@@ -1,0 +1,29 @@
+mqtt ssl xcode 中失败 原因
+
+第一 保证引入了 openssl 的ssl 库
+	我们发现 nserver等之前只是用了openssl的加密库
+
+	所以下载源码 重新编译 引入ssl库
+
+第二 在xcode中 有一些资源目录问题
+	我们这里说的xcode 开发命令行程序的 资源目录问题
+
+	1、不说IOS的资源目录问题 而是命令行的
+	2、在工程的Build Phases 下的 Copy Files 下
+
+	选择Destination 将其置为 ProductsDirectory
+
+	Subpath 置为空
+
+	CopyOnlyWhenInstall 去掉勾选
+
+	然后添加文件 这里主要是ca证书 服务器证书 客户端证书等添加进来
+
+第三 完成上面的 两个步骤 在xcode 调试openssl 加密tls 通讯 才能调试成功
+
+	要不然 总会在加载证书时报错 很大原因是无法访问到证书 
+	而步骤而就是解决这一问题
+
+	
+
+

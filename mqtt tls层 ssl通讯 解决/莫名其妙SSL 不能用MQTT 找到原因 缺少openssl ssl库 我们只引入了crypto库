@@ -1,0 +1,115 @@
+莫名其妙SSL 不能用MQTT 找到原因 缺少openssl ssl库 我们只引入了crypto库
+
+找到开发 NServer 使用的ssl 库地址
+
+重新编译 openssl
+
+
+
+运维保存记录的 当时NServer开发的 依赖库版本地址
+
+
+几个NMS系统核心网的 三方依赖架构源码
+
+---AServer---
+mysql
+http://mysqlrelease.com/2014/09/mysql-on-github/
+git clone https://github.com/mysql/mysql-server
+
+方案二
+wget http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.15.tar.gz
+ tar zxvf mysql-5.6.15.tar.gz
+
+方案三 
+这个 只是 安装  但是 不能满足开发 
+sudo yum install mysql-community-server
+
+yum 安装开发包
+ yum install mysql-devel
+
+openssl
+git clone https://github.com/openssl/openssl
+
+./config
+make 
+make install
+
+mqtt
+git clone https://github.com/eclipse/paho.mqtt.c
+
+默认 生成的是 .so 文件
+我们哪怕 复制到 指定的三方依赖的查找目录 也不行
+.so 必须make  make install 安装到系统目录
+同时注意mqtt 用到了 openssl 因此 需要系统支持 先安装开发包 yum install opemssl-devel
+莫名报错 请安装
+yum install zlib
+yum install zlib-devel 针对.so文件
+同时 注意 cmake 软件 终端 make 缓存 莫名其妙 不过不应该
+
+redis
+本以为只需安装这个
+git clone https://github.com/redis/hiredis
+
+但从源码来看
+源码以来redis server
+redisserver 包 依赖 hiredis
+需要 make
+
+依赖 jemalloc
+需要 make
+
+依赖 lua
+需要 make linux  同时 安装它 系统需要安装开发包 yum install readline-devel
+
+
+[root@bogon build]# make
+Scanning dependencies of target aserver
+[  6%] Building C object src/CMakeFiles/aserver.dir/encryptprocess.c.o
+[ 13%] Building C object src/CMakeFiles/aserver.dir/networkcom.c.o
+[ 20%] Building C object src/CMakeFiles/aserver.dir/queue.c.o
+[ 26%] Building C object src/CMakeFiles/aserver.dir/tcp.c.o
+[ 33%] Building C object src/CMakeFiles/aserver.dir/log.c.o
+[ 40%] Building C object src/CMakeFiles/aserver.dir/json.c.o
+[ 46%] Building C object src/CMakeFiles/aserver.dir/lora.c.o
+[ 53%] Building C object src/CMakeFiles/aserver.dir/aserver.c.o
+[ 60%] Building C object src/CMakeFiles/aserver.dir/database.c.o
+[ 66%] Building C object src/CMakeFiles/aserver.dir/console.c.o
+[ 73%] Building C object src/CMakeFiles/aserver.dir/base64.c.o
+[ 80%] Building C object src/CMakeFiles/aserver.dir/main.c.o
+[ 86%] Building C object src/CMakeFiles/aserver.dir/redis.c.o
+[ 93%] Building C object src/CMakeFiles/aserver.dir/aes.c.o
+[100%] Building C object src/CMakeFiles/aserver.dir/mqtt.c.o
+Linking C executable ../bin/aserver
+[100%] Built target aserver
+[root@bogon build]# 
+
+aserver 源码 编译安装成功
+
+-----------Nserver---
+libev
+
+下载libev 源码
+http://dist.schmorp.de/libev/libev-4.24.tar.gz
+
+
+Scanning dependencies of target nserver
+[  5%] Building C object src/CMakeFiles/nserver.dir/database.c.o
+[ 11%] Building C object src/CMakeFiles/nserver.dir/console.c.o
+[ 17%] Building C object src/CMakeFiles/nserver.dir/base64.c.o
+[ 23%] Building C object src/CMakeFiles/nserver.dir/main.c.o
+[ 29%] Building C object src/CMakeFiles/nserver.dir/redis.c.o
+[ 35%] Building C object src/CMakeFiles/nserver.dir/aes.c.o
+[ 41%] Building C object src/CMakeFiles/nserver.dir/libev.c.o
+[ 47%] Building C object src/CMakeFiles/nserver.dir/log.c.o
+[ 52%] Building C object src/CMakeFiles/nserver.dir/nserver.c.o
+[ 58%] Building C object src/CMakeFiles/nserver.dir/json.c.o
+[ 64%] Building C object src/CMakeFiles/nserver.dir/lora.c.o
+[ 70%] Building C object src/CMakeFiles/nserver.dir/test.c.o
+[ 76%] Building C object src/CMakeFiles/nserver.dir/encryptprocess.c.o
+[ 82%] Building C object src/CMakeFiles/nserver.dir/networkcom.c.o
+[ 88%] Building C object src/CMakeFiles/nserver.dir/license.c.o
+[ 94%] Building C object src/CMakeFiles/nserver.dir/queue.c.o
+[100%] Building C object src/CMakeFiles/nserver.dir/idle.c.o
+Linking C executable ../bin/nserver
+[100%] Built target nserver
+[root@bogon build]# 
