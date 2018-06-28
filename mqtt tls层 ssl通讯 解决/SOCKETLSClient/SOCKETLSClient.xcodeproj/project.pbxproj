@@ -11,18 +11,30 @@
 		EC3C857D20E3728C007E7611 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3C857B20E3728C007E7611 /* libcrypto.a */; };
 		EC3C857E20E3728C007E7611 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3C857C20E3728C007E7611 /* libssl.a */; };
 		EC3C858020E374DD007E7611 /* testcontent.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = EC3C857F20E37475007E7611 /* testcontent.txt */; };
+		ECCF6A3720E4AE6800B9E180 /* ca-key.pem in CopyFiles */ = {isa = PBXBuildFile; fileRef = EC3C858120E37FEE007E7611 /* ca-key.pem */; };
+		ECCF6A3820E4AE6800B9E180 /* cacert.pem in CopyFiles */ = {isa = PBXBuildFile; fileRef = EC3C858220E37FEE007E7611 /* cacert.pem */; };
+		ECCF6A3920E4AE6800B9E180 /* client-cert.pem in CopyFiles */ = {isa = PBXBuildFile; fileRef = EC3C858320E37FEE007E7611 /* client-cert.pem */; };
+		ECCF6A3A20E4AE6800B9E180 /* client-key.pem in CopyFiles */ = {isa = PBXBuildFile; fileRef = EC3C858420E37FEE007E7611 /* client-key.pem */; };
+		ECCF6A3B20E4AE6800B9E180 /* server-cert.pem in CopyFiles */ = {isa = PBXBuildFile; fileRef = EC3C858520E37FEE007E7611 /* server-cert.pem */; };
+		ECCF6A3C20E4AE6800B9E180 /* server-key.pem in CopyFiles */ = {isa = PBXBuildFile; fileRef = EC3C858620E37FEE007E7611 /* server-key.pem */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		EC3C84EE20E371FB007E7611 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				ECCF6A3720E4AE6800B9E180 /* ca-key.pem in CopyFiles */,
+				ECCF6A3820E4AE6800B9E180 /* cacert.pem in CopyFiles */,
+				ECCF6A3920E4AE6800B9E180 /* client-cert.pem in CopyFiles */,
+				ECCF6A3A20E4AE6800B9E180 /* client-key.pem in CopyFiles */,
+				ECCF6A3B20E4AE6800B9E180 /* server-cert.pem in CopyFiles */,
+				ECCF6A3C20E4AE6800B9E180 /* server-key.pem in CopyFiles */,
 				EC3C858020E374DD007E7611 /* testcontent.txt in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -157,6 +169,12 @@
 		EC3C857B20E3728C007E7611 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		EC3C857C20E3728C007E7611 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		EC3C857F20E37475007E7611 /* testcontent.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testcontent.txt; sourceTree = "<group>"; };
+		EC3C858120E37FEE007E7611 /* ca-key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ca-key.pem"; sourceTree = "<group>"; };
+		EC3C858220E37FEE007E7611 /* cacert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cacert.pem; sourceTree = "<group>"; };
+		EC3C858320E37FEE007E7611 /* client-cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "client-cert.pem"; sourceTree = "<group>"; };
+		EC3C858420E37FEE007E7611 /* client-key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "client-key.pem"; sourceTree = "<group>"; };
+		EC3C858520E37FEE007E7611 /* server-cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "server-cert.pem"; sourceTree = "<group>"; };
+		EC3C858620E37FEE007E7611 /* server-key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "server-key.pem"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +211,12 @@
 			children = (
 				EC3C84FA20E3728C007E7611 /* openssl */,
 				EC3C84F320E371FB007E7611 /* main.c */,
+				EC3C858120E37FEE007E7611 /* ca-key.pem */,
+				EC3C858220E37FEE007E7611 /* cacert.pem */,
+				EC3C858320E37FEE007E7611 /* client-cert.pem */,
+				EC3C858420E37FEE007E7611 /* client-key.pem */,
+				EC3C858520E37FEE007E7611 /* server-cert.pem */,
+				EC3C858620E37FEE007E7611 /* server-key.pem */,
 				EC3C857F20E37475007E7611 /* testcontent.txt */,
 			);
 			path = SOCKETLSClient;
