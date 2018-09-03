@@ -32,7 +32,7 @@ int main(int argc, const char * argv[]) {
     //解析devui 即mac地址的含义
     
     //大端字节序 高位前三个字节 固定
-     int dev = 0x400101;
+    int dev = 0x400101;
     
     //大端字节序 高位第四个字节 字节的高4位
     //代表产品类型
